@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Vibrant GUI</title>
+	<link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+	<main class="app-screen" id="history">
+		<header class="toolbar">
+			<h2 class="title">Vibrant GUI</h2>
+			<button type="button" class="toolbar-button">
+				<img alt="Back" src="icons/arrow_back.svg">
+			</button>
+		</header>
+
+		<ul id="history-items">
+			<template>
+				<li class="history-item">
+					<img>
+					<div class="colors">
+						<span class="swatch"></span>
+						<span class="swatch"></span>
+						<span class="swatch"></span>
+						<span class="swatch"></span>
+						<span class="swatch"></span>
+						<span class="swatch"></span>
+					</div>
+				</li>
+			</template>
+		</ul>
+	</main>
+
+	<aside class="app-screen" id="new-palette">
+		<header class="toolbar">
+			<button type="button" class="toolbar-button">
+				<img alt="Back" src="icons/arrow_back.svg">
+			</button>
+			<h2 class="title">New palette</h2>
+			<button type="button" class="toolbar-button">
+				<img alt="Done" src="icons/done.svg">
+			</button>
+		</header>
+
+		<form>
+			<label id="image-file-input">
+				<input type="file" accept="image/*" name="imagefile"> Click to select a file
+			</label>
+
+			<label>
+				<span>Or enter an image URL</span>
+				<input type="url" name="imageurl">
+			</label>
+		</form>
+	</aside>
+
+	<article class="app-screen" id="palette">
+		<header class="toolbar">
+			<button type="button" class="toolbar-button">
+				<img alt="Back" src="icons/arrow_back.svg">
+			</button>
+			<h2 class="title">Palette</h2>
+			<button type="button" class="toolbar-button">
+				<img alt="Delete" src="icons/delete.svg">
+			</button>
+		</header>
+
+		<img alt="Base image">
+
+		<div class="colors">
+			<div>
+				<span class="swatch">#000000</span>
+				Vibrant
+			</div>
+			<div>
+				<span class="swatch">#000000</span>
+				Dark Vibrant
+			</div>
+			<div>
+				<span class="swatch">#000000</span>
+				Light Vibrant
+			</div>
+			<div>
+				<span class="swatch">#000000</span>
+				Muted
+			</div>
+			<div>
+				<span class="swatch">#000000</span>
+				Dark Muted
+			</div>
+			<div>
+				<span class="swatch">#000000</span>
+				Light Muted
+			</div>
+		</div>
+	</article>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "vibrant-gui",
+  "version": "0.0.0",
+  "description": "Extract prominent colors from an image with this PWA tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tiger Oakes",
+  "license": "MIT",
+  "dependencies": {
+    "node-vibrant": "^3.0.0"
+  }
+}
