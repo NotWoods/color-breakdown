@@ -5,16 +5,20 @@
  */
 
 /**
+ * @typedef {object} ColorPalette
+ * @prop {ColorSwatch | null} [vibrant]
+ * @prop {ColorSwatch | null} [darkVibrant]
+ * @prop {ColorSwatch | null} [lightVibrant]
+ * @prop {ColorSwatch | null} [muted]
+ * @prop {ColorSwatch | null} [darkMuted]
+ * @prop {ColorSwatch | null} [lightMuted]
+ */
+
+/**
  * Update a palette descriptor - either a grid item, or the palette page
  * @param {HTMLElement} node element to update
  * @param {string} imgSrc image source url
- * @param {object} colors object with colors to use
- * @param {ColorSwatch | null} [colors.vibrant]
- * @param {ColorSwatch | null} [colors.darkVibrant]
- * @param {ColorSwatch | null} [colors.lightVibrant]
- * @param {ColorSwatch | null} [colors.muted]
- * @param {ColorSwatch | null} [colors.darkMuted]
- * @param {ColorSwatch | null} [colors.lightMuted]
+ * @param {ColorPalette} colors object with colors to use
  */
 function updatePaletteData(node, imgSrc = "icons/placeholder.svg", colors = {}) {
 	node.querySelector("img.preview").src = imgSrc;
