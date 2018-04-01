@@ -5,7 +5,7 @@ body {
 
 	--primary: #4caf50;
 	--error: #F44336;
-	--vibrant: #111;
+	--vibrant: #ff0000;
 	--vibrant-text: #fff;
 	--dark-vibrant: #000;
 	--dark-vibrant-text: #fff;
@@ -111,8 +111,16 @@ img {
 	grid-gap: 0.25rem;
 	list-style-type: none;
 }
-.grid-item img {
+.grid-item-img-box {
+	position: relative;
 	padding-top: 100%;
+}
+.grid-item-img {
+	object-fit: cover;
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: auto;
 }
 
 .swatch {

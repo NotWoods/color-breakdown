@@ -2,11 +2,14 @@
 <html>
 
 <head>
+	<meta charset="UTF-8">
 	<title>Vibrant GUI</title>
 	<link href="css/base.css" rel="stylesheet">
-	<link href="css/pages.css" rel="stylesheet">
+	<!--<link href="css/pages.css" rel="stylesheet">-->
 	<link href="css/new.css" rel="stylesheet">
 	<link href="css/palette.css" rel="stylesheet">
+
+	<script async defer src="js/demo.js"></script>
 </head>
 
 <body>
@@ -16,10 +19,12 @@
 		</header>
 
 		<ul id="grid-items" class="grid-list">
-			<template>
+			<template id="grid-item-template">
 				<li class="grid-item light-muted">
 					<a href="#palette">
-						<img>
+						<div class="grid-item-img-box">
+							<img class="grid-item-img" alt="" src="icons/placeholder.svg" height="144" width="144">
+						</div>
 						<div class="colors vibrant">
 							<span class="swatch vibrant"></span>
 							<span class="swatch dark-vibrant"></span>
@@ -38,7 +43,7 @@
 		</a>
 	</main>
 
-	<aside class="app-screen" id="new-palette" hidden>
+	<aside class="app-screen" id="new-palette">
 		<header class="toolbar">
 			<a href="#history" class="toolbar-button white-button">
 				<img alt="Back" src="icons/ic_arrow_back_white_24px.svg">
@@ -50,13 +55,7 @@
 		</header>
 
 		<form class="new-palette-entry">
-			<input
-				type="file"
-				accept="image/*"
-				id="imagefile"
-				class="hidden-input"
-				name="imagefile"
-			>
+			<input type="file" accept="image/*" id="imagefile" class="hidden-input" name="imagefile">
 			<label for="imagefile" id="image-file-input" class="imagefile-label">
 				Click to select a file
 			</label>
@@ -68,8 +67,8 @@
 		</form>
 	</aside>
 
-	<article class="app-screen vibrant" id="palette" hidden>
-		<header class="toolbar vibrant">
+	<article class="app-screen vibrant" id="palette">
+		<header class="toolbar dark-vibrant">
 			<a href="#history" class="toolbar-button white-button">
 				<img alt="Back" src="icons/ic_arrow_back_white_24px.svg">
 			</a>
@@ -79,7 +78,7 @@
 			</a>
 		</header>
 
-		<img class="palette-image light-muted" alt="Base image">
+		<img class="palette-image light-muted" alt="Base image" src="icons/placeholder.svg">
 
 		<div class="colors palette-colors">
 			<div>
