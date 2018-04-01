@@ -10,5 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "node-vibrant": "^3.0.0"
+  },
+  "devDependencies": {
+    "prettier": "^1.11.1"
   }
 }
