@@ -3,94 +3,118 @@
 
 <head>
 	<title>Vibrant GUI</title>
-	<link href="style.css" rel="stylesheet">
+	<link href="css/base.css" rel="stylesheet">
+	<link href="css/new.css" rel="stylesheet">
+	<link href="css/palette.css" rel="stylesheet">
 </head>
 
 <body>
 	<main class="app-screen" id="history">
 		<header class="toolbar">
-			<h2 class="title">Vibrant GUI</h2>
-			<button type="button" class="toolbar-button">
-				<img alt="Back" src="icons/arrow_back.svg">
-			</button>
+			<h1 class="toolbar-title">Vibrant GUI</h1>
 		</header>
 
-		<ul id="history-items">
+		<ul id="grid-items" class="grid-list">
 			<template>
-				<li class="history-item">
-					<img>
-					<div class="colors">
-						<span class="swatch"></span>
-						<span class="swatch"></span>
-						<span class="swatch"></span>
-						<span class="swatch"></span>
-						<span class="swatch"></span>
-						<span class="swatch"></span>
-					</div>
+				<li class="grid-item light-muted">
+					<a href="#new-palette">
+						<img>
+						<div class="colors vibrant">
+							<span class="swatch vibrant"></span>
+							<span class="swatch dark-vibrant"></span>
+							<span class="swatch light-vibrant"></span>
+							<span class="swatch muted"></span>
+							<span class="swatch dark-muted"></span>
+							<span class="swatch light-muted"></span>
+						</div>
+					</a>
 				</li>
 			</template>
 		</ul>
+
+		<button type="button" class="fab">
+			<img alt="Add" src="icons/ic_add_white_24px.svg">
+		</button>
 	</main>
 
 	<aside class="app-screen" id="new-palette">
 		<header class="toolbar">
-			<button type="button" class="toolbar-button">
-				<img alt="Back" src="icons/arrow_back.svg">
-			</button>
-			<h2 class="title">New palette</h2>
-			<button type="button" class="toolbar-button">
-				<img alt="Done" src="icons/done.svg">
+			<a href="#history" class="toolbar-button white-button">
+				<img alt="Back" src="icons/ic_arrow_back_white_24px.svg">
+			</a>
+			<h2 class="toolbar-title">New palette</h2>
+			<button type="button" class="toolbar-button white-button">
+				<img alt="Done" src="icons/ic_done_white_24px.svg">
 			</button>
 		</header>
 
-		<form>
-			<label id="image-file-input">
-				<input type="file" accept="image/*" name="imagefile"> Click to select a file
+		<form class="new-palette-entry">
+			<input
+				type="file"
+				accept="image/*"
+				id="imagefile"
+				class="hidden-input"
+				name="imagefile"
+			>
+			<label for="imagefile" id="image-file-input" class="imagefile-label">
+				Click to select a file
 			</label>
 
-			<label>
-				<span>Or enter an image URL</span>
-				<input type="url" name="imageurl">
-			</label>
+			<div class="flip">
+				<input class="text-input" type="url" id="imageurl" name="imageurl">
+				<label for="imageurl" class="text-label">Or enter an image URL</label>
+			</div>
 		</form>
 	</aside>
 
-	<article class="app-screen" id="palette">
-		<header class="toolbar">
-			<button type="button" class="toolbar-button">
-				<img alt="Back" src="icons/arrow_back.svg">
-			</button>
-			<h2 class="title">Palette</h2>
-			<button type="button" class="toolbar-button">
-				<img alt="Delete" src="icons/delete.svg">
+	<article class="app-screen vibrant" id="palette">
+		<header class="toolbar vibrant">
+			<a href="#history" class="toolbar-button white-button">
+				<img alt="Back" src="icons/ic_arrow_back_white_24px.svg">
+			</a>
+			<h2 class="toolbar-title">Palette</h2>
+			<button type="button" class="toolbar-button white-button">
+				<img alt="Delete" src="icons/ic_delete_white_24px.svg">
 			</button>
 		</header>
 
-		<img alt="Base image">
+		<img class="palette-image light-muted" alt="Base image">
 
-		<div class="colors">
+		<div class="colors palette-colors">
 			<div>
-				<span class="swatch">#000000</span>
+				<div class="swatch vibrant">
+					<span class="swatch-text">#000000</span>
+				</div>
 				Vibrant
 			</div>
 			<div>
-				<span class="swatch">#000000</span>
+				<div class="swatch dark-vibrant">
+					<span class="swatch-text">#000000</span>
+				</div>
 				Dark Vibrant
 			</div>
 			<div>
-				<span class="swatch">#000000</span>
+				<div class="swatch light-vibrant">
+					<span class="swatch-text">#000000</span>
+				</div>
 				Light Vibrant
 			</div>
 			<div>
-				<span class="swatch">#000000</span>
+				<div class="swatch muted">
+					<span class="swatch-text">#000000</span>
+				</div>
 				Muted
 			</div>
 			<div>
-				<span class="swatch">#000000</span>
+				<div class="swatch dark-muted">
+					<span class="swatch-text">#000000</span>
+				</div>
 				Dark Muted
 			</div>
 			<div>
-				<span class="swatch">#000000</span>
+				<div class="swatch light-muted">
+					<span class="swatch-text">#000000</span>
+				</div>
 				Light Muted
 			</div>
 		</div>

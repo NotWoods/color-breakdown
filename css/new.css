@@ -1,0 +1,54 @@
+.new-palette-entry {
+	padding: 1rem;
+}
+
+.flip {
+	display: flex;
+	flex-flow: column-reverse;
+}
+
+.hidden-input {
+	position: absolute;
+	background: white;
+	left: -9999px;
+}
+.hidden-input:focus {
+	left: auto;
+}
+
+.imagefile-input:focus + .imagefile-label {
+	border: 1px dashed gray;
+}
+
+.text-label {
+	margin-top: 1rem;
+	font-size: 0.75rem;
+}
+.text-input {
+	margin: 0;
+	border: 0;
+	padding: 0.5rem 0;
+	white-space: normal;
+	background: none;
+	line-height: 1;
+	box-sizing: content-box;
+	display: block;
+	width: 100%;
+
+	font: inherit;
+	border-bottom: 1px solid black;
+}
+.text-input:focus {
+	border-bottom-width: 2px;
+	border-color: var(--primary);
+}
+.text-input:focus + .text-label {
+	color: var(--primary);
+}
+.text-input:invalid {
+	border-bottom-width: 2px;
+	border-color: var(--error);
+}
+.text-input:invalid + .text-label {
+	color: var(--error);
+}
