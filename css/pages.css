@@ -1,0 +1,11 @@
+.app-screen {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	visibility: hidden;
+}
+
+.app-screen:target {
+	visibility: visible;
+}

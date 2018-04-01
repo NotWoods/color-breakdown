@@ -67,7 +67,7 @@ img {
 
 .fab {
 	position: fixed;
-	display: block;
+	display: flex;
 	bottom: 1rem;
 	right: 1rem;
 	height: 3.5rem;

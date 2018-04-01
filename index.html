@@ -4,6 +4,7 @@
 <head>
 	<title>Vibrant GUI</title>
 	<link href="css/base.css" rel="stylesheet">
+	<link href="css/pages.css" rel="stylesheet">
 	<link href="css/new.css" rel="stylesheet">
 	<link href="css/palette.css" rel="stylesheet">
 </head>
@@ -17,7 +18,7 @@
 		<ul id="grid-items" class="grid-list">
 			<template>
 				<li class="grid-item light-muted">
-					<a href="#new-palette">
+					<a href="#palette">
 						<img>
 						<div class="colors vibrant">
 							<span class="swatch vibrant"></span>
@@ -32,20 +33,20 @@
 			</template>
 		</ul>
 
-		<button type="button" class="fab">
+		<a href="#new-palette" class="fab">
 			<img alt="Add" src="icons/ic_add_white_24px.svg">
-		</button>
+		</a>
 	</main>
 
-	<aside class="app-screen" id="new-palette">
+	<aside class="app-screen" id="new-palette" hidden>
 		<header class="toolbar">
 			<a href="#history" class="toolbar-button white-button">
 				<img alt="Back" src="icons/ic_arrow_back_white_24px.svg">
 			</a>
 			<h2 class="toolbar-title">New palette</h2>
-			<button type="button" class="toolbar-button white-button">
+			<a href="#palette" class="toolbar-button white-button">
 				<img alt="Done" src="icons/ic_done_white_24px.svg">
-			</button>
+			</a>
 		</header>
 
 		<form class="new-palette-entry">
@@ -67,15 +68,15 @@
 		</form>
 	</aside>
 
-	<article class="app-screen vibrant" id="palette">
+	<article class="app-screen vibrant" id="palette" hidden>
 		<header class="toolbar vibrant">
 			<a href="#history" class="toolbar-button white-button">
 				<img alt="Back" src="icons/ic_arrow_back_white_24px.svg">
 			</a>
 			<h2 class="toolbar-title">Palette</h2>
-			<button type="button" class="toolbar-button white-button">
+			<a href="#history" class="toolbar-button white-button">
 				<img alt="Delete" src="icons/ic_delete_white_24px.svg">
-			</button>
+			</a>
 		</header>
 
 		<img class="palette-image light-muted" alt="Base image">
