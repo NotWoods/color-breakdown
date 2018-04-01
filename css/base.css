@@ -36,6 +36,7 @@ img {
 	align-items: center;
 	padding: 0 0.5rem;
 	height: 3.5rem;
+	position: relative;
 
 	background: var(--primary);
 	color: #fff;
@@ -106,7 +107,7 @@ img {
 	margin: 0;
 	padding: 0;
 
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
 	grid-gap: 0.25rem;
 	list-style-type: none;
 }

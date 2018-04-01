@@ -28,3 +28,9 @@
 	transform: translateY(-50%);
 	font-weight: bold;
 }
+
+@media (min-width: 600px) {
+	.palette-colors {
+		grid-template-columns: repeat(6, 1fr);
+	}
+}
