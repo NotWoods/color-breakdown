@@ -1,9 +1,9 @@
-importScripts("node_modules/idb/lib/idb.js");
+importScripts("../node_modules/idb/lib/idb.js");
 
 const dbPromise = idb.open('history-store', 1, upgradeDB => {
 	switch (upgradeDB.oldVersion) {
 		case 0:
-			upgradeDB.createObjectStore('history')
+			upgradeDB.createObjectStore('history', { keyPath: "id" })
 			// fall through
 	}
 })
@@ -12,7 +12,7 @@ const dbPromise = idb.open('history-store', 1, upgradeDB => {
  * Load the history list. Emits an event for each item.
  * @emits PUT_HISTORY_ITEM
  */
-async function loadHistory() {
+async function loadHistoryFromDB() {
 	const db = await dbPromise;
 	const tx = db.transaction('history', 'readonly');
 
@@ -34,9 +34,9 @@ async function loadHistory() {
 /**
  * Loads a single history item into the main palette viewer, by emitted an event
  * @emits OPEN_ITEM
- * @param {*} id
+ * @param {string} id
  */
-async function loadItem(id) {
+async function loadItemFromDB(id) {
 	const db = await dbPromise;
 	const item = await db
 		.transaction('history', 'readonly')
@@ -55,16 +55,17 @@ async function loadItem(id) {
 
 /**
  * Save an item to the database
- * @param {*} id
+ * @param {string} id
  * @param {string} imgSrc
  * @param {ColorPalette} colors
  */
-async function saveItem(id, imgSrc, colors) {
+async function saveItemToDB(id, imgSrc, colors) {
 	const db = await dbPromise;
 	const tx = db.transaction('history', 'readwrite');
 	tx.objectStore('history').put({
 		id,
-		data: { imgSrc, colors },
+		imgSrc,
+		colors,
 	});
 
 	await tx.complete;
@@ -77,15 +78,16 @@ async function saveItem(id, imgSrc, colors) {
 
 self.addEventListener("message", (e) => {
 	const { type, payload } = e.data;
+	console.log(e.data);
 	switch (type) {
 		case "SAVE_ITEM":
-			saveItem(payload.id, payload.imgSrc, payload.colors);
+			saveItemToDB(payload.id, payload.imgSrc, payload.colors);
 			return;
 		case "LOAD_HISTORY":
-			loadHistory();
+			loadHistoryFromDB();
 			return;
 		case "LOAD_ITEM":
-			loadItem(payload.id);
+			loadItemFromDB(payload.id);
 			return;
 	}
 })

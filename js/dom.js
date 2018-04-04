@@ -53,3 +53,17 @@ function updateSwatch(parent, name, data) {
 		text.textContent = data != null ? data.color : "#??????"
 	}
 }
+
+/**
+ * Get an image source from a FileList
+ * @param {FileList} files
+ * @returns {string} used as `<img src="return value">`
+ */
+function processImageFiles(files) {
+	const file = Array.from(files).find(file => file.type.match(/^image\//));
+	if (file !== null) {
+		return URL.createObjectURL(file);
+	} else {
+		return "";
+	}
+}

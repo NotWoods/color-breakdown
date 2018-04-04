@@ -12,7 +12,8 @@
 	<script defer src="node_modules/node-vibrant/dist/vibrant.worker.js"></script>
 	<script defer src="js/dom.js"></script>
 	<script defer src="js/db.js"></script>
-	<script async defer src="js/demo.js"></script>
+	<script defer src="js/events.js"></script>
+	<script defer src="js/demo.js"></script>
 </head>
 
 <body>
@@ -63,7 +64,7 @@
 			</a>
 		</header>
 
-		<form class="new-palette-entry">
+		<form class="new-palette-entry" id="new-palette-entry">
 			<input type="file" accept="image/*" id="imagefile" class="hidden-input" name="imagefile">
 			<label for="imagefile" id="image-file-input" class="imagefile-label">
 				Click to select a file

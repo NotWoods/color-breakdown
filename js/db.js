@@ -6,13 +6,20 @@ const dbWorker = new Worker("js/db-worker.js");
 
 dbWorker.addEventListener("message", e => {
 	const { type, payload } = e.data;
+	console.log(e.data)
 	switch (type) {
 		case "PUT_HISTORY_ITEM": {
-			const item = document.getElementById(cursor.key) || document.importNode(tmpl.content, true);
-			updatePaletteData(item, cursor.value.imgSrc, cursor.value.colors);
+			let item = document.getElementById(payload.id);
+			if (item) {
+				updatePaletteData(item, payload.imgSrc, payload.colors);
+			} else {
+				const fragment = document.importNode(itemTemplate.content, true);
+				item = fragment.querySelector("li");
 
-			item.id = cursor.key;
-			list.appendChild(item);
+				updatePaletteData(item, payload.imgSrc, payload.colors);
+				item.id = payload.id;
+				list.appendChild(item);
+			}
 			return;
 		}
 		case "OPEN_ITEM":
