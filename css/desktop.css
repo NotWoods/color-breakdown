@@ -1,0 +1,12 @@
+@media (min-width: 700px) {
+	.container {
+		display: grid;
+		grid-template-columns: 1fr 66%;
+	}
+	.fab {
+		right: calc(66% + 1rem);
+	}
+	.back {
+		display: none;
+	}
+}

@@ -5,9 +5,9 @@
 	<meta charset="UTF-8">
 	<title>Vibrant GUI</title>
 	<link href="css/base.css" rel="stylesheet">
-	<!--<link href="css/pages.css" rel="stylesheet">-->
 	<link href="css/new.css" rel="stylesheet">
 	<link href="css/palette.css" rel="stylesheet">
+	<link href="css/desktop.css" rel="stylesheet">
 
 	<script defer src="node_modules/node-vibrant/dist/vibrant.worker.js"></script>
 	<script defer src="js/dom.js"></script>
@@ -15,7 +15,7 @@
 	<script defer src="js/events.js"></script>
 </head>
 
-<body>
+<body class="container">
 	<main class="app-screen" id="history">
 		<header class="toolbar">
 			<h1 class="toolbar-title">Vibrant GUI</h1>
@@ -47,38 +47,17 @@
 			</template>
 		</ul>
 
-		<a href="#new-palette" class="fab">
-			<img alt="Add" src="icons/ic_add_white_24px.svg">
-		</a>
-	</main>
-
-	<aside class="app-screen" id="new-palette">
-		<header class="toolbar">
-			<a href="#history" class="toolbar-button white-button">
-				<img alt="Back" src="icons/ic_arrow_back_white_24px.svg">
-			</a>
-			<h2 class="toolbar-title">New palette</h2>
-			<a href="#palette" class="toolbar-button white-button">
-				<img alt="Done" src="icons/ic_done_white_24px.svg">
-			</a>
-		</header>
-
 		<form class="new-palette-entry" id="new-palette-entry">
 			<input type="file" accept="image/*" id="imagefile" class="hidden-input" name="imagefile">
-			<label for="imagefile" id="image-file-input" class="imagefile-label">
-				Click to select a file
+			<label for="imagefile" id="image-file-input" class="fab imagefile-label">
+				<img alt="Add" src="icons/ic_add_white_24px.svg">
 			</label>
-
-			<div class="flip">
-				<input class="text-input" type="url" id="imageurl" name="imageurl">
-				<label for="imageurl" class="text-label">Or enter an image URL</label>
-			</div>
 		</form>
-	</aside>
+	</main>
 
 	<article class="app-screen vibrant" id="palette">
 		<header class="toolbar dark-vibrant">
-			<a href="#history" class="toolbar-button white-button">
+			<a href="#history" class="toolbar-button white-button back">
 				<img alt="Back" src="icons/ic_arrow_back_white_24px.svg">
 			</a>
 			<h2 class="toolbar-title">Palette</h2>

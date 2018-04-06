@@ -1,6 +1,8 @@
 .palette-image {
 	display: block;
 	min-height: 5rem;
+	max-width: calc(100% - 1rem);
+	max-height: calc(100% - 3rem);
 	margin: 1rem auto;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
@@ -29,6 +31,9 @@
 	font-size: 1rem;
 	transform: translateY(-50%);
 	font-weight: bold;
+}
+.palette-colors .swatch::after {
+	content: attr(title);
 }
 
 @media (min-width: 600px) {

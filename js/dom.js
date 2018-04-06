@@ -38,9 +38,14 @@ function updatePaletteData(node, imgSrc = "icons/placeholder.svg", colors = {}) 
  */
 function updateSwatch(parent, name, data) {
 	const swatch = parent.querySelector(`.swatch.${name}`);
-	const text = swatch.querySelector("swatch-text");
+	const text = swatch.querySelector(".swatch-text");
 
-	swatch.hidden = data == null;
+	if (swatch.parentElement === parent.querySelector(".colors")) {
+		swatch.hidden = data == null;
+	} else {
+		swatch.parentElement.hidden = data == null;
+	}
+
 	if (data) {
 		parent.style.setProperty(`--${name}`, data.color);
 		parent.style.setProperty(`--${name}-text`, data.textColor);
@@ -66,4 +71,31 @@ function processImageFiles(files) {
 	} else {
 		return "";
 	}
+}
+
+async function processUrl(url) {
+	function toSwatch(vibrantSwatch) {
+		if (!vibrantSwatch) return null;
+		return {
+			color: vibrantSwatch.getHex(),
+			textColor: vibrantSwatch.getBodyTextColor(),
+		}
+	}
+
+	const palette = await Vibrant.from(url)
+		.useQuantizer(Vibrant.Quantizer.WebWorker)
+		.getPalette()
+
+	const id = Date.now();
+	const colors = {
+		vibrant: toSwatch(palette.Vibrant),
+		darkVibrant: toSwatch(palette.DarkVibrant),
+		lightVibrant: toSwatch(palette.LightVibrant),
+		muted: toSwatch(palette.Muted),
+		darkMuted: toSwatch(palette.DarkMuted),
+		lightMuted: toSwatch(palette.LightMuted),
+	}
+	console.log(colors);
+	await saveItem(id, url, colors)
+	await loadItem(id);
 }
