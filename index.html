@@ -9,14 +9,14 @@
     <link href="css/palette.css" rel="stylesheet">
     <link href="css/desktop.css" rel="stylesheet">
 
-    <script defer src="node_modules/node-vibrant/dist/vibrant.worker.js"></script>
-    <script defer src="js/dom.js"></script>
-    <script defer src="js/events.js"></script>
-    <script>
-        navigator.serviceWorker
-            .register('sw.js')
-            .then(() => console.log("Service Worker Registered"));
-    </script>
+	<script defer src="js/vibrant.worker.min.js"></script>
+	<script defer src="js/dom.js"></script>
+	<script defer src="js/events.js"></script>
+	<script>
+		navigator.serviceWorker
+			.register('sw.js')
+			.then(() => console.log("Service Worker Registered"));
+	</script>
 
     <link href="manifest.webmanifest" rel="manifest">
     <meta name="viewport" content="width=device-width, initial-scale=1">
