@@ -14,6 +14,8 @@
  * @prop {ColorSwatch | null} [lightMuted]
  */
 
+const viewer = document.getElementById('palette');
+
 /**
  * Update a palette descriptor - either a grid item, or the palette page
  * @param {HTMLElement} node element to update
@@ -95,16 +97,15 @@ async function processUrl(url) {
     .useQuantizer(Vibrant.Quantizer.WebWorker)
     .getPalette();
 
-  const id = Date.now();
-  const colors = {
-    vibrant: toSwatch(palette.Vibrant),
-    darkVibrant: toSwatch(palette.DarkVibrant),
-    lightVibrant: toSwatch(palette.LightVibrant),
-    muted: toSwatch(palette.Muted),
-    darkMuted: toSwatch(palette.DarkMuted),
-    lightMuted: toSwatch(palette.LightMuted)
-  };
-  console.log(colors);
-  await saveItem(id, url, colors);
-  await loadItem(id);
+	const colors = {
+		vibrant: toSwatch(palette.Vibrant),
+		darkVibrant: toSwatch(palette.DarkVibrant),
+		lightVibrant: toSwatch(palette.LightVibrant),
+		muted: toSwatch(palette.Muted),
+		darkMuted: toSwatch(palette.DarkMuted),
+		lightMuted: toSwatch(palette.LightMuted)
+	};
+	console.log(colors);
+
+	updatePaletteData(viewer, url, colors);
 }

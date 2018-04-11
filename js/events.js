@@ -1,7 +1,5 @@
 const form = document.getElementById('new-palette-entry');
 
-loadHistory();
-
 form.addEventListener('submit', e => {
   e.preventDefault();
   if (form.imagefile.files.length > 0)
