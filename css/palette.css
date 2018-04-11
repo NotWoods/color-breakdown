@@ -1,3 +1,7 @@
+#history {
+	box-shadow: inset -1px 0 3px rgba(0,0,0,0.2)
+}
+
 .palette-image {
 	display: block;
 	min-height: 5rem;

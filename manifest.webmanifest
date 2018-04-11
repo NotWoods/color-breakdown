@@ -1,0 +1,16 @@
+{
+	"name": "Vibrant GUI",
+	"short_name": "Vibrant",
+	"start_url": ".",
+	"display": "standalone",
+	"background_color": "#eee",
+	"theme_color": "#43434f",
+	"description": "Extract prominent colors from an image with this PWA tool",
+	"icons": [
+		{
+				"src": "/android-chrome-192x192.png",
+				"sizes": "192x192",
+				"type": "image/png"
+		}
+	]
+}

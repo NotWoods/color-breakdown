@@ -9,10 +9,22 @@
 	<link href="css/palette.css" rel="stylesheet">
 	<link href="css/desktop.css" rel="stylesheet">
 
+
 	<script defer src="node_modules/node-vibrant/dist/vibrant.worker.js"></script>
 	<script defer src="js/dom.js"></script>
 	<script defer src="js/db.js"></script>
 	<script defer src="js/events.js"></script>
+
+	<link href="manifest.webmanifest" rel="manifest">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#43434f">
+	<meta name="msapplication-TileImage" content="mstile-150x150.png">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#43434f">
 </head>
 
 <body class="container">
@@ -55,7 +67,7 @@
 		</form>
 	</main>
 
-	<article class="app-screen vibrant" id="palette">
+	<article class="app-screen" id="palette">
 		<header class="toolbar dark-vibrant">
 			<a href="#history" class="toolbar-button white-button back">
 				<img alt="Back" src="icons/ic_arrow_back_white_24px.svg">
