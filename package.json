@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint:js": "prettier --write \"js/**/*.js\"",
     "lint:css": "prettier --write \"css/**/*.css\" --parser css",
-    "lint": "npm run lint:js && npm run lint:css"
+    "lint": "npm run lint:js && npm run lint:css",
+    "serve": "http-server"
   },
   "author": "Tiger Oakes",
   "license": "MIT",
@@ -16,6 +17,7 @@
     "node-vibrant": "^3.0.0"
   },
   "devDependencies": {
+    "http-server": "^0.11.1",
     "prettier": "^1.11.1"
   },
   "prettier": {
