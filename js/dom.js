@@ -25,7 +25,9 @@ function updatePaletteData(
 	imgSrc = 'icons/placeholder.svg',
 	colors = {}
 ) {
-	node.querySelector('img.preview').src = imgSrc;
+	/** @type {HTMLImageElement} */
+	const preview = node.querySelector('img.preview');
+	preview.src = imgSrc;
 	updateSwatch(node, 'vibrant', colors.vibrant);
 	updateSwatch(node, 'dark-vibrant', colors.darkVibrant);
 	updateSwatch(node, 'light-vibrant', colors.lightVibrant);
@@ -41,6 +43,7 @@ function updatePaletteData(
  * @param {ColorSwatch | null} data
  */
 function updateSwatch(parent, name, data) {
+	/** @type {HTMLElement} */
 	const swatch = parent.querySelector(`.swatch.${name}`);
 	const text = swatch.querySelector('.swatch-text');
 
@@ -69,7 +72,9 @@ function updateSwatch(parent, name, data) {
  * @returns {string} used as `<img src="return value">`
  */
 function processImageFiles(files) {
-	const file = Array.from(files).find(file => file.type.match(/^image\//));
+	const file = Array.from(files).find(
+		file => file.type.match(/^image\//) != null
+	);
 	if (file !== null) {
 		return URL.createObjectURL(file);
 	} else {
