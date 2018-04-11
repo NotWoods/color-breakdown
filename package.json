@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint:js": "prettier --write \"js/**/*.js\"",
+    "lint:js": "prettier --write \"**/*.js\"",
     "lint:css": "prettier --write \"css/**/*.css\" --parser css",
     "lint": "npm run lint:js && npm run lint:css",
     "serve": "http-server"
