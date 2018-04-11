@@ -1,12 +1,12 @@
-importScripts("../node_modules/idb/lib/idb.js");
+importScripts('../node_modules/idb/lib/idb.js');
 
 const dbPromise = idb.open('history-store', 1, upgradeDB => {
 	switch (upgradeDB.oldVersion) {
 		case 0:
-			upgradeDB.createObjectStore('history', { keyPath: "id" })
-			// fall through
+			upgradeDB.createObjectStore('history', { keyPath: 'id' });
+		// fall through
 	}
-})
+});
 
 /**
  * Load the history list. Emits an event for each item.
@@ -20,13 +20,13 @@ async function loadHistoryFromDB() {
 		if (!cursor) return;
 
 		self.postMessage({
-			type: "PUT_HISTORY_ITEM",
+			type: 'PUT_HISTORY_ITEM',
 			payload: {
 				id: cursor.key,
 				imgSrc: cursor.value.imgSrc,
-				colors: cursor.value.colors,
-			},
-		})
+				colors: cursor.value.colors
+			}
+		});
 	});
 	await tx.complete;
 }
@@ -44,13 +44,13 @@ async function loadItemFromDB(id) {
 		.get(id);
 
 	self.postMessage({
-		type: "OPEN_ITEM",
+		type: 'OPEN_ITEM',
 		payload: {
 			id,
 			imgSrc: item.imgSrc,
-			colors: item.colors,
-		},
-	})
+			colors: item.colors
+		}
+	});
 }
 
 /**
@@ -65,29 +65,29 @@ async function saveItemToDB(id, imgSrc, colors) {
 	tx.objectStore('history').put({
 		id,
 		imgSrc,
-		colors,
+		colors
 	});
 
 	await tx.complete;
 	self.postMessage({
-		type: "SAVE_ITEM_SUCCESS",
-		payload: { id },
-	})
+		type: 'SAVE_ITEM_SUCCESS',
+		payload: { id }
+	});
 	return id;
 }
 
-self.addEventListener("message", (e) => {
+self.addEventListener('message', e => {
 	const { type, payload } = e.data;
 	console.log(e.data);
 	switch (type) {
-		case "SAVE_ITEM":
+		case 'SAVE_ITEM':
 			saveItemToDB(payload.id, payload.imgSrc, payload.colors);
 			return;
-		case "LOAD_HISTORY":
+		case 'LOAD_HISTORY':
 			loadHistoryFromDB();
 			return;
-		case "LOAD_ITEM":
+		case 'LOAD_ITEM':
 			loadItemFromDB(payload.id);
 			return;
 	}
-})
+});

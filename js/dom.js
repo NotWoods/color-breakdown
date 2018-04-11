@@ -20,14 +20,18 @@
  * @param {string} imgSrc image source url
  * @param {ColorPalette} colors object with colors to use
  */
-function updatePaletteData(node, imgSrc = "icons/placeholder.svg", colors = {}) {
-	node.querySelector("img.preview").src = imgSrc;
-	updateSwatch(node, "vibrant", colors.vibrant);
-	updateSwatch(node, "dark-vibrant", colors.darkVibrant);
-	updateSwatch(node, "light-vibrant", colors.lightVibrant);
-	updateSwatch(node, "muted", colors.muted);
-	updateSwatch(node, "dark-muted", colors.darkMuted);
-	updateSwatch(node, "light-muted", colors.lightMuted);
+function updatePaletteData(
+	node,
+	imgSrc = 'icons/placeholder.svg',
+	colors = {}
+) {
+	node.querySelector('img.preview').src = imgSrc;
+	updateSwatch(node, 'vibrant', colors.vibrant);
+	updateSwatch(node, 'dark-vibrant', colors.darkVibrant);
+	updateSwatch(node, 'light-vibrant', colors.lightVibrant);
+	updateSwatch(node, 'muted', colors.muted);
+	updateSwatch(node, 'dark-muted', colors.darkMuted);
+	updateSwatch(node, 'light-muted', colors.lightMuted);
 }
 
 /**
@@ -38,9 +42,9 @@ function updatePaletteData(node, imgSrc = "icons/placeholder.svg", colors = {}) 
  */
 function updateSwatch(parent, name, data) {
 	const swatch = parent.querySelector(`.swatch.${name}`);
-	const text = swatch.querySelector(".swatch-text");
+	const text = swatch.querySelector('.swatch-text');
 
-	if (swatch.parentElement === parent.querySelector(".colors")) {
+	if (swatch.parentElement === parent.querySelector('.colors')) {
 		swatch.hidden = data == null;
 	} else {
 		swatch.parentElement.hidden = data == null;
@@ -55,7 +59,7 @@ function updateSwatch(parent, name, data) {
 	}
 
 	if (text) {
-		text.textContent = data != null ? data.color : "#??????"
+		text.textContent = data != null ? data.color : '#??????';
 	}
 }
 
@@ -69,7 +73,7 @@ function processImageFiles(files) {
 	if (file !== null) {
 		return URL.createObjectURL(file);
 	} else {
-		return "";
+		return '';
 	}
 }
 
@@ -78,13 +82,13 @@ async function processUrl(url) {
 		if (!vibrantSwatch) return null;
 		return {
 			color: vibrantSwatch.getHex(),
-			textColor: vibrantSwatch.getBodyTextColor(),
-		}
+			textColor: vibrantSwatch.getBodyTextColor()
+		};
 	}
 
 	const palette = await Vibrant.from(url)
 		.useQuantizer(Vibrant.Quantizer.WebWorker)
-		.getPalette()
+		.getPalette();
 
 	const id = Date.now();
 	const colors = {
@@ -93,9 +97,9 @@ async function processUrl(url) {
 		lightVibrant: toSwatch(palette.LightVibrant),
 		muted: toSwatch(palette.Muted),
 		darkMuted: toSwatch(palette.DarkMuted),
-		lightMuted: toSwatch(palette.LightMuted),
-	}
+		lightMuted: toSwatch(palette.LightMuted)
+	};
 	console.log(colors);
-	await saveItem(id, url, colors)
+	await saveItem(id, url, colors);
 	await loadItem(id);
 }

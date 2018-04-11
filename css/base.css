@@ -1,10 +1,11 @@
 body {
 	margin: 0;
 	font-size: 16px;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+		Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 
 	--primary: #4caf50;
-	--error: #F44336;
+	--error: #f44336;
 	--vibrant: #ff0000;
 	--vibrant-text: #fff;
 	--dark-vibrant: #000;
@@ -41,7 +42,7 @@ img {
 	z-index: 1;
 	background: var(--primary);
 	color: #fff;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 .toolbar-title {
 	margin: 0;
@@ -51,7 +52,8 @@ img {
 	font-weight: 500;
 }
 
-.fab, .toolbar-button {
+.fab,
+.toolbar-button {
 	border: none;
 	margin: 0;
 	padding: 0;
@@ -63,7 +65,8 @@ img {
 	line-height: normal;
 	cursor: pointer;
 }
-.fab img, .toolbar-button img {
+.fab img,
+.toolbar-button img {
 	margin: auto;
 }
 
@@ -78,7 +81,7 @@ img {
 	color: white;
 	background: var(--primary);
 	border-radius: 50%;
-	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .toolbar-button {
@@ -97,7 +100,7 @@ img {
 	background: rgba(255, 255, 255, 0.15);
 }
 .toolbar-button.white-button:focus {
-	background: rgba(255, 255, 255, 0.30);
+	background: rgba(255, 255, 255, 0.3);
 }
 
 .grid-list {
@@ -122,7 +125,7 @@ img {
 }
 
 .swatch {
-	box-shadow: 0 1px 3px rgba(0,0,0,0.24), 0 1px 2px rgba(0,0,0,0.48);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.24), 0 1px 2px rgba(0, 0, 0, 0.48);
 }
 .grid-item .colors {
 	padding: 1rem;

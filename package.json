@@ -4,7 +4,10 @@
   "description": "Extract prominent colors from an image with this PWA tool",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint:js": "prettier --write \"js/**/*.js\"",
+    "lint:css": "prettier --write \"css/**/*.css\" --parser css",
+    "lint": "npm run lint:js && npm run lint:css"
   },
   "author": "Tiger Oakes",
   "license": "MIT",
@@ -14,5 +17,9 @@
   },
   "devDependencies": {
     "prettier": "^1.11.1"
+  },
+  "prettier": {
+    "useTabs": true,
+    "singleQuote": true
   }
 }
