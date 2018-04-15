@@ -1,47 +1,47 @@
 #history {
-	box-shadow: inset -1px 0 3px rgba(0, 0, 0, 0.2);
+  box-shadow: inset -1px 0 3px rgba(0, 0, 0, 0.2);
 }
 
 .palette-image {
-	display: block;
-	min-height: 5rem;
-	max-width: calc(100% - 1rem);
-	max-height: calc(100% - 3rem);
-	margin: 1rem auto;
-	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  display: block;
+  min-height: 5rem;
+  max-width: calc(100% - 1rem);
+  max-height: calc(100% - 3rem);
+  margin: 1rem auto;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .palette-colors {
-	display: grid;
-	padding: 1rem;
+  display: grid;
+  padding: 1rem;
 
-	grid-gap: 1rem;
-	grid-template-columns: repeat(3, 1fr);
-	font-size: 0.75rem;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  font-size: 0.75rem;
 }
 .palette-colors .swatch {
-	position: relative;
-	width: 100%;
-	padding-top: 100%;
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
 
-	text-align: center;
+  text-align: center;
 }
 .swatch-text {
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 50%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
 
-	font-size: 1rem;
-	transform: translateY(-50%);
-	font-weight: bold;
+  font-size: 1rem;
+  transform: translateY(-50%);
+  font-weight: bold;
 }
 .palette-colors .swatch::after {
-	content: attr(title);
+  content: attr(title);
 }
 
 @media (min-width: 600px) {
-	.palette-colors {
-		grid-template-columns: repeat(6, 1fr);
-	}
+  .palette-colors {
+    grid-template-columns: repeat(6, 1fr);
+  }
 }

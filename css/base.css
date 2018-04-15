@@ -1,164 +1,164 @@
 body {
-	margin: 0;
-	font-size: 16px;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
-		Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  margin: 0;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 
-	--error: #f44336;
-	--vibrant: #43434f;
-	--vibrant-text: #fff;
-	--dark-vibrant: #7b3f09;
-	--dark-vibrant-text: #fff;
-	--light-vibrant: #7e7c89;
-	--light-vibrant-text: #000;
-	--muted: #f3aa66;
-	--muted-text: #000;
-	--dark-muted: #c8be9b;
-	--dark-muted-text: #000;
-	--light-muted: #fcdb98;
-	--light-muted-text: #000;
+  --error: #f44336;
+  --vibrant: #43434f;
+  --vibrant-text: #fff;
+  --dark-vibrant: #7b3f09;
+  --dark-vibrant-text: #fff;
+  --light-vibrant: #7e7c89;
+  --light-vibrant-text: #000;
+  --muted: #f3aa66;
+  --muted-text: #000;
+  --dark-muted: #c8be9b;
+  --dark-muted-text: #000;
+  --light-muted: #fcdb98;
+  --light-muted-text: #000;
 }
 
 img {
-	display: block;
+  display: block;
 }
 
 .app-screen {
-	position: relative;
-	width: 100%;
-	min-height: 100vh;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
 
-	background: #eee;
+  background: #eee;
 }
 
 .toolbar {
-	display: flex;
-	align-items: center;
-	padding: 0 0.5rem;
-	height: 3.5rem;
-	position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+  height: 3.5rem;
+  position: relative;
 
-	z-index: 1;
-	background: var(--vibrant);
-	color: #fff;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  z-index: 1;
+  background: var(--vibrant);
+  color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 .toolbar-title {
-	margin: 0;
-	margin-right: auto;
+  margin: 0;
+  margin-right: auto;
 
-	font-size: 20px;
-	font-weight: 500;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .fab,
 .toolbar-button {
-	border: none;
-	margin: 0;
-	padding: 0;
-	width: auto;
-	overflow: visible;
-	background: transparent;
-	color: inherit;
-	font: inherit;
-	line-height: normal;
-	cursor: pointer;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  cursor: pointer;
 }
 .fab img,
 .toolbar-button img {
-	margin: auto;
+  margin: auto;
 }
 
 .fab {
-	position: fixed;
-	display: flex;
-	bottom: 1rem;
-	right: 1rem;
-	height: 3.5rem;
-	width: 3.5rem;
+  position: fixed;
+  display: flex;
+  bottom: 1rem;
+  right: 1rem;
+  height: 3.5rem;
+  width: 3.5rem;
 
-	color: white;
-	background: var(--vibrant);
-	border-radius: 50%;
-	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  color: white;
+  background: var(--vibrant);
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .toolbar-button {
-	margin: 0.25rem;
-	padding: 0.25rem;
+  margin: 0.25rem;
+  padding: 0.25rem;
 
-	border-radius: 50%;
+  border-radius: 50%;
 }
 .toolbar-button:hover {
-	background: rgba(0, 0, 0, 0.06);
+  background: rgba(0, 0, 0, 0.06);
 }
 .toolbar-button:focus {
-	background: rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.12);
 }
 .toolbar-button.white-button:hover {
-	background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.15);
 }
 .toolbar-button.white-button:focus {
-	background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .grid-list {
-	display: grid;
-	margin: 0;
-	padding: 0;
+  display: grid;
+  margin: 0;
+  padding: 0;
 
-	grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
-	grid-gap: 0.25rem;
-	list-style-type: none;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  grid-gap: 0.25rem;
+  list-style-type: none;
 }
 .grid-item-img-box {
-	position: relative;
-	padding-top: 100%;
+  position: relative;
+  padding-top: 100%;
 }
 .grid-item-img {
-	object-fit: cover;
-	position: absolute;
-	top: 0;
-	height: 100%;
-	width: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .swatch {
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.24), 0 1px 2px rgba(0, 0, 0, 0.48);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.24), 0 1px 2px rgba(0, 0, 0, 0.48);
 }
 .grid-item .colors {
-	padding: 1rem;
-	display: flex;
+  padding: 1rem;
+  display: flex;
 
-	justify-content: space-between;
-	flex-wrap: wrap;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 .grid-item .swatch {
-	height: 1rem;
-	width: 1rem;
+  height: 1rem;
+  width: 1rem;
 }
 
 .vibrant {
-	background-color: var(--vibrant);
-	color: var(--vibrant-text);
+  background-color: var(--vibrant);
+  color: var(--vibrant-text);
 }
 .dark-vibrant {
-	background-color: var(--dark-vibrant);
-	color: var(--dark-vibrant-text);
+  background-color: var(--dark-vibrant);
+  color: var(--dark-vibrant-text);
 }
 .light-vibrant {
-	background-color: var(--light-vibrant);
-	color: var(--light-vibrant-text);
+  background-color: var(--light-vibrant);
+  color: var(--light-vibrant-text);
 }
 .muted {
-	background-color: var(--muted);
-	color: var(--muted-text);
+  background-color: var(--muted);
+  color: var(--muted-text);
 }
 .dark-muted {
-	background-color: var(--dark-muted);
-	color: var(--dark-muted-text);
+  background-color: var(--dark-muted);
+  color: var(--dark-muted-text);
 }
 .light-muted {
-	background-color: var(--light-muted);
-	color: var(--light-muted-text);
+  background-color: var(--light-muted);
+  color: var(--light-muted-text);
 }

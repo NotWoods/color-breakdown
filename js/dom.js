@@ -21,19 +21,19 @@
  * @param {ColorPalette} colors object with colors to use
  */
 function updatePaletteData(
-	node,
-	imgSrc = 'icons/placeholder.svg',
-	colors = {}
+  node,
+  imgSrc = 'icons/placeholder.svg',
+  colors = {}
 ) {
-	/** @type {HTMLImageElement} */
-	const preview = node.querySelector('img.preview');
-	preview.src = imgSrc;
-	updateSwatch(node, 'vibrant', colors.vibrant);
-	updateSwatch(node, 'dark-vibrant', colors.darkVibrant);
-	updateSwatch(node, 'light-vibrant', colors.lightVibrant);
-	updateSwatch(node, 'muted', colors.muted);
-	updateSwatch(node, 'dark-muted', colors.darkMuted);
-	updateSwatch(node, 'light-muted', colors.lightMuted);
+  /** @type {HTMLImageElement} */
+  const preview = node.querySelector('img.preview');
+  preview.src = imgSrc;
+  updateSwatch(node, 'vibrant', colors.vibrant);
+  updateSwatch(node, 'dark-vibrant', colors.darkVibrant);
+  updateSwatch(node, 'light-vibrant', colors.lightVibrant);
+  updateSwatch(node, 'muted', colors.muted);
+  updateSwatch(node, 'dark-muted', colors.darkMuted);
+  updateSwatch(node, 'light-muted', colors.lightMuted);
 }
 
 /**
@@ -43,27 +43,27 @@ function updatePaletteData(
  * @param {ColorSwatch | null} data
  */
 function updateSwatch(parent, name, data) {
-	/** @type {HTMLElement} */
-	const swatch = parent.querySelector(`.swatch.${name}`);
-	const text = swatch.querySelector('.swatch-text');
+  /** @type {HTMLElement} */
+  const swatch = parent.querySelector(`.swatch.${name}`);
+  const text = swatch.querySelector('.swatch-text');
 
-	if (swatch.parentElement === parent.querySelector('.colors')) {
-		swatch.hidden = data == null;
-	} else {
-		swatch.parentElement.hidden = data == null;
-	}
+  if (swatch.parentElement === parent.querySelector('.colors')) {
+    swatch.hidden = data == null;
+  } else {
+    swatch.parentElement.hidden = data == null;
+  }
 
-	if (data) {
-		parent.style.setProperty(`--${name}`, data.color);
-		parent.style.setProperty(`--${name}-text`, data.textColor);
-	} else {
-		parent.style.removeProperty(`--${name}`);
-		parent.style.removeProperty(`--${name}-text`);
-	}
+  if (data) {
+    parent.style.setProperty(`--${name}`, data.color);
+    parent.style.setProperty(`--${name}-text`, data.textColor);
+  } else {
+    parent.style.removeProperty(`--${name}`);
+    parent.style.removeProperty(`--${name}-text`);
+  }
 
-	if (text) {
-		text.textContent = data != null ? data.color : '#??????';
-	}
+  if (text) {
+    text.textContent = data != null ? data.color : '#??????';
+  }
 }
 
 /**
@@ -72,39 +72,39 @@ function updateSwatch(parent, name, data) {
  * @returns {string} used as `<img src="return value">`
  */
 function processImageFiles(files) {
-	const file = Array.from(files).find(
-		file => file.type.match(/^image\//) != null
-	);
-	if (file !== null) {
-		return URL.createObjectURL(file);
-	} else {
-		return '';
-	}
+  const file = Array.from(files).find(
+    file => file.type.match(/^image\//) != null
+  );
+  if (file !== null) {
+    return URL.createObjectURL(file);
+  } else {
+    return '';
+  }
 }
 
 async function processUrl(url) {
-	function toSwatch(vibrantSwatch) {
-		if (!vibrantSwatch) return null;
-		return {
-			color: vibrantSwatch.getHex(),
-			textColor: vibrantSwatch.getBodyTextColor()
-		};
-	}
+  function toSwatch(vibrantSwatch) {
+    if (!vibrantSwatch) return null;
+    return {
+      color: vibrantSwatch.getHex(),
+      textColor: vibrantSwatch.getBodyTextColor()
+    };
+  }
 
-	const palette = await Vibrant.from(url)
-		.useQuantizer(Vibrant.Quantizer.WebWorker)
-		.getPalette();
+  const palette = await Vibrant.from(url)
+    .useQuantizer(Vibrant.Quantizer.WebWorker)
+    .getPalette();
 
-	const id = Date.now();
-	const colors = {
-		vibrant: toSwatch(palette.Vibrant),
-		darkVibrant: toSwatch(palette.DarkVibrant),
-		lightVibrant: toSwatch(palette.LightVibrant),
-		muted: toSwatch(palette.Muted),
-		darkMuted: toSwatch(palette.DarkMuted),
-		lightMuted: toSwatch(palette.LightMuted)
-	};
-	console.log(colors);
-	await saveItem(id, url, colors);
-	await loadItem(id);
+  const id = Date.now();
+  const colors = {
+    vibrant: toSwatch(palette.Vibrant),
+    darkVibrant: toSwatch(palette.DarkVibrant),
+    lightVibrant: toSwatch(palette.LightVibrant),
+    muted: toSwatch(palette.Muted),
+    darkMuted: toSwatch(palette.DarkMuted),
+    lightMuted: toSwatch(palette.LightMuted)
+  };
+  console.log(colors);
+  await saveItem(id, url, colors);
+  await loadItem(id);
 }

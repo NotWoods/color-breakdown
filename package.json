@@ -22,7 +22,6 @@
     "prettier": "^1.11.1"
   },
   "prettier": {
-    "useTabs": true,
     "singleQuote": true
   }
 }

@@ -2,128 +2,128 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Vibrant GUI</title>
-	<link href="css/base.css" rel="stylesheet">
-	<link href="css/new.css" rel="stylesheet">
-	<link href="css/palette.css" rel="stylesheet">
-	<link href="css/desktop.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Vibrant GUI</title>
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/new.css" rel="stylesheet">
+    <link href="css/palette.css" rel="stylesheet">
+    <link href="css/desktop.css" rel="stylesheet">
 
-	<script defer src="node_modules/node-vibrant/dist/vibrant.worker.js"></script>
-	<script defer src="js/dom.js"></script>
-	<script defer src="js/db.js"></script>
-	<script defer src="js/events.js"></script>
-	<script>
-		navigator.serviceWorker
-			.register('sw.js')
-			.then(() => console.log("Service Worker Registered"));
-	</script>
+    <script defer src="node_modules/node-vibrant/dist/vibrant.worker.js"></script>
+    <script defer src="js/dom.js"></script>
+    <script defer src="js/db.js"></script>
+    <script defer src="js/events.js"></script>
+    <script>
+        navigator.serviceWorker
+            .register('sw.js')
+            .then(() => console.log("Service Worker Registered"));
+    </script>
 
-	<link href="manifest.webmanifest" rel="manifest">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<link rel="apple-touch-icon" sizes="180x180" href="icons/favicon/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon/favicon-16x16.png">
-	<link rel="mask-icon" href="icons/favicon/safari-pinned-tab.svg" color="#43434f">
-	<meta name="msapplication-TileImage" content="icons/favicon/mstile-150x150.png">
-	<meta name="msapplication-TileColor" content="#da532c">
-	<meta name="theme-color" content="#43434f">
+    <link href="manifest.webmanifest" rel="manifest">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon/favicon-16x16.png">
+    <link rel="mask-icon" href="icons/favicon/safari-pinned-tab.svg" color="#43434f">
+    <meta name="msapplication-TileImage" content="icons/favicon/mstile-150x150.png">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#43434f">
 </head>
 
 <body class="container">
-	<main class="app-screen" id="history">
-		<header class="toolbar">
-			<h1 class="toolbar-title">Vibrant GUI</h1>
-			<a href="https://github.com/NotWoods/vibrant-gui/blob/master/README.md" class="toolbar-button white-button">
-				<img alt="About" src="icons/ic_info_outline_white_24px.svg">
-			</a>
-			<a href="https://github.com/NotWoods/vibrant-gui" class="toolbar-button white-button">
-				<img alt="Contribute" src="icons/ic_github_circle_white_24px.svg">
-			</a>
-		</header>
+    <main class="app-screen" id="history">
+        <header class="toolbar">
+            <h1 class="toolbar-title">Vibrant GUI</h1>
+            <a href="https://github.com/NotWoods/vibrant-gui/blob/master/README.md" class="toolbar-button white-button">
+                <img alt="About" src="icons/ic_info_outline_white_24px.svg">
+            </a>
+            <a href="https://github.com/NotWoods/vibrant-gui" class="toolbar-button white-button">
+                <img alt="Contribute" src="icons/ic_github_circle_white_24px.svg">
+            </a>
+        </header>
 
-		<ul id="grid-items" class="grid-list">
-			<template id="grid-item-template">
-				<li class="grid-item light-muted">
-					<a href="#palette">
-						<div class="grid-item-img-box">
-							<img class="grid-item-img preview" alt="" src="icons/placeholder.svg" height="144" width="144">
-						</div>
-						<div class="colors vibrant">
-							<span class="swatch vibrant"></span>
-							<span class="swatch dark-vibrant"></span>
-							<span class="swatch light-vibrant"></span>
-							<span class="swatch muted"></span>
-							<span class="swatch dark-muted"></span>
-							<span class="swatch light-muted"></span>
-						</div>
-					</a>
-				</li>
-			</template>
-		</ul>
+        <ul id="grid-items" class="grid-list">
+            <template id="grid-item-template">
+                <li class="grid-item light-muted">
+                    <a href="#palette">
+                        <div class="grid-item-img-box">
+                            <img class="grid-item-img preview" alt="" src="icons/placeholder.svg" height="144" width="144">
+                        </div>
+                        <div class="colors vibrant">
+                            <span class="swatch vibrant"></span>
+                            <span class="swatch dark-vibrant"></span>
+                            <span class="swatch light-vibrant"></span>
+                            <span class="swatch muted"></span>
+                            <span class="swatch dark-muted"></span>
+                            <span class="swatch light-muted"></span>
+                        </div>
+                    </a>
+                </li>
+            </template>
+        </ul>
 
-		<form class="new-palette-entry" id="new-palette-entry">
-			<input type="file" accept="image/*" id="imagefile" class="hidden-input" name="imagefile">
-			<label for="imagefile" id="image-file-input" class="fab imagefile-label">
-				<img alt="Add" src="icons/ic_add_white_24px.svg">
-			</label>
-		</form>
-	</main>
+        <form class="new-palette-entry" id="new-palette-entry">
+            <input type="file" accept="image/*" id="imagefile" class="hidden-input" name="imagefile">
+            <label for="imagefile" id="image-file-input" class="fab imagefile-label">
+                <img alt="Add" src="icons/ic_add_white_24px.svg">
+            </label>
+        </form>
+    </main>
 
-	<article class="app-screen" id="palette">
-		<header class="toolbar dark-vibrant">
-			<a href="#history" class="toolbar-button white-button back">
-				<img alt="Back" src="icons/ic_arrow_back_white_24px.svg">
-			</a>
-			<h2 class="toolbar-title">Palette</h2>
-			<a href="#history" class="toolbar-button white-button">
-				<img alt="Delete" src="icons/ic_delete_white_24px.svg">
-			</a>
-		</header>
+    <article class="app-screen" id="palette">
+        <header class="toolbar dark-vibrant">
+            <a href="#history" class="toolbar-button white-button back">
+                <img alt="Back" src="icons/ic_arrow_back_white_24px.svg">
+            </a>
+            <h2 class="toolbar-title">Palette</h2>
+            <a href="#history" class="toolbar-button white-button">
+                <img alt="Delete" src="icons/ic_delete_white_24px.svg">
+            </a>
+        </header>
 
-		<img class="palette-image preview light-muted" alt="Base image" src="icons/placeholder.svg">
+        <img class="palette-image preview light-muted" alt="Base image" src="icons/placeholder.svg">
 
-		<div class="colors palette-colors">
-			<div>
-				<div class="swatch vibrant">
-					<span class="swatch-text">#??????</span>
-				</div>
-				Vibrant
-			</div>
-			<div>
-				<div class="swatch dark-vibrant">
-					<span class="swatch-text">#??????</span>
-				</div>
-				Dark Vibrant
-			</div>
-			<div>
-				<div class="swatch light-vibrant">
-					<span class="swatch-text">#??????</span>
-				</div>
-				Light Vibrant
-			</div>
-			<div>
-				<div class="swatch muted">
-					<span class="swatch-text">#??????</span>
-				</div>
-				Muted
-			</div>
-			<div>
-				<div class="swatch dark-muted">
-					<span class="swatch-text">#??????</span>
-				</div>
-				Dark Muted
-			</div>
-			<div>
-				<div class="swatch light-muted">
-					<span class="swatch-text">#??????</span>
-				</div>
-				Light Muted
-			</div>
-		</div>
-	</article>
+        <div class="colors palette-colors">
+            <div>
+                <div class="swatch vibrant">
+                    <span class="swatch-text">#??????</span>
+                </div>
+                Vibrant
+            </div>
+            <div>
+                <div class="swatch dark-vibrant">
+                    <span class="swatch-text">#??????</span>
+                </div>
+                Dark Vibrant
+            </div>
+            <div>
+                <div class="swatch light-vibrant">
+                    <span class="swatch-text">#??????</span>
+                </div>
+                Light Vibrant
+            </div>
+            <div>
+                <div class="swatch muted">
+                    <span class="swatch-text">#??????</span>
+                </div>
+                Muted
+            </div>
+            <div>
+                <div class="swatch dark-muted">
+                    <span class="swatch-text">#??????</span>
+                </div>
+                Dark Muted
+            </div>
+            <div>
+                <div class="swatch light-muted">
+                    <span class="swatch-text">#??????</span>
+                </div>
+                Light Muted
+            </div>
+        </div>
+    </article>
 </body>
 
 </html>
