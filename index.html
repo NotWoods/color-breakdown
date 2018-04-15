@@ -15,7 +15,7 @@
 	<script defer src="js/events.js"></script>
 	<script>
 		navigator.serviceWorker
-			.register('/sw.js')
+			.register('sw.js')
 			.then(() => console.log("Service Worker Registered"));
 	</script>
 
@@ -23,11 +23,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<link rel="apple-touch-icon" sizes="180x180" href="/icons/favicon/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon/favicon-16x16.png">
-	<link rel="mask-icon" href="/icons/favicon/safari-pinned-tab.svg" color="#43434f">
-	<meta name="msapplication-TileImage" content="/icons/favicon/mstile-150x150.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="icons/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon/favicon-16x16.png">
+	<link rel="mask-icon" href="icons/favicon/safari-pinned-tab.svg" color="#43434f">
+	<meta name="msapplication-TileImage" content="icons/favicon/mstile-150x150.png">
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#43434f">
 </head>
@@ -36,6 +36,12 @@
 	<main class="app-screen" id="history">
 		<header class="toolbar">
 			<h1 class="toolbar-title">Vibrant GUI</h1>
+			<a href="https://github.com/NotWoods/vibrant-gui/blob/master/README.md" class="toolbar-button white-button">
+				<img alt="About" src="icons/ic_info_outline_white_24px.svg">
+			</a>
+			<a href="https://github.com/NotWoods/vibrant-gui" class="toolbar-button white-button">
+				<img alt="Contribute" src="icons/ic_github_circle_white_24px.svg">
+			</a>
 		</header>
 
 		<ul id="grid-items" class="grid-list">
