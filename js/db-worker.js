@@ -12,20 +12,17 @@ const dbPromise = idb.open('history-store', 1, upgradeDB => {
  * Load the history list. Emits an event for each item.
  * @emits PUT_HISTORY_ITEM
  */
-async function loadHistoryFromDB() {
+async function loadHistoryFromDB(callback) {
   const db = await dbPromise;
   const tx = db.transaction('history', 'readonly');
 
   tx.objectStore('history').iterateCursor(cursor => {
     if (!cursor) return;
 
-    self.postMessage({
-      type: 'PUT_HISTORY_ITEM',
-      payload: {
-        id: cursor.key,
-        imgSrc: cursor.value.imgSrc,
-        colors: cursor.value.colors
-      }
+    callback({
+      id: cursor.key,
+      imgSrc: cursor.value.imgSrc,
+      colors: cursor.value.colors,
     });
   });
   await tx.complete;
@@ -43,14 +40,11 @@ async function loadItemFromDB(id) {
     .objectStore('history')
     .get(id);
 
-  self.postMessage({
-    type: 'OPEN_ITEM',
-    payload: {
-      id,
-      imgSrc: item.imgSrc,
-      colors: item.colors
-    }
-  });
+  return {
+    id,
+    imgSrc: item.imgSrc,
+    colors: item.colors,
+  };
 }
 
 /**
@@ -65,29 +59,39 @@ async function saveItemToDB(id, imgSrc, colors) {
   tx.objectStore('history').put({
     id,
     imgSrc,
-    colors
+    colors,
   });
 
   await tx.complete;
-  self.postMessage({
-    type: 'SAVE_ITEM_SUCCESS',
-    payload: { id }
-  });
   return id;
 }
 
+const actions = {
+  async SAVE_ITEM({ id, imgSrc, colors }) {
+    const id = await saveItemToDB(id, imgSrc, colors);
+    self.postMessage({
+      type: 'SAVE_ITEM_SUCCESS',
+      payload: { id },
+    });
+  },
+  async LOAD_HISTORY() {
+    await loadHistoryFromDB(result =>
+      self.postMessage({
+        type: 'PUT_HISTORY_ITEM',
+        payload: result,
+      })
+    );
+  },
+  async LOAD_ITEM({ id }) {
+    const result = await loadItemFromDB(id);
+    self.postMessage({
+      type: 'OPEN_ITEM',
+      payload: result,
+    });
+  },
+};
+
 self.addEventListener('message', e => {
-  const { type, payload } = e.data;
   console.log(e.data);
-  switch (type) {
-    case 'SAVE_ITEM':
-      saveItemToDB(payload.id, payload.imgSrc, payload.colors);
-      return;
-    case 'LOAD_HISTORY':
-      loadHistoryFromDB();
-      return;
-    case 'LOAD_ITEM':
-      loadItemFromDB(payload.id);
-      return;
-  }
+  actions[e.data.type](e.data.payload);
 });

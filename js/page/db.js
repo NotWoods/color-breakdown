@@ -2,30 +2,30 @@ const list = document.getElementById('grid-items');
 const itemTemplate = document.getElementById('grid-item-template');
 const viewer = document.getElementById('palette');
 
-const dbWorker = new Worker('js/db-worker.js');
+const dbWorker = new Worker('js/db-worker/index.js');
+
+const actions = {
+  PUT_HISTORY_ITEM({ id, imgSrc, colors }) {
+    let item = document.getElementById(id);
+    if (item) {
+      updatePaletteData(item, imgSrc, colors);
+    } else {
+      const fragment = document.importNode(itemTemplate.content, true);
+      item = fragment.querySelector('li');
+
+      updatePaletteData(item, imgSrc, colors);
+      item.id = id;
+      list.appendChild(item);
+    }
+  },
+  OPEN_ITEM({ imgSrc, colors }) {
+    updatePaletteData(viewer, imgSrc, colors);
+  },
+};
 
 dbWorker.addEventListener('message', e => {
-  const { type, payload } = e.data;
   console.log(e.data);
-  switch (type) {
-    case 'PUT_HISTORY_ITEM': {
-      let item = document.getElementById(payload.id);
-      if (item) {
-        updatePaletteData(item, payload.imgSrc, payload.colors);
-      } else {
-        const fragment = document.importNode(itemTemplate.content, true);
-        item = fragment.querySelector('li');
-
-        updatePaletteData(item, payload.imgSrc, payload.colors);
-        item.id = payload.id;
-        list.appendChild(item);
-      }
-      return;
-    }
-    case 'OPEN_ITEM':
-      updatePaletteData(viewer, payload.imgSrc, payload.colors);
-      return;
-  }
+  actions[e.data.type](e.data.payload);
 });
 
 function waitFor(id, successType, failureType) {
@@ -57,7 +57,7 @@ function loadItem(id) {
   const onresponse = waitFor(id, 'OPEN_ITEM');
   dbWorker.postMessage({
     type: 'LOAD_ITEM',
-    payload: { id }
+    payload: { id },
   });
   return onresponse;
 }
@@ -66,7 +66,7 @@ function saveItem(id, imgSrc, colors) {
   const onresponse = waitFor(id, 'SAVE_ITEM_SUCCESS', 'SAVE_ITEM_FAILURE');
   dbWorker.postMessage({
     type: 'SAVE_ITEM',
-    payload: { id, imgSrc, colors }
+    payload: { id, imgSrc, colors },
   });
   return onresponse;
 }
