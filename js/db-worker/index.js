@@ -1,4 +1,4 @@
-importScripts('../node_modules/idb/lib/idb.js');
+importScripts('./idb.js');
 
 const dbPromise = idb.open('history-store', 1, upgradeDB => {
   switch (upgradeDB.oldVersion) {
