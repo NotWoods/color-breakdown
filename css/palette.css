@@ -1,5 +1,22 @@
+body {
+  overflow-x: hidden;
+}
+
 #history {
   box-shadow: inset -1px 0 3px rgba(0, 0, 0, 0.2);
+}
+
+#palette {
+  display: grid;
+  grid-template-rows: max-content auto max-content;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  transform: translateX(100%);
+  transition: transform 0.2s ease;
+}
+#palette.is-open {
+  transform: none;
 }
 
 .palette-image {
@@ -40,7 +57,7 @@
   content: attr(title);
 }
 
-@media (min-width: 600px) {
+@media (min-width: 900px) {
   .palette-colors {
     grid-template-columns: repeat(6, 1fr);
   }

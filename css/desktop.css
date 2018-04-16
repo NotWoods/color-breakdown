@@ -1,4 +1,8 @@
 @media (min-width: 700px) {
+  #palette {
+    transform: none;
+    position: static;
+  }
   .container {
     display: grid;
     grid-template-columns: 1fr 66%;

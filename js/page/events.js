@@ -1,6 +1,7 @@
 {
   const form = document.getElementById('new-palette-entry');
   const canvas = document.createElement('canvas');
+  const viewer = document.getElementById('palette');
 
   loadHistory();
   loadFromHash();
@@ -40,7 +41,14 @@
   document.getElementById('delete').addEventListener('click', e => {
     const id = getId(location.hash.substring(1));
     deleteItem(id);
-    updatePaletteData(document.getElementById('palette'));
+    updatePaletteData(viewer);
+    viewer.classList.remove('is-open');
     document.getElementById(id).remove();
+  });
+
+  document.getElementById('back').addEventListener('click', e => {
+    e.preventDefault();
+    history.replaceState(undefined, undefined, '');
+    viewer.classList.remove('is-open');
   });
 }

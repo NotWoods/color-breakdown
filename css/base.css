@@ -26,7 +26,8 @@ img {
 .app-screen {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  overflow-y: auto;
 
   background: #eee;
 }

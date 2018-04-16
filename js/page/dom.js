@@ -27,6 +27,21 @@
   };
 
   /**
+   * @param {HTMLElement} node
+   * @param {string} name
+   * @param {ColorSwatch | null} data
+   */
+  window.setSwatchProperty = function setSwatchProperty(node, name, data) {
+    if (data) {
+      node.style.setProperty(`--${name}`, data.color);
+      node.style.setProperty(`--${name}-text`, data.textColor);
+    } else {
+      node.style.removeProperty(`--${name}`);
+      node.style.removeProperty(`--${name}-text`);
+    }
+  };
+
+  /**
    * Update a swatch element
    * @param {HTMLElement} parent
    * @param {string} name
@@ -43,13 +58,7 @@
       swatch.parentElement.hidden = data == null;
     }
 
-    if (data) {
-      parent.style.setProperty(`--${name}`, data.color);
-      parent.style.setProperty(`--${name}-text`, data.textColor);
-    } else {
-      parent.style.removeProperty(`--${name}`);
-      parent.style.removeProperty(`--${name}-text`);
-    }
+    setSwatchProperty(parent, name, data);
 
     if (text) {
       text.textContent = data != null ? data.color : '#??????';
@@ -60,7 +69,6 @@
     e.preventDefault();
     const id = getId(e.currentTarget.id);
     await loadItem(id);
-
     history.replaceState(undefined, undefined, `#${id}`);
   }
 
@@ -148,5 +156,6 @@
     const saveComplete = saveItem(id, url, colors);
     updatePaletteData(document.getElementById('palette'), url, colors);
     await saveComplete;
+    history.replaceState(undefined, undefined, `#${id}`);
   };
 }

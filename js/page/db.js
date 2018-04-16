@@ -2,6 +2,7 @@
   const list = document.getElementById('grid-items');
   const itemTemplate = document.getElementById('grid-item-template');
   const viewer = document.getElementById('palette');
+  const fab = document.getElementById('image-file-input');
 
   const dbWorker = new Worker('js/db-worker.js');
 
@@ -16,6 +17,8 @@
     },
     OPEN_ITEM({ imgSrc, colors }) {
       updatePaletteData(viewer, imgSrc, colors);
+      setSwatchProperty(fab, 'vibrant', colors.vibrant);
+      viewer.classList.add('is-open');
     },
   };
 
