@@ -7,90 +7,145 @@
     <link href="css/base.css" rel="stylesheet">
     <link href="css/new.css" rel="stylesheet">
     <link href="css/palette.css" rel="stylesheet">
-    <link href="css/desktop.css" rel="stylesheet">
+    <link href="css/desktop.css" media="(min-width: 700px)" rel="stylesheet">
 
-	<script defer src="js/vibrant.worker.min.js"></script>
-	<script defer src="js/dom.js"></script>
-	<script defer src="js/events.js"></script>
-	<script>
-		navigator.serviceWorker
-			.register('sw.js')
-			.then(() => console.log("Service Worker Registered"));
-	</script>
+    <script defer src="js/vibrant.worker.min.js"></script>
+    <script defer src="js/page/dom.js"></script>
+    <script defer src="js/page/db.js"></script>
+    <script defer src="js/page/canvas.js"></script>
+    <script defer src="js/page/events.js"></script>
+    <script>
+        navigator.serviceWorker
+            .register('sw.js')
+            .then(() => console.log("Service Worker Registered"));
+    </script>
 
     <link href="manifest.webmanifest" rel="manifest">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon" sizes="180x180" href="icons/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon/favicon-16x16.png">
-    <link rel="mask-icon" href="icons/favicon/safari-pinned-tab.svg" color="#43434f">
-    <meta name="msapplication-TileImage" content="icons/favicon/mstile-150x150.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#43434f">
+    <meta name="msapplication-TileImage" content="img/favicon/mstile-150x150.png">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#43434f">
 </head>
 
 <body class="container">
-	<article class="app-screen" id="palette">
-		<header class="toolbar dark-vibrant">
-			<h2 class="toolbar-title">Vibrant GUI</h2>
-			<a href="https://github.com/NotWoods/vibrant-gui/blob/master/README.md" class="toolbar-button white-button">
-				<img alt="About" src="icons/ic_info_outline_white_24px.svg">
-			</a>
-			<a href="https://github.com/NotWoods/vibrant-gui" class="toolbar-button white-button">
-				<img alt="Contribute" src="icons/ic_github_circle_white_24px.svg">
-			</a>
-		</header>
+    <main class="app-screen" id="history">
+        <header class="toolbar vibrant">
+            <h1 class="toolbar-title">Vibrant GUI</h1>
+            <a href="https://github.com/NotWoods/vibrant-gui/blob/master/README.md" class="toolbar-button white-button">
+                <span class="btn-label">About</span>
+                <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 0h24v24H0z" fill="none" />
+                    <path d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 9h2V7h-2v2z"
+                    />
+                </svg>
+            </a>
+            <a href="https://github.com/NotWoods/vibrant-gui" class="toolbar-button white-button">
+                <span class="btn-label">Contribute</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"
+                    />
+                </svg>
+            </a>
+        </header>
 
-        <img class="palette-image preview light-muted" alt="Base image" src="icons/placeholder.svg">
+        <ul id="grid-items" class="grid-list">
+            <template id="grid-item-template">
+                <li class="grid-item light-muted">
+                    <a href="#palette">
+                        <div class="grid-item-img-box">
+                            <img class="grid-item-img preview" alt="" src="img/placeholder.svg" height="144" width="144">
+                        </div>
+                        <div class="colors vibrant">
+                            <span class="swatch vibrant"></span>
+                            <span class="swatch dark-vibrant"></span>
+                            <span class="swatch light-vibrant"></span>
+                            <span class="swatch muted"></span>
+                            <span class="swatch dark-muted"></span>
+                            <span class="swatch light-muted"></span>
+                        </div>
+                    </a>
+                </li>
+            </template>
+        </ul>
+    </main>
 
-		<div class="colors palette-colors">
-			<div>
-				<div class="swatch vibrant">
-					<span class="swatch-text">#??????</span>
-				</div>
-				Vibrant
-			</div>
-			<div>
-				<div class="swatch dark-vibrant">
-					<span class="swatch-text">#??????</span>
-				</div>
-				Dark Vibrant
-			</div>
-			<div>
-				<div class="swatch light-vibrant">
-					<span class="swatch-text">#??????</span>
-				</div>
-				Light Vibrant
-			</div>
-			<div>
-				<div class="swatch muted">
-					<span class="swatch-text">#??????</span>
-				</div>
-				Muted
-			</div>
-			<div>
-				<div class="swatch dark-muted">
-					<span class="swatch-text">#??????</span>
-				</div>
-				Dark Muted
-			</div>
-			<div>
-				<div class="swatch light-muted">
-					<span class="swatch-text">#??????</span>
-				</div>
-				Light Muted
-			</div>
-		</div>
+    <article class="app-screen" id="palette">
+        <header class="toolbar dark-vibrant">
+            <a id="back" href="#history" class="toolbar-button white-button back">
+                <span class="btn-label left">Back</span>
+                <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 0h24v24H0z" fill="none" />
+                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+                </svg>
+            </a>
+            <h2 class="toolbar-title">Palette</h2>
+            <a id="delete" href="#history" class="toolbar-button white-button">
+                <span class="btn-label">Delete</span>
+                <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+                    <path d="M0 0h24v24H0z" fill="none" />
+                </svg>
+            </a>
+        </header>
 
-		<form class="new-palette-entry" id="new-palette-entry">
-			<input type="file" accept="image/*" id="imagefile" class="hidden-input" name="imagefile">
-			<label for="imagefile" id="image-file-input" class="fab imagefile-label">
-				<img alt="Add" src="icons/ic_add_white_24px.svg">
-			</label>
-		</form>
-	</article>
+        <img class="palette-image preview light-muted" alt="Base image" src="img/placeholder.svg">
+
+        <div class="colors palette-colors">
+            <div>
+                <div class="swatch vibrant">
+                    <span class="swatch-text">#??????</span>
+                </div>
+                Vibrant
+            </div>
+            <div>
+                <div class="swatch dark-vibrant">
+                    <span class="swatch-text">#??????</span>
+                </div>
+                Dark Vibrant
+            </div>
+            <div>
+                <div class="swatch light-vibrant">
+                    <span class="swatch-text">#??????</span>
+                </div>
+                Light Vibrant
+            </div>
+            <div>
+                <div class="swatch muted">
+                    <span class="swatch-text">#??????</span>
+                </div>
+                Muted
+            </div>
+            <div>
+                <div class="swatch dark-muted">
+                    <span class="swatch-text">#??????</span>
+                </div>
+                Dark Muted
+            </div>
+            <div>
+                <div class="swatch light-muted">
+                    <span class="swatch-text">#??????</span>
+                </div>
+                Light Muted
+            </div>
+        </div>
+    </article>
+
+    <form class="new-palette-entry" id="new-palette-entry">
+        <input type="file" accept="image/*" id="imagefile" class="hidden-input" name="imagefile">
+        <label for="imagefile" id="image-file-input" class="fab vibrant imagefile-label">
+            <span class="btn-label top">Add</span>
+            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                <path d="M0 0h24v24H0z" fill="none" />
+            </svg>
+        </label>
+    </form>
 </body>
 
 </html>

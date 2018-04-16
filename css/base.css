@@ -19,14 +19,16 @@ body {
   --light-muted-text: #000;
 }
 
-img {
+img,
+svg {
   display: block;
 }
 
 .app-screen {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  overflow-y: auto;
 
   background: #eee;
 }
@@ -39,8 +41,6 @@ img {
   position: relative;
 
   z-index: 1;
-  background: var(--vibrant);
-  color: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 .toolbar-title {
@@ -64,8 +64,8 @@ img {
   line-height: normal;
   cursor: pointer;
 }
-.fab img,
-.toolbar-button img {
+.fab svg,
+.toolbar-button svg {
   margin: auto;
 }
 
@@ -76,9 +76,8 @@ img {
   right: 1rem;
   height: 3.5rem;
   width: 3.5rem;
+  z-index: 2;
 
-  color: white;
-  background: var(--vibrant);
   border-radius: 50%;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
@@ -141,24 +140,30 @@ img {
 .vibrant {
   background-color: var(--vibrant);
   color: var(--vibrant-text);
+  fill: var(--vibrant-text);
 }
 .dark-vibrant {
   background-color: var(--dark-vibrant);
   color: var(--dark-vibrant-text);
+  fill: var(--dark-vibrant-text);
 }
 .light-vibrant {
   background-color: var(--light-vibrant);
   color: var(--light-vibrant-text);
+  fill: var(--light-vibrant-text);
 }
 .muted {
   background-color: var(--muted);
   color: var(--muted-text);
+  fill: var(--muted-text);
 }
 .dark-muted {
   background-color: var(--dark-muted);
   color: var(--dark-muted-text);
+  fill: var(--dark-muted-text);
 }
 .light-muted {
   background-color: var(--light-muted);
   color: var(--light-muted-text);
+  fill: var(--light-muted-text);
 }
