@@ -7,7 +7,7 @@
     <link href="css/base.css" rel="stylesheet">
     <link href="css/new.css" rel="stylesheet">
     <link href="css/palette.css" rel="stylesheet">
-    <link href="css/desktop.css" rel="stylesheet">
+    <link href="css/desktop.css" media="(min-width: 700px)" rel="stylesheet">
 
     <script defer src="js/vibrant.worker.js"></script>
     <script defer src="js/page/dom.js"></script>
@@ -38,9 +38,11 @@
         <header class="toolbar">
             <h1 class="toolbar-title">Vibrant GUI</h1>
             <a href="https://github.com/NotWoods/vibrant-gui/blob/master/README.md" class="toolbar-button white-button">
+                <span class="btn-label">About</span>
                 <img alt="About" src="icons/ic_info_outline_white_24px.svg">
             </a>
             <a href="https://github.com/NotWoods/vibrant-gui" class="toolbar-button white-button">
+                <span class="btn-label">Contribute</span>
                 <img alt="Contribute" src="icons/ic_github_circle_white_24px.svg">
             </a>
         </header>
@@ -64,22 +66,17 @@
                 </li>
             </template>
         </ul>
-
-        <form class="new-palette-entry" id="new-palette-entry">
-            <input type="file" accept="image/*" id="imagefile" class="hidden-input" name="imagefile">
-            <label for="imagefile" id="image-file-input" class="fab imagefile-label">
-                <img alt="Add" src="icons/ic_add_white_24px.svg">
-            </label>
-        </form>
     </main>
 
     <article class="app-screen" id="palette">
         <header class="toolbar dark-vibrant">
             <a id="back" href="#history" class="toolbar-button white-button back">
+                <span class="btn-label left">Back</span>
                 <img alt="Back" src="icons/ic_arrow_back_white_24px.svg">
             </a>
             <h2 class="toolbar-title">Palette</h2>
             <a id="delete" href="#history" class="toolbar-button white-button">
+                <span class="btn-label">Delete</span>
                 <img alt="Delete" src="icons/ic_delete_white_24px.svg">
             </a>
         </header>
@@ -125,6 +122,14 @@
             </div>
         </div>
     </article>
+
+    <form class="new-palette-entry" id="new-palette-entry">
+        <input type="file" accept="image/*" id="imagefile" class="hidden-input" name="imagefile">
+        <label for="imagefile" id="image-file-input" class="fab imagefile-label">
+            <span class="btn-label top">Add</span>
+            <img alt="Add" src="icons/ic_add_white_24px.svg">
+        </label>
+    </form>
 </body>
 
 </html>

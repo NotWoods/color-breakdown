@@ -10,7 +10,8 @@
     if (files.length > 0) {
       const url = processImageFiles(files);
       const uri = await getDataUri(url, canvas);
-      return processUrl(uri);
+      await processUrl(uri);
+      viewer.classList.add('is-open');
     }
   }
 
