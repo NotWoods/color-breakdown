@@ -9,16 +9,16 @@
     <link href="css/palette.css" rel="stylesheet">
     <link href="css/desktop.css" media="(min-width: 700px)" rel="stylesheet">
 
-    <script defer src="js/vibrant.worker.js"></script>
+    <script defer src="node_modules/node-vibrant/dist/vibrant.worker.js"></script>
     <script defer src="js/page/dom.js"></script>
     <script defer src="js/page/db.js"></script>
     <script defer src="js/page/canvas.js"></script>
     <script defer src="js/page/events.js"></script>
-    <!--<script>
+    <script>
         navigator.serviceWorker
             .register('sw.js')
             .then(() => console.log("Service Worker Registered"));
-    </script>-->
+    </script>
 
     <link href="manifest.webmanifest" rel="manifest">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -138,7 +138,7 @@
 
     <form class="new-palette-entry" id="new-palette-entry">
         <input type="file" accept="image/*" id="imagefile" class="hidden-input" name="imagefile">
-        <label for="imagefile" id="image-file-input" class="fab imagefile-label">
+        <label for="imagefile" id="image-file-input" class="fab vibrant imagefile-label">
             <span class="btn-label top">Add</span>
             <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />

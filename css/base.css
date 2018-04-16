@@ -64,8 +64,8 @@ svg {
   line-height: normal;
   cursor: pointer;
 }
-.fab img,
-.toolbar-button img {
+.fab svg,
+.toolbar-button svg {
   margin: auto;
 }
 
@@ -78,8 +78,6 @@ svg {
   width: 3.5rem;
   z-index: 2;
 
-  color: white;
-  background: var(--vibrant);
   border-radius: 50%;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }

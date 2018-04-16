@@ -115,6 +115,6 @@ const actions = {
 };
 
 self.addEventListener('message', e => {
-  console.log(e.data);
+  console.log(e.data.type, e.data.payload);
   actions[e.data.type](e.data.payload);
 });
