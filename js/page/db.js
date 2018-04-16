@@ -11,12 +11,7 @@
       if (item) {
         updatePaletteData(item, imgSrc, colors);
       } else {
-        const fragment = document.importNode(itemTemplate.content, true);
-        item = fragment.querySelector('li');
-
-        updatePaletteData(item, imgSrc, colors);
-        item.id = id;
-        list.appendChild(item);
+        list.appendChild(createPaletteData(id, imgSrc, colors));
       }
     },
     OPEN_ITEM({ imgSrc, colors }) {
@@ -83,6 +78,20 @@
     dbWorker.postMessage({
       type: 'SAVE_ITEM',
       payload: { id, imgSrc, colors },
+    });
+    return onresponse;
+  };
+
+  /**
+   * Delete an item from history
+   * @param {number} id
+   * @returns {Promise<{ id:number >}
+   */
+  window.deleteItem = function loadItem(id) {
+    const onresponse = waitFor(id, 'DELETE_ITEM_SUCCESS');
+    dbWorker.postMessage({
+      type: 'DELETE_ITEM',
+      payload: { id },
     });
     return onresponse;
   };

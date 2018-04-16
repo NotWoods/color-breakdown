@@ -16,6 +16,17 @@
 
 {
   /**
+   * Returns the ID from the currently open hash, or null if a
+   * palette is not currently open.
+   * @param {string} source
+   * @returns {number | null}
+   */
+  window.getId = function getId(source) {
+    const id = parseInt(source, 10);
+    return Number.isNaN(id) ? null : id;
+  };
+
+  /**
    * Update a swatch element
    * @param {HTMLElement} parent
    * @param {string} name
@@ -45,6 +56,14 @@
     }
   }
 
+  async function onPaletteDataClick(e) {
+    e.preventDefault();
+    const id = getId(e.currentTarget.id);
+    await loadItem(id);
+
+    history.replaceState(undefined, undefined, `#${id}`);
+  }
+
   /**
    * Update a palette descriptor - either a grid item, or the palette page
    * @param {HTMLElement} node element to update
@@ -65,6 +84,21 @@
     updateSwatch(node, 'muted', colors.muted);
     updateSwatch(node, 'dark-muted', colors.darkMuted);
     updateSwatch(node, 'light-muted', colors.lightMuted);
+  };
+
+  const itemTemplate = document.getElementById('grid-item-template');
+  window.createPaletteData = function createPaletteData(id, imgSrc, colors) {
+    const fragment = document.importNode(itemTemplate.content, true);
+    item = fragment.querySelector('li');
+
+    updatePaletteData(item, imgSrc, colors);
+    item.id = id;
+    item.addEventListener('click', onPaletteDataClick);
+
+    const link = fragment.querySelector('a');
+    link.href = `#${id}`;
+
+    return item;
   };
 
   /**

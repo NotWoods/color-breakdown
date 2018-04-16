@@ -9,8 +9,7 @@ const dbPromise = idb.open('history-store', 1, upgradeDB => {
 });
 
 /**
- * Load the history list. Emits an event for each item.
- * @emits PUT_HISTORY_ITEM
+ * Load the history list.
  */
 async function loadHistoryFromDB(callback) {
   const db = await dbPromise;
@@ -30,9 +29,8 @@ async function loadHistoryFromDB(callback) {
 }
 
 /**
- * Loads a single history item into the main palette viewer, by emitted an event
- * @emits OPEN_ITEM
- * @param {string} id
+ * Loads a single history item for the main palette viewer
+ * @param {number} id
  */
 async function loadItemFromDB(id) {
   const db = await dbPromise;
@@ -49,8 +47,19 @@ async function loadItemFromDB(id) {
 }
 
 /**
+ * Delete a history item with the given ID
+ * @param {number} id
+ */
+async function deleteItemFromDB(id) {
+  const db = await dbPromise;
+  const tx = db.transaction('history', 'readwrite');
+  tx.objectStore('history').delete(id);
+  await tx.complete;
+}
+
+/**
  * Save an item to the database
- * @param {string} id
+ * @param {number} id
  * @param {string} imgSrc
  * @param {ColorPalette} colors
  */
@@ -64,7 +73,6 @@ async function saveItemToDB(id, imgSrc, colors) {
   });
 
   await tx.complete;
-  return id;
 }
 
 const actions = {
@@ -86,12 +94,22 @@ const actions = {
         payload: result,
       })
     );
+    self.postMessage({
+      type: 'LOAD_HISTORY_SUCCESS',
+    });
   },
   async LOAD_ITEM({ id }) {
     const result = await loadItemFromDB(id);
     self.postMessage({
       type: 'OPEN_ITEM',
       payload: result,
+    });
+  },
+  async DELETE_ITEM({ id }) {
+    await deleteItemFromDB(id);
+    self.postMessage({
+      type: 'DELETE_ITEM_SUCCESS',
+      payload: { id },
     });
   },
 };

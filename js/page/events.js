@@ -3,6 +3,7 @@
   const canvas = document.createElement('canvas');
 
   loadHistory();
+  loadFromHash();
 
   async function processFiles(files) {
     if (files.length > 0) {
@@ -10,6 +11,11 @@
       const uri = await getDataUri(url, canvas);
       return processUrl(uri);
     }
+  }
+
+  async function loadFromHash() {
+    const id = getId(location.hash.substr(1));
+    if (id != null) await loadItem(id);
   }
 
   form.addEventListener('submit', async e => {
@@ -28,4 +34,13 @@
   form.imagefile.addEventListener('blur', e =>
     e.target.classList.remove('focus')
   );
+
+  window.addEventListener('hashchange', loadFromHash);
+
+  document.getElementById('delete').addEventListener('click', e => {
+    const id = getId(location.hash.substring(1));
+    deleteItem(id);
+    updatePaletteData(document.getElementById('palette'));
+    document.getElementById(id).remove();
+  });
 }
