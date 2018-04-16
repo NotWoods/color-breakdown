@@ -8,7 +8,7 @@ const resources = [
   'img/placeholder.svg',
   'js/vibrant.worker.min.js',
   'js/db-worker/idb.js',
-  'js/db-worker.js',
+  'js/db-worker/index.js',
   'js/page/canvas.js',
   'js/page/db.js',
   'js/page/dom.js',

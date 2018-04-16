@@ -4,7 +4,7 @@
   const viewer = document.getElementById('palette');
   const fab = document.getElementById('image-file-input');
 
-  const dbWorker = new Worker('js/db-worker.js');
+  const dbWorker = new Worker('js/db-worker/index.js');
 
   const actions = {
     PUT_HISTORY_ITEM({ id, imgSrc, colors }) {
