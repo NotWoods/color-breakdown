@@ -110,7 +110,9 @@
       darkMuted: toSwatch(palette.DarkMuted),
       lightMuted: toSwatch(palette.LightMuted),
     };
-    console.log(colors);
-    await Promise.all([saveItem(id, url, colors), loadItem(id)]);
+
+    const saveComplete = saveItem(id, url, colors);
+    updatePaletteData(document.getElementById('palette'), url, colors);
+    await saveComplete;
   };
 }

@@ -23,9 +23,10 @@ self.addEventListener('install', e => {
           'node_modules/idb/lib/idb.js',
           'node_modules/node-vibrant/dist/vibrant.worker.js',
           'js/db-worker.js',
-          'js/db.js',
-          'js/dom.js',
-          'js/events.js'
+          'js/page/canvas.js',
+          'js/page/db.js',
+          'js/page/dom.js',
+          'js/page/events.js',
         ])
       )
   );

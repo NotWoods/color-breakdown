@@ -1,17 +1,27 @@
 {
   const form = document.getElementById('new-palette-entry');
+  const canvas = document.createElement('canvas');
 
   loadHistory();
 
-  form.addEventListener('submit', e => {
+  async function processFiles(files) {
+    if (files.length > 0) {
+      const url = processImageFiles(files);
+      const uri = await getDataUri(url, canvas);
+      return processUrl(uri);
+    }
+  }
+
+  form.addEventListener('submit', async e => {
     e.preventDefault();
-    if (form.imagefile.files.length > 0)
-      processUrl(processImageFiles(form.imagefile.files));
+    processFiles(form.imagefile.files);
   });
 
-  form.imagefile.addEventListener('change', e =>
-    processUrl(processImageFiles(e.currentTarget.files))
+  form.imagefile.addEventListener('change', async e =>
+    processFiles(e.currentTarget.files)
   );
+
+  // File input focus polyfill for Firefox
   form.imagefile.addEventListener('focus', e =>
     e.target.classList.add('focus')
   );

@@ -24,6 +24,7 @@ async function loadHistoryFromDB(callback) {
       imgSrc: cursor.value.imgSrc,
       colors: cursor.value.colors,
     });
+    cursor.continue();
   });
   await tx.complete;
 }
@@ -68,10 +69,14 @@ async function saveItemToDB(id, imgSrc, colors) {
 
 const actions = {
   async SAVE_ITEM({ id, imgSrc, colors }) {
-    const id = await saveItemToDB(id, imgSrc, colors);
+    await saveItemToDB(id, imgSrc, colors);
     self.postMessage({
       type: 'SAVE_ITEM_SUCCESS',
       payload: { id },
+    });
+    self.postMessage({
+      type: 'PUT_HISTORY_ITEM',
+      payload: { id, imgSrc, colors },
     });
   },
   async LOAD_HISTORY() {

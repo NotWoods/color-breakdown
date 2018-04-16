@@ -3,7 +3,7 @@
   const itemTemplate = document.getElementById('grid-item-template');
   const viewer = document.getElementById('palette');
 
-  const dbWorker = new Worker('js/db-worker/index.js');
+  const dbWorker = new Worker('js/db-worker.js');
 
   const actions = {
     PUT_HISTORY_ITEM({ id, imgSrc, colors }) {
@@ -26,7 +26,7 @@
 
   dbWorker.addEventListener('message', e => {
     console.log(e.data);
-    actions[e.data.type](e.data.payload);
+    if (actions[e.data.type]) actions[e.data.type](e.data.payload);
   });
 
   function waitFor(id, successType, failureType) {
