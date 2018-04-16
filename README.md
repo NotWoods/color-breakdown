@@ -1,4 +1,4 @@
-![](icons/logo/logo.png)
+![](img/logo/logo.png)
 
 # Vibrant GUI
 

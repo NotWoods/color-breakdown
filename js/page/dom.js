@@ -80,7 +80,7 @@
    */
   window.updatePaletteData = function updatePaletteData(
     node,
-    imgSrc = 'icons/placeholder.svg',
+    imgSrc = 'img/placeholder.svg',
     colors = {}
   ) {
     /** @type {HTMLImageElement} */
