@@ -15,10 +15,10 @@ const resources = [
   'js/page/events.js',
 ];
 
+const CACHE = 'vibrant-gui';
+
 self.addEventListener('install', e => {
-  e.waitUntil(
-    caches.open('vibrant-gui').then(cache => cache.addAll(resources))
-  );
+  e.waitUntil(caches.open(CACHE).then(cache => cache.addAll(resources)));
 });
 
 self.addEventListener('fetch', event => {
@@ -27,6 +27,12 @@ self.addEventListener('fetch', event => {
   );
 
   event.waitUntil(
-    fetch(event.request).then(response => cache.put(event.request, response))
+    caches
+      .open(CACHE)
+      .then(cache =>
+        fetch(event.request).then(response =>
+          cache.put(event.request, response)
+        )
+      )
   );
 });
