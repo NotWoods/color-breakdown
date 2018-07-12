@@ -1,4 +1,4 @@
-![](img/logo/logo.png)
+<img src="img/logo/logo.png" height="160" width="160">
 
 # Vibrant GUI
 
@@ -6,12 +6,20 @@
 
 Inspired by [SVGOMG](https://jakearchibald.github.io/svgomg/)!
 
-# Feature requests
+## Feature requests
 
 It's early days for this project, so it's missing important features such as code output view & detailed options for each plugin. [Check out the issues](https://github.com/NotWoods/vibrant-gui/issues) to see what's planned, or suggest ideas of your own!
 
-# Running locally
+## Developing
 
+### Built with
+- [node-vibrant 3.0.0](https://github.com/akfish/node-vibrant)
+- [idb 2.1.1](https://github.com/jakearchibald/idb)
+- Canvas API
+- Web Workers
+- Service Workers
+
+### Setting up Dev
 Install dependencies:
 
 ```shell
@@ -23,3 +31,6 @@ Run dev server:
 ```shell
 npm run serve
 ```
+
+## Licensing
+This project is avaliable under the MIT License.
