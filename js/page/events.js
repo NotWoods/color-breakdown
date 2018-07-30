@@ -53,4 +53,25 @@
     history.replaceState(undefined, undefined, '');
     viewer.classList.remove('is-open');
   });
+
+  async function copyOnSwatchClick(event) {
+    const colorEl = event.currentTarget.querySelector('.swatch-text');
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        const { textContent } = colorEl;
+        await navigator.clipboard.writeText(textContent);
+      } else {
+        const range = document.createRange();
+        range.selectNode(colorEl);
+        window.getSelection().addRange(range);
+        const successful = document.execCommand('copy');
+        if (!successful) throw new Error('Copy failed');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  for (const button of document.querySelectorAll('button.swatch')) {
+    button.addEventListener('click', copyOnSwatchClick);
+  }
 }
