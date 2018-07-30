@@ -1,7 +1,6 @@
 {
   const form = document.getElementById('new-palette-entry');
   const canvas = document.createElement('canvas');
-  const viewer = document.getElementById('palette');
 
   loadHistory();
   loadFromHash();
@@ -19,6 +18,8 @@
     const id = getId(location.hash.substr(1));
     if (id != null) await loadItem(id);
   }
+
+  colorDisplay.addEventListener('change', updateViewer);
 
   form.addEventListener('submit', async e => {
     e.preventDefault();

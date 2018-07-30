@@ -46,22 +46,19 @@
    * @param {HTMLElement} parent
    * @param {string} name
    * @param {ColorSwatch | null} data
+   * @param {(color: string) => string} [getText]
    */
-  function updateSwatch(parent, name, data) {
+  function updateSwatch(parent, name, data, getText) {
     /** @type {HTMLElement} */
     const swatch = parent.querySelector(`.swatch.${name}`);
-    const text = swatch.querySelector('.swatch-text');
 
-    if (swatch.parentElement === parent.querySelector('.colors')) {
-      swatch.hidden = data == null;
-    } else {
-      swatch.parentElement.hidden = data == null;
-    }
+    swatch.hidden = data == null;
 
     setSwatchProperty(parent, name, data);
 
-    if (text) {
-      text.textContent = data != null ? data.color : '#??????';
+    if (getText) {
+      const text = swatch.querySelector('.swatch-text');
+      text.textContent = data != null ? getText(data.color) : '\u200b';
     }
   }
 
@@ -77,21 +74,23 @@
    * @param {HTMLElement} node element to update
    * @param {string} imgSrc image source url
    * @param {ColorPalette} colors object with colors to use
+   * @param {(color: string) => string} getText
    */
   window.updatePaletteData = function updatePaletteData(
     node,
     imgSrc = 'img/placeholder.svg',
-    colors = {}
+    colors = {},
+    getText = undefined
   ) {
     /** @type {HTMLImageElement} */
     const preview = node.querySelector('img.preview');
     preview.src = imgSrc;
-    updateSwatch(node, 'vibrant', colors.vibrant);
-    updateSwatch(node, 'dark-vibrant', colors.darkVibrant);
-    updateSwatch(node, 'light-vibrant', colors.lightVibrant);
-    updateSwatch(node, 'muted', colors.muted);
-    updateSwatch(node, 'dark-muted', colors.darkMuted);
-    updateSwatch(node, 'light-muted', colors.lightMuted);
+    updateSwatch(node, 'vibrant', colors.vibrant, getText);
+    updateSwatch(node, 'dark-vibrant', colors.darkVibrant, getText);
+    updateSwatch(node, 'light-vibrant', colors.lightVibrant, getText);
+    updateSwatch(node, 'muted', colors.muted, getText);
+    updateSwatch(node, 'dark-muted', colors.darkMuted, getText);
+    updateSwatch(node, 'light-muted', colors.lightMuted, getText);
   };
 
   const itemTemplate = document.getElementById('grid-item-template');
