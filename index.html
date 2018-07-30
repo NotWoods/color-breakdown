@@ -35,19 +35,19 @@
 
 <body class="container">
     <main class="app-screen" id="history">
-        <header class="toolbar vibrant">
-            <h1 class="toolbar-title">Vibrant GUI</h1>
+        <header class="toolbar">
+            <img src="img/logo/logo.png" alt="" height="24" width="24">
+            <h1 class="toolbar-title">Color Breakdown</h1>
             <a href="https://github.com/NotWoods/color-breakdown/blob/master/README.md" class="toolbar-button white-button">
                 <span class="btn-label">About</span>
-                <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 0h24v24H0z" fill="none" />
+                <svg height="24" width="24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 9h2V7h-2v2z"
                     />
                 </svg>
             </a>
             <a href="https://github.com/NotWoods/color-breakdown" class="toolbar-button white-button">
                 <span class="btn-label">Contribute</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
                     <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"
                     />
                 </svg>
@@ -59,9 +59,9 @@
                 <li class="grid-item light-muted">
                     <a href="#palette">
                         <div class="grid-item-img-box">
-                            <img class="grid-item-img preview" alt="" src="img/placeholder.svg" height="144" width="144">
+                            <img class="grid-item-img preview" alt="" height="144" width="144">
                         </div>
-                        <div class="colors vibrant">
+                        <div class="colors grid-colors vibrant">
                             <span class="swatch vibrant"></span>
                             <span class="swatch dark-vibrant"></span>
                             <span class="swatch light-vibrant"></span>
@@ -76,69 +76,62 @@
     </main>
 
     <article class="app-screen" id="palette">
-        <header class="toolbar dark-vibrant">
+        <header class="toolbar transparent-toolbar">
             <a id="back" href="#history" class="toolbar-button white-button back">
                 <span class="btn-label left">Back</span>
-                <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 0h24v24H0z" fill="none" />
+                <svg height="24" width="24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
                 </svg>
             </a>
-            <h2 class="toolbar-title">Palette</h2>
+            <h2 class="toolbar-title"></h2>
             <a id="delete" href="#history" class="toolbar-button white-button">
                 <span class="btn-label">Delete</span>
-                <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                <svg height="24" width="24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
-                    <path d="M0 0h24v24H0z" fill="none" />
                 </svg>
             </a>
         </header>
 
-        <img class="palette-image preview light-muted" alt="Base image" src="img/placeholder.svg">
+        <img class="palette-image preview" alt="Base image" src="img/placeholder.svg">
 
         <div class="colors palette-colors">
-            <div>
-                <div class="swatch vibrant">
-                    <span class="swatch-text">#??????</span>
-                </div>
-                Vibrant
-            </div>
-            <div>
-                <div class="swatch dark-vibrant">
-                    <span class="swatch-text">#??????</span>
-                </div>
-                Dark Vibrant
-            </div>
-            <div>
-                <div class="swatch light-vibrant">
-                    <span class="swatch-text">#??????</span>
-                </div>
-                Light Vibrant
-            </div>
-            <div>
-                <div class="swatch muted">
-                    <span class="swatch-text">#??????</span>
-                </div>
-                Muted
-            </div>
-            <div>
-                <div class="swatch dark-muted">
-                    <span class="swatch-text">#??????</span>
-                </div>
-                Dark Muted
-            </div>
-            <div>
-                <div class="swatch light-muted">
-                    <span class="swatch-text">#??????</span>
-                </div>
-                Light Muted
-            </div>
+            <header class="toolbar palette-color-controls">
+                <!--<select class="color-display">
+                    <option>HEX</option>
+                    <option>RGB</option>
+                    <option>HSL</option>
+                </select>-->
+            </header>
+            <button class="swatch dark-vibrant" style="grid-area: dark-vibrant">
+                <span class="swatch-description">Dark Vibrant</span>
+                <span class="swatch-text">&#8203;</span>
+            </button>
+            <button class="swatch dark-muted" style="grid-area: dark-muted">
+                <span class="swatch-description">Dark Muted</span>
+                <span class="swatch-text">&#8203;</span>
+            </button>
+            <button class="swatch vibrant" style="grid-area: vibrant">
+                <span class="swatch-description">Vibrant</span>
+                <span class="swatch-text">&#8203;</span>
+            </button>
+            <button class="swatch muted" style="grid-area: muted">
+                <span class="swatch-description">Muted</span>
+                <span class="swatch-text">&#8203;</span>
+            </button>
+            <button class="swatch light-vibrant" style="grid-area: light-vibrant">
+                <span class="swatch-description">Light Vibrant</span>
+                <span class="swatch-text">&#8203;</span>
+            </button>
+            <button class="swatch light-muted" style="grid-area: light-muted">
+                <span class="swatch-description">Light Muted</span>
+                <span class="swatch-text">&#8203;</span>
+            </button>
         </div>
     </article>
 
     <form class="new-palette-entry" id="new-palette-entry">
         <input type="file" accept="image/*" id="imagefile" class="hidden-input" name="imagefile">
-        <label for="imagefile" id="image-file-input" class="fab vibrant imagefile-label">
+        <label for="imagefile" id="image-file-input" class="fab imagefile-label">
             <span class="btn-label top">Add</span>
             <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
