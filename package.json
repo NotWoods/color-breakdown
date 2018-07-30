@@ -1,5 +1,5 @@
 {
-  "name": "vibrant-gui",
+  "name": "color-breakdown",
   "version": "0.0.0",
   "description": "Extract prominent colors from an image with this PWA tool",
   "main": "index.js",

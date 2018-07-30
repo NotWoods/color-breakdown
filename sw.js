@@ -15,7 +15,7 @@ const resources = [
   'js/page/events.js',
 ];
 
-const CACHE = 'vibrant-gui';
+const CACHE = 'color-breakdown';
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(cache => cache.addAll(resources)));
