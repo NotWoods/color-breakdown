@@ -20,23 +20,19 @@
             .then(() => console.log("Service Worker Registered"));
     </script>
 
-    <link href="manifest.json" rel="manifest">
+    <link href="manifest.webmanifest" rel="manifest">
+    <script async src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.6/pwacompat.min.js" integrity="sha384-GOaSLecPIMCJksN83HLuYf9FToOiQ2Df0+0ntv7ey8zjUHESXhthwvq9hXAZTifA"
+        crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
-    <link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#43434f">
-    <meta name="msapplication-TileImage" content="img/favicon/mstile-150x150.png">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#43434f">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/logo32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/logo16.png">
+    <meta name="theme-color" content="#37474f">
 </head>
 
 <body class="container">
     <main class="app-screen" id="history">
         <header class="toolbar">
-            <img src="img/logo/logo.png" alt="" height="24" width="24">
+            <img src="img/favicon/logo48.png" alt="" height="24" width="24" srcset="img/favicon/logo24.png 24w, img/favicon/logo48.png 48w, img/favicon/logo192.png 192w">
             <h1 class="toolbar-title">Color Breakdown</h1>
             <a href="https://github.com/NotWoods/color-breakdown/blob/master/README.md" class="toolbar-button white-button">
                 <span class="btn-label">About</span>

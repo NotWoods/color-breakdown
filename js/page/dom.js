@@ -14,6 +14,33 @@
  * @prop {ColorSwatch | null} [lightMuted]
  */
 
+const viewer = document.getElementById('palette');
+const colorDisplay = document.getElementById('color-display');
+let viewerState = {
+  imgSrc: 'img/placeholder.svg',
+  colors: {},
+};
+function getText(hex) {
+  switch (colorDisplay.value) {
+    case 'RGB':
+    case 'HSL':
+      const [r, g, b] = Vibrant.Util.hexToRgb(hex);
+      if (colorDisplay.value === 'RGB') {
+        return `R${r} G${g} B${b}`;
+      }
+      const [h, s, l] = Vibrant.Util.rgbToHsl(r, g, b).map(n =>
+        Math.round(n * 100)
+      );
+      return `H${h} S${s} L${l}`;
+    case 'HEX':
+    default:
+      return hex;
+  }
+}
+function updateViewer() {
+  updatePaletteData(viewer, viewerState.imgSrc, viewerState.colors, getText);
+}
+
 {
   const largeScreen = matchMedia('(min-width: 700px)');
 
@@ -160,7 +187,9 @@
     };
 
     const saveComplete = saveItem(id, url, colors);
-    updatePaletteData(document.getElementById('palette'), url, colors);
+    viewerState.imgSrc = url;
+    viewerState.colors = colors;
+    updateViewer();
     await saveComplete;
     history.replaceState(undefined, undefined, `#${id}`);
   };
