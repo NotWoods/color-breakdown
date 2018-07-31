@@ -6,6 +6,7 @@ const resources = [
   'css/new.css',
   'css/palette.css',
   'img/placeholder.svg',
+  'img/logo.png',
   'js/vibrant.worker.min.js',
   'js/db-worker/idb.js',
   'js/db-worker/index.js',

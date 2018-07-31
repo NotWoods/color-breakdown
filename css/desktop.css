@@ -13,4 +13,7 @@
   .back {
     display: none;
   }
+  #history {
+    height: 100vh;
+  }
 }

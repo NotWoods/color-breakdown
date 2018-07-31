@@ -16,7 +16,11 @@
 
   async function loadFromHash() {
     const id = getId(location.hash.substr(1));
-    if (id != null) await loadItem(id);
+    if (id != null) {
+      await loadItem(id);
+    } else {
+      viewer.classList.remove('is-open');
+    }
   }
 
   colorDisplay.addEventListener('change', updateViewer);
@@ -50,8 +54,13 @@
 
   document.getElementById('back').addEventListener('click', e => {
     e.preventDefault();
-    history.replaceState(undefined, undefined, '');
     viewer.classList.remove('is-open');
+
+    if (history.state) {
+      history.back();
+    } else {
+      history.replaceState(false, undefined, '');
+    }
   });
 
   async function copyOnSwatchClick(event) {

@@ -15,6 +15,8 @@
  */
 
 {
+  const largeScreen = matchMedia('(min-width: 700px)');
+
   /**
    * Returns the ID from the currently open hash, or null if a
    * palette is not currently open.
@@ -66,7 +68,12 @@
     e.preventDefault();
     const id = getId(e.currentTarget.id);
     await loadItem(id);
-    history.replaceState(undefined, undefined, `#${id}`);
+
+    if (largeScreen.matches) {
+      history.replaceState(true, undefined, `#${id}`);
+    } else {
+      history.pushState(true, undefined, `#${id}`);
+    }
   }
 
   /**

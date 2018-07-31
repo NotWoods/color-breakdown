@@ -47,8 +47,8 @@ button {
   position: relative;
   width: 100%;
   height: 100vh;
-  overflow-y: auto;
 
+  overflow-y: auto;
   background: #212121;
 }
 
@@ -59,7 +59,7 @@ button {
   height: 3.5rem;
   position: relative;
 
-  z-index: 1;
+  z-index: 1; /* Layer 1: Toolbar, higher up to display the shadow */
   background: #37474f;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
@@ -89,7 +89,7 @@ button {
   right: 1rem;
   height: 3.5rem;
   width: 3.5rem;
-  z-index: 2;
+  z-index: 1;
 
   background: #37474f;
   border-radius: 50%;
@@ -180,4 +180,8 @@ button {
   background-color: var(--light-muted);
   color: var(--light-muted-text);
   fill: var(--light-muted-text);
+}
+
+#history {
+  height: auto;
 }

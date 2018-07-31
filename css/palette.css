@@ -2,10 +2,6 @@
  * CSS for the Palette panel
  */
 
-body {
-  overflow: hidden;
-}
-
 #history {
   box-shadow: inset -1px 0 3px rgba(0, 0, 0, 0.2);
 }
@@ -14,9 +10,9 @@ body {
   display: grid;
   grid-template-rows: max-content auto max-content;
 
-  position: absolute;
+  position: fixed;
   top: 0;
-  z-index: 2;
+  z-index: 1;
   background: black;
   transform: translateX(-100%);
   transition: transform 0.2s ease;
@@ -82,5 +78,14 @@ body {
 @media (min-width: 700px) {
   .palette-colors > .swatch {
     transition: background-color 0.3s ease;
+  }
+}
+@media (max-width: 700px) {
+  .fab {
+    transform: none;
+    transition: transform 0.3s ease;
+  }
+  .is-open + .new-palette-entry > .fab {
+    transform: scale(0);
   }
 }
