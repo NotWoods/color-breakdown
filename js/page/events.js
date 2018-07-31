@@ -58,9 +58,8 @@
 
     if (history.state) {
       history.back();
-    } else {
-      history.replaceState(false, undefined, '');
     }
+    history.replaceState(false, undefined, '.');
   });
 
   async function copyOnSwatchClick(event) {
