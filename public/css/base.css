@@ -1,187 +1,188 @@
 body {
-  margin: 0;
-  font-size: 16px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
-    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  background: #212121;
-  color: white;
-  fill: white;
+    margin: 0;
+    font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol';
+    background: #212121;
+    color: white;
+    fill: white;
 
-  --error: #f44336;
-  --vibrant: #43434f;
-  --vibrant-text: #fff;
-  --dark-vibrant: #7b3f09;
-  --dark-vibrant-text: #fff;
-  --light-vibrant: #7e7c89;
-  --light-vibrant-text: #000;
-  --muted: #f3aa66;
-  --muted-text: #000;
-  --dark-muted: #c8be9b;
-  --dark-muted-text: #000;
-  --light-muted: #fcdb98;
-  --light-muted-text: #000;
+    --error: #f44336;
+    --vibrant: #43434f;
+    --vibrant-text: #fff;
+    --dark-vibrant: #7b3f09;
+    --dark-vibrant-text: #fff;
+    --light-vibrant: #7e7c89;
+    --light-vibrant-text: #000;
+    --muted: #f3aa66;
+    --muted-text: #000;
+    --dark-muted: #c8be9b;
+    --dark-muted-text: #000;
+    --light-muted: #fcdb98;
+    --light-muted-text: #000;
 }
 
 img,
 svg {
-  display: block;
+    display: block;
 }
 
 a,
 button,
 select {
-  fill: inherit;
-  color: inherit;
-  font: inherit;
-  line-height: normal;
+    fill: inherit;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
 }
 button {
-  margin: 0;
-  border: 0;
+    margin: 0;
+    border: 0;
 
-  background: transparent;
-  cursor: pointer;
+    background: transparent;
+    cursor: pointer;
 }
 
 .app-screen {
-  position: relative;
-  width: 100%;
-  height: 100vh;
+    position: relative;
+    width: 100%;
+    height: 100vh;
 
-  overflow-y: auto;
-  background: #212121;
+    overflow-y: auto;
+    background: #212121;
 }
 
 .toolbar {
-  display: flex;
-  align-items: center;
-  padding: 0 0.5rem;
-  height: 3.5rem;
-  position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    height: 3.5rem;
+    position: relative;
 
-  z-index: 1; /* Layer 1: Toolbar, higher up to display the shadow */
-  background: #37474f;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    z-index: 1; /* Layer 1: Toolbar, higher up to display the shadow */
+    background: #37474f;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 .toolbar-title {
-  margin: 0 0 0 0.5rem;
-  flex: 1;
+    margin: 0 0 0 0.5rem;
+    flex: 1;
 
-  font-size: 20px;
-  font-weight: 400;
+    font-size: 20px;
+    font-weight: 400;
 }
 
 .fab,
 .toolbar-button {
-  padding: 0;
-  width: auto;
-  overflow: visible;
+    padding: 0;
+    width: auto;
+    overflow: visible;
 }
 .fab svg,
 .toolbar-button svg {
-  margin: auto;
+    margin: auto;
 }
 
 .fab {
-  position: fixed;
-  display: flex;
-  bottom: 1rem;
-  right: 1rem;
-  height: 3.5rem;
-  width: 3.5rem;
-  z-index: 1;
+    position: fixed;
+    display: flex;
+    bottom: 1rem;
+    right: 1rem;
+    height: 3.5rem;
+    width: 3.5rem;
+    z-index: 1;
 
-  background: #37474f;
-  border-radius: 50%;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    background: #37474f;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .toolbar-button {
-  margin: 0.25rem;
-  padding: 0.25rem;
+    margin: 0.25rem;
+    padding: 0.25rem;
 
-  border-radius: 50%;
+    border-radius: 50%;
 }
 .toolbar-button:hover {
-  background: rgba(0, 0, 0, 0.06);
+    background: rgba(0, 0, 0, 0.06);
 }
 .toolbar-button:focus {
-  background: rgba(0, 0, 0, 0.12);
+    background: rgba(0, 0, 0, 0.12);
 }
 .toolbar-button.white-button:hover {
-  background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.15);
 }
 .toolbar-button.white-button:focus {
-  background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .grid-list {
-  display: grid;
-  margin: 0;
-  padding: 0;
+    display: grid;
+    margin: 0;
+    padding: 0;
 
-  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
-  grid-gap: 0.25rem;
-  list-style-type: none;
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    grid-gap: 0.25rem;
+    list-style-type: none;
 }
 .grid-item-img-box {
-  position: relative;
-  padding-top: 100%;
+    position: relative;
+    padding-top: 100%;
 }
 .grid-item-img {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 100%;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
 
-  object-fit: cover;
+    object-fit: cover;
 }
 
 .swatch {
-  flex: 1;
+    flex: 1;
 
-  border: 0;
-  font: inherit;
-  text-align: inherit;
+    border: 0;
+    font: inherit;
+    text-align: inherit;
 }
 
 .grid-colors {
-  display: flex;
+    display: flex;
 
-  height: 2rem;
+    height: 2rem;
 }
 
 .vibrant {
-  background-color: var(--vibrant);
-  color: var(--vibrant-text);
-  fill: var(--vibrant-text);
+    background-color: var(--vibrant);
+    color: var(--vibrant-text);
+    fill: var(--vibrant-text);
 }
 .dark-vibrant {
-  background-color: var(--dark-vibrant);
-  color: var(--dark-vibrant-text);
-  fill: var(--dark-vibrant-text);
+    background-color: var(--dark-vibrant);
+    color: var(--dark-vibrant-text);
+    fill: var(--dark-vibrant-text);
 }
 .light-vibrant {
-  background-color: var(--light-vibrant);
-  color: var(--light-vibrant-text);
-  fill: var(--light-vibrant-text);
+    background-color: var(--light-vibrant);
+    color: var(--light-vibrant-text);
+    fill: var(--light-vibrant-text);
 }
 .muted {
-  background-color: var(--muted);
-  color: var(--muted-text);
-  fill: var(--muted-text);
+    background-color: var(--muted);
+    color: var(--muted-text);
+    fill: var(--muted-text);
 }
 .dark-muted {
-  background-color: var(--dark-muted);
-  color: var(--dark-muted-text);
-  fill: var(--dark-muted-text);
+    background-color: var(--dark-muted);
+    color: var(--dark-muted-text);
+    fill: var(--dark-muted-text);
 }
 .light-muted {
-  background-color: var(--light-muted);
-  color: var(--light-muted-text);
-  fill: var(--light-muted-text);
+    background-color: var(--light-muted);
+    color: var(--light-muted-text);
+    fill: var(--light-muted-text);
 }
 
 #history {
-  height: auto;
+    height: auto;
 }

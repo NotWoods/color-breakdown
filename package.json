@@ -1,28 +1,43 @@
 {
-  "name": "color-breakdown",
-  "version": "0.0.0",
-  "description": "Extract prominent colors from an image with this PWA tool",
-  "main": "index.js",
-  "private": true,
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint:js": "prettier --write \"**/*.js\"",
-    "lint:css": "prettier --write \"css/**/*.css\" --parser css",
-    "lint": "npm run lint:js && npm run lint:css",
-    "serve": "http-server"
-  },
-  "author": "Tiger Oakes",
-  "license": "MIT",
-  "dependencies": {
-    "idb": "^2.1.3",
-    "node-vibrant": "^3.0.0"
-  },
-  "devDependencies": {
-    "http-server": "^0.11.1",
-    "prettier": "^1.11.1"
-  },
-  "prettier": {
-    "singleQuote": true,
-    "trailingComma": "es5"
-  }
+    "name": "color-breakdown",
+    "version": "0.0.0",
+    "description": "Extract prominent colors from an image with this PWA tool",
+    "main": "index.js",
+    "private": true,
+    "scripts": {
+        "test": "jest",
+        "build": "tsc",
+        "lint:js": "prettier \"src/**/*.ts\" --parser typescript",
+        "lint:css": "prettier \"public/css/**/*.css\" --parser css",
+        "lint": "npm run lint:js -- --write && npm run lint:css -- --write",
+        "lint:check": "npm run lint:js -- --list-different && npm run lint:css -- --list-different",
+        "serve": "http-server"
+    },
+    "author": "Tiger Oakes",
+    "license": "MIT",
+    "dependencies": {
+        "idb": "^2.1.3",
+        "node-vibrant": "^3.0.0"
+    },
+    "devDependencies": {
+        "@types/jest": "^23.3.10",
+        "http-server": "^0.11.1",
+        "jest": "^23.6.0",
+        "prettier": "^1.11.1",
+        "ts-jest": "^23.10.5",
+        "typescript": "^3.2.2"
+    },
+    "jest": {
+        "preset": "ts-jest/presets/js-with-ts"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run lint"
+        }
+    },
+    "prettier": {
+        "singleQuote": true,
+        "trailingComma": "all",
+        "proseWrap": "always"
+    }
 }
