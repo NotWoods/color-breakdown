@@ -3,9 +3,10 @@ import { ColorPalette } from '../color-interfaces';
 import { renderSwatch } from './render-swatch';
 
 interface PaletteProps {
+    timestamp: number;
     imgSrc: string;
     colors: ColorPalette;
-    colorTextType: ColorTextType;
+    colorTextType: ColorTextType | null;
 }
 
 const colorClasses = Object.freeze({
@@ -20,15 +21,17 @@ const colorClasses = Object.freeze({
 /**
  * Renders a palette - a group of an image and the associated colors.
  */
-export function renderPalette(props: PaletteProps, target: Element) {
-    const preview = target.querySelector<HTMLImageElement>('img.preview');
+export function renderPalette(props: PaletteProps, target: ParentNode) {
+    const preview = target.querySelector<HTMLImageElement>('img.preview')!;
     preview.src = props.imgSrc;
+    preview.alt = new Date(props.timestamp).toLocaleString();
+
     for (const [propName, className] of Object.entries(colorClasses)) {
-        const swatchTarget = target.querySelector<HTMLElement>(className);
+        const swatchTarget = target.querySelector<HTMLElement>(className)!;
         renderSwatch(
             {
                 colorTextType: props.colorTextType,
-                color: props.colors[propName],
+                color: props.colors[propName as keyof typeof colorClasses],
             },
             swatchTarget,
         );

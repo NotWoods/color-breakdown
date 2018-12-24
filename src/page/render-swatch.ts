@@ -14,15 +14,17 @@ export function renderSwatch(props: SwatchProps, target: HTMLElement) {
     const isTextSwatch = props.colorTextType != null;
     target.hidden = !isVisible;
     if (isVisible) {
-        const { textColor, color: backgroundColor } = props.color;
+        const { textColor, color: backgroundColor } = props.color!;
 
         target.style.backgroundColor = backgroundColor;
         if (isTextSwatch) {
             target.style.color = textColor;
-            target.querySelector('.swatch-text').textContent = renderColorText({
-                colorTextType: props.colorTextType,
-                hexColor: backgroundColor,
-            });
+            target.querySelector('.swatch-text')!.textContent = renderColorText(
+                {
+                    colorTextType: props.colorTextType!,
+                    hexColor: backgroundColor,
+                },
+            );
         }
     }
 }
