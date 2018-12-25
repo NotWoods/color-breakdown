@@ -3,7 +3,7 @@ import { ColorPalette } from '../color-interfaces';
 import { PaletteEntry } from '../entry';
 import { dataUriToBlob } from './data-uri';
 
-interface HistoryEntry {
+export interface HistoryEntry {
     readonly id: number;
     readonly imgSrc: string;
     readonly colors: ColorPalette;
@@ -64,7 +64,14 @@ export async function openHistoryAndExample(mode: 'readonly' | 'readwrite') {
     };
 }
 
-export function processEntry(entry: HistoryEntry): PaletteEntry {
+export function processEntry(entry: HistoryEntry): PaletteEntry;
+export function processEntry(entry: null | undefined): null;
+export function processEntry(
+    entry: HistoryEntry | null | undefined,
+): PaletteEntry | null {
+    if (entry == null) {
+        return null;
+    }
     const imgBlob = dataUriToBlob(entry.imgSrc);
     return {
         timestamp: entry.id as number,

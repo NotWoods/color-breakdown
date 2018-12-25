@@ -4,7 +4,9 @@ import { openHistory, processEntry, openExample } from './db';
 /**
  * Loads a single history item for the main palette viewer
  */
-export async function loadItemFromDB(timestamp: number): Promise<PaletteEntry> {
+export async function loadItemFromDB(
+    timestamp: number,
+): Promise<PaletteEntry | null> {
     const { store } = await openHistory('readonly');
     const item = await store.get(timestamp);
 

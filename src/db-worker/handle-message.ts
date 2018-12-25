@@ -1,6 +1,6 @@
 import { PaletteEntry } from '../entry';
 import { UiAction } from '../page/handle-message';
-import { processEntry } from './db';
+import { processEntry, HistoryEntry } from './db';
 import { deleteItemFromDB, loadItemFromDB } from './display';
 import { loadHistoryFromDB, saveItemsToDB } from './history';
 
@@ -25,6 +25,7 @@ interface DeleteAction {
 }
 
 export type WorkerAction = SaveAction | LoadAction | OpenAction | DeleteAction;
+type ProcessEntry = (entry: HistoryEntry) => PaletteEntry;
 
 export async function handleMessage(
     action: WorkerAction,
@@ -42,7 +43,7 @@ export async function handleMessage(
                     });
                     postMessage({
                         type: 'ADD',
-                        payload: entries.map(processEntry),
+                        payload: entries.map(processEntry as ProcessEntry),
                     });
                 }
                 return;
@@ -54,7 +55,9 @@ export async function handleMessage(
             case 'OPEN':
                 if (!Number.isNaN(action.payload)) {
                     const entry = await loadItemFromDB(action.payload);
-                    postMessage({ type: 'DISPLAY', payload: entry });
+                    if (entry != null) {
+                        postMessage({ type: 'DISPLAY', payload: entry });
+                    }
                 }
                 return;
             case 'DELETE':

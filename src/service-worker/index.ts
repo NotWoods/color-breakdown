@@ -14,7 +14,8 @@ const resources = [
     'js/index.js',
     'lib/node-vibrant/vibrant.js',
     'lib/node-vibrant/worker.js',
-    'lib/pwacompat/pwacompat.min.js',
+    'lib/pwacompat.js',
+    'lib/shimport.js',
 ];
 
 const CACHE = 'color-breakdown';

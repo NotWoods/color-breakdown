@@ -1,7 +1,7 @@
 import { PaletteEntry } from '../entry';
 import { revokeIfObjectUrl } from '../revoke-object-url';
 import { blobToDataUri } from './data-uri';
-import { openHistory, processEntry } from './db';
+import { openHistory, processEntry, HistoryEntry } from './db';
 
 /**
  * Load the history list.
@@ -25,7 +25,9 @@ export async function loadHistoryFromDB(
  * Items may have object URLs as `imgSrc` properties, and will be processed
  * into data URIs.
  */
-export async function saveItemsToDB(items: PaletteEntry[]) {
+export async function saveItemsToDB(
+    items: PaletteEntry[],
+): Promise<HistoryEntry[]> {
     // Need to process entries first due to IDB restrictions
     const entries = await Promise.all(
         items.map(async item => {
@@ -33,7 +35,11 @@ export async function saveItemsToDB(items: PaletteEntry[]) {
             const blob = await res.blob();
             const dataUri = await blobToDataUri(blob);
             revokeIfObjectUrl(item.imgSrc);
-            return { id: item.timestamp, imgSrc: dataUri, colors: item.colors };
+            return {
+                id: item.timestamp,
+                imgSrc: dataUri,
+                colors: item.colors,
+            };
         }),
     );
 

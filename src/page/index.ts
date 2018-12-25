@@ -17,6 +17,8 @@ async function saveImages() {
     postMessage({ type: 'SAVE', payload: entries });
 }
 
+// Handle change of hash (which opens a new image).
+// Deals with manually setting URL and clicking on history links.
 loadFromHash();
 window.addEventListener('hashchange', loadFromHash);
 function loadFromHash() {
@@ -32,19 +34,12 @@ document
     .querySelector<HTMLImageElement>('.palette-image')!
     .addEventListener('load', revokeObjectUrlOnLoad);
 
-// Open a palette when a link is clicked on
-document.getElementById('grid-items')!.addEventListener('click', evt => {
-    const link = (evt.target as Element).closest('a');
-    if (link != null) {
-        const timestamp = parseInt(link.id.slice(1), 10);
-        postMessage({ type: 'OPEN', payload: timestamp });
-    }
-});
 // Close palette when back is clicked
 document.getElementById('back')!.addEventListener('click', handleBackClick);
 
 // Delete current palette when delete is clicked
-document.getElementById('delete')!.addEventListener('click', () => {
+document.getElementById('delete')!.addEventListener('click', evt => {
+    evt.preventDefault();
     const timestamp = parseInt(location.hash.slice(1), 10);
     postMessage({ type: 'DELETE', payload: timestamp });
 });
