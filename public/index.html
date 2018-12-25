@@ -5,11 +5,25 @@
         <title>Color Breakdown</title>
         <link href="css/base.css" rel="stylesheet" />
 
-        <script type="module" src="js/index.js"></script>
         <script>
-            navigator.serviceWorker
+            function shimport(src) {
+                try {
+                    new Function('import("' + src + '")')();
+                } catch (e) {
+                    var s = document.createElement('script');
+                    s.src = 'https://unpkg.com/shimport';
+                    s.dataset.main = src;
+                    document.head.appendChild(s);
+                }
+            }
+
+            // Load 'js/app.js' via built-in import(), falling back to shimport if needed:
+            shimport('./js/index.js');
+        </script>
+        <script>
+            /*navigator.serviceWorker
                 .register('sw.js')
-                .then(() => console.log('Service Worker Registered'));
+                .then(() => console.log('Service Worker Registered'));*/
         </script>
 
         <link href="manifest.webmanifest" rel="manifest" />
