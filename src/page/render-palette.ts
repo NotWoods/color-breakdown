@@ -9,7 +9,7 @@ interface PaletteProps {
     colorTextType: ColorTextType | null;
 }
 
-const colorClasses = Object.freeze({
+const colorClasses: Record<keyof ColorPalette, string> = Object.freeze({
     vibrant: 'vibrant',
     darkVibrant: 'dark-vibrant',
     lightVibrant: 'light-vibrant',
@@ -19,21 +19,17 @@ const colorClasses = Object.freeze({
 });
 
 /**
- * Renders a palette - a group of an image and the associated colors.
+ * Renders a palette - the associated colors of an image.
  */
 export function renderPalette(props: PaletteProps, target: ParentNode) {
-    const preview = target.querySelector<HTMLImageElement>('img.preview')!;
-    preview.src = props.imgSrc;
-    preview.alt = new Date(props.timestamp).toLocaleString();
-
     for (const [propName, className] of Object.entries(colorClasses)) {
         const swatchTarget = target.querySelector<HTMLElement>(
-            `.${className}`,
+            `.swatch.${className}`,
         )!;
         renderSwatch(
             {
                 colorTextType: props.colorTextType,
-                color: props.colors[propName as keyof typeof colorClasses],
+                color: props.colors[propName as keyof ColorPalette],
             },
             swatchTarget,
         );

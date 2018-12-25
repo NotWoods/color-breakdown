@@ -1,6 +1,7 @@
 import { renderPalette } from './render-palette';
 import { ColorPalette } from '../color-interfaces';
 import { ColorTextType } from './render-color-text';
+import { renderImage } from './render-image';
 
 interface MainPaletteProps {
     timestamp: number;
@@ -9,6 +10,9 @@ interface MainPaletteProps {
 }
 
 const MAIN_PALETTE_ELEMENT = document.getElementById('palette')!;
+const MAIN_PALETTE_IMAGE = MAIN_PALETTE_ELEMENT.querySelector<HTMLImageElement>(
+    'img.preview',
+)!;
 const COLOR_DISPLAY_SELECT = document.getElementById(
     'color-display',
 ) as HTMLSelectElement;
@@ -31,6 +35,7 @@ export function displayMainPalette(props: MainPaletteProps) {
         );
     }
     render();
+    renderImage(props, MAIN_PALETTE_IMAGE);
     if (listener) {
         COLOR_DISPLAY_SELECT.removeEventListener('change', listener);
     }

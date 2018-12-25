@@ -1,6 +1,7 @@
 import { PaletteEntry } from '../entry';
 import { revokeObjectUrlOnLoad } from '../revoke-object-url';
 import { renderPalette } from './render-palette';
+import { renderImage } from './render-image';
 
 interface AddPalettesProps {
     readonly items: PaletteEntry[];
@@ -15,6 +16,10 @@ export function addPalettesToList(props: AddPalettesProps) {
     const fragment = document.createDocumentFragment();
     for (const child of props.items) {
         const template = document.importNode(LIST_ITEM_TEMPLATE.content, true);
+        renderImage(
+            child,
+            template.querySelector<HTMLImageElement>('img.preview')!,
+        );
         renderPalette({ ...child, colorTextType: null }, template);
 
         const link = template.querySelector('a')!;

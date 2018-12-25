@@ -9,18 +9,6 @@ body {
     fill: white;
 
     --error: #f44336;
-    --vibrant: #43434f;
-    --vibrant-text: #fff;
-    --dark-vibrant: #7b3f09;
-    --dark-vibrant-text: #fff;
-    --light-vibrant: #7e7c89;
-    --light-vibrant-text: #000;
-    --muted: #f3aa66;
-    --muted-text: #000;
-    --dark-muted: #c8be9b;
-    --dark-muted-text: #000;
-    --light-muted: #fcdb98;
-    --light-muted-text: #000;
 }
 
 img,
@@ -150,37 +138,6 @@ button {
     display: flex;
 
     height: 2rem;
-}
-
-.vibrant {
-    background-color: var(--vibrant);
-    color: var(--vibrant-text);
-    fill: var(--vibrant-text);
-}
-.dark-vibrant {
-    background-color: var(--dark-vibrant);
-    color: var(--dark-vibrant-text);
-    fill: var(--dark-vibrant-text);
-}
-.light-vibrant {
-    background-color: var(--light-vibrant);
-    color: var(--light-vibrant-text);
-    fill: var(--light-vibrant-text);
-}
-.muted {
-    background-color: var(--muted);
-    color: var(--muted-text);
-    fill: var(--muted-text);
-}
-.dark-muted {
-    background-color: var(--dark-muted);
-    color: var(--dark-muted-text);
-    fill: var(--dark-muted-text);
-}
-.light-muted {
-    background-color: var(--light-muted);
-    color: var(--light-muted-text);
-    fill: var(--light-muted-text);
 }
 
 #history {
