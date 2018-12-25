@@ -30,6 +30,7 @@ export async function handleMessage(
     action: WorkerAction,
     postMessage: (msg: UiAction) => void,
 ) {
+    console.log(action.type, action.payload);
     try {
         switch (action.type) {
             case 'SAVE':

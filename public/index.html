@@ -11,7 +11,7 @@
                     new Function('import("' + src + '")')();
                 } catch (e) {
                     var s = document.createElement('script');
-                    s.src = 'https://unpkg.com/shimport';
+                    s.src = 'lib/shimport.js';
                     s.dataset.main = src;
                     document.head.appendChild(s);
                 }
@@ -27,7 +27,7 @@
         </script>
 
         <link href="manifest.webmanifest" rel="manifest" />
-        <script async src="lib/pwacompat/pwacompat.min.js"></script>
+        <script async src="lib/pwacompat.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
             rel="icon"

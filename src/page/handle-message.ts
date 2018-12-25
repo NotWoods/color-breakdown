@@ -25,6 +25,7 @@ interface ErrorAction {
 export type UiAction = AddAction | RemoveAction | DisplayAction | ErrorAction;
 
 export function handleMessage(action: UiAction) {
+    console.log(action.type, action.payload);
     switch (action.type) {
         case 'ADD':
             addPalettesToList({ items: action.payload });
@@ -34,6 +35,9 @@ export function handleMessage(action: UiAction) {
             return;
         case 'DISPLAY':
             displayMainPalette(action.payload);
+            return;
+        case 'ERROR':
+            console.error(action.payload);
             return;
     }
 }

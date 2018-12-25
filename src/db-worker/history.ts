@@ -30,9 +30,9 @@ export async function saveItemsToDB(items: PaletteEntry[]) {
     const entries = await Promise.all(
         items.map(async item => {
             const res = await fetch(item.imgSrc);
-            revokeIfObjectUrl(item.imgSrc);
             const blob = await res.blob();
             const dataUri = await blobToDataUri(blob);
+            revokeIfObjectUrl(item.imgSrc);
             return { id: item.timestamp, imgSrc: dataUri, colors: item.colors };
         }),
     );
