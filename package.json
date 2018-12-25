@@ -6,23 +6,23 @@
     "private": true,
     "scripts": {
         "test": "jest",
+        "copy-scripts": "cp node_modules/pwacompat/pwacompat.min.js public/lib/pwacompat",
         "build": "rollup -c",
         "lint:js": "prettier \"src/**/*.ts\" --parser typescript",
         "lint:css": "prettier \"public/css/**/*.css\" --parser css",
         "lint": "tsc --noEmit && npm run lint:js -- --write && npm run lint:css -- --write",
         "lint:check": "tsc --noEmit && npm run lint:js -- --list-different && npm run lint:css -- --list-different",
-        "serve": "http-server"
+        "serve": "cd public && http-server"
     },
     "author": "Tiger Oakes",
     "license": "MIT",
-    "dependencies": {
-        "idb": "^2.1.3"
-    },
     "devDependencies": {
         "@types/jest": "^23.3.10",
         "http-server": "^0.11.1",
+        "idb": "^2.1.3",
         "jest": "^23.6.0",
         "prettier": "^1.11.1",
+        "pwacompat": "^2.0.7",
         "rollup": "^0.68.2",
         "rollup-plugin-commonjs": "^9.2.0",
         "rollup-plugin-node-resolve": "^4.0.0",

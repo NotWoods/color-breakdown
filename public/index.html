@@ -4,8 +4,6 @@
         <meta charset="UTF-8" />
         <title>Color Breakdown</title>
         <link href="css/base.css" rel="stylesheet" />
-        <link href="css/new.css" rel="stylesheet" />
-        <link href="css/palette.css" rel="stylesheet" />
         <link
             href="css/desktop.css"
             media="(min-width: 700px)"
@@ -20,12 +18,7 @@
         </script>
 
         <link href="manifest.webmanifest" rel="manifest" />
-        <script
-            async
-            src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.6/pwacompat.min.js"
-            integrity="sha384-GOaSLecPIMCJksN83HLuYf9FToOiQ2Df0+0ntv7ey8zjUHESXhthwvq9hXAZTifA"
-            crossorigin="anonymous"
-        ></script>
+        <script async src="lib/pwacompat/pwacompat.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
             rel="icon"
@@ -128,6 +121,7 @@
             </ul>
         </main>
 
+        <link href="css/palette.css" rel="stylesheet" />
         <article class="app-screen" id="palette">
             <header class="toolbar transparent-toolbar">
                 <a
@@ -215,6 +209,7 @@
             </div>
         </article>
 
+        <link href="css/new.css" rel="stylesheet" />
         <form class="new-palette-entry" id="new-palette-entry">
             <input
                 type="file"
