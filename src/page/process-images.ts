@@ -1,6 +1,5 @@
 import { ColorPalette, ColorSwatch } from '../color-interfaces';
 import { PaletteEntry } from '../entry';
-import { handleMessage } from '../page/handle-message';
 
 const VibrantModule = import('node-vibrant');
 
@@ -9,13 +8,11 @@ const VibrantModule = import('node-vibrant');
  */
 export async function dataFromImageUrl(url: string): Promise<PaletteEntry> {
     const { default: Vibrant } = await VibrantModule;
-    const palette = await Vibrant.from(url)
-        .useQuantizer(Vibrant.Quantizer.WebWorker)
-        .getPalette();
+    const palette = await Vibrant.from(url).getPalette();
 
     // This isn't exported directly by node-vibrant, so pull it out here.
     type Swatch = (typeof palette)['Muted'];
-    function toSwatch(vibrantSwatch: Swatch): ColorSwatch {
+    function toSwatch(vibrantSwatch: Swatch): ColorSwatch | null {
         if (!vibrantSwatch) return null;
         return {
             color: vibrantSwatch.getHex(),
@@ -37,11 +34,14 @@ export async function dataFromImageUrl(url: string): Promise<PaletteEntry> {
 }
 
 /**
- * Generate a palette from the given image source then save it and display it
- * on the screen.
+ * Generate a palette entry for each file in the FileList.
+ * Filters the files to only include images, then creates an object URL for
+ * each and uses node-vibrant to process them.
  */
-export async function processImage(url: string) {
-    const payload = await dataFromImageUrl(url);
-    // save data via database worker
-    handleMessage({ type: 'DISPLAY', payload });
+export function paletteFromImages(files: FileList | null) {
+    const imageUrls = Array.from(files || [])
+        .filter(file => file.type.match(/^image\//) != null)
+        .map(file => URL.createObjectURL(file));
+
+    return Promise.all(imageUrls.map(dataFromImageUrl));
 }
