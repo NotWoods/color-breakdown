@@ -51,8 +51,10 @@ export async function handleMessage(
                 );
                 return;
             case 'OPEN':
-                const entry = await loadItemFromDB(action.payload);
-                postMessage({ type: 'DISPLAY', payload: entry });
+                if (!Number.isNaN(action.payload)) {
+                    const entry = await loadItemFromDB(action.payload);
+                    postMessage({ type: 'DISPLAY', payload: entry });
+                }
                 return;
             case 'DELETE':
                 if (!Number.isNaN(action.payload)) {

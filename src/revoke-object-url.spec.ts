@@ -1,4 +1,4 @@
-import { revokeIfObjectUrl, revokeObjectUrlOnLoad } from '../revoke-object-url';
+import { revokeIfObjectUrl, revokeObjectUrlOnLoad } from './revoke-object-url';
 
 URL.revokeObjectURL = jest.fn();
 

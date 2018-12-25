@@ -27,7 +27,9 @@ export function renderPalette(props: PaletteProps, target: ParentNode) {
     preview.alt = new Date(props.timestamp).toLocaleString();
 
     for (const [propName, className] of Object.entries(colorClasses)) {
-        const swatchTarget = target.querySelector<HTMLElement>(className)!;
+        const swatchTarget = target.querySelector<HTMLElement>(
+            `.${className}`,
+        )!;
         renderSwatch(
             {
                 colorTextType: props.colorTextType,

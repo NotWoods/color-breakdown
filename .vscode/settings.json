@@ -9,6 +9,7 @@
     "typescript.referencesCodeLens.enabled": true,
     "editor.formatOnSave": true,
     "cSpell.words": [
+        "Quantizer",
         "readwrite"
     ]
 }
