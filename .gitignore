@@ -1,5 +1,7 @@
 # Ignore built files
 public/js
+public/sw.js
+public/sw.js.map
 
 # Logs
 logs
