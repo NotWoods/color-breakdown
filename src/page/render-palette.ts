@@ -3,9 +3,7 @@ import { ColorPalette } from '../color-interfaces';
 import { renderSwatch } from './render-swatch';
 
 interface PaletteProps {
-    timestamp: number;
-    imgSrc: string;
-    colors: ColorPalette;
+    colors: ColorPalette | null;
     colorTextType: ColorTextType | null;
 }
 
@@ -29,7 +27,10 @@ export function renderPalette(props: PaletteProps, target: ParentNode) {
         renderSwatch(
             {
                 colorTextType: props.colorTextType,
-                color: props.colors[propName as keyof ColorPalette],
+                color:
+                    props.colors != null
+                        ? props.colors[propName as keyof ColorPalette]
+                        : null,
             },
             swatchTarget,
         );

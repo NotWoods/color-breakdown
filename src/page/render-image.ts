@@ -1,5 +1,6 @@
 interface ImageProps {
-    timestamp: number;
+    alt?: string;
+    timestamp?: number;
     imgSrc: string;
 }
 
@@ -8,5 +9,11 @@ interface ImageProps {
  */
 export function renderImage(props: ImageProps, target: HTMLImageElement) {
     target.src = props.imgSrc;
-    target.alt = new Date(props.timestamp).toLocaleString();
+    if (props.alt != null) {
+        target.alt = props.alt;
+    } else if (props.timestamp != null) {
+        target.alt = new Date(props.timestamp).toLocaleString();
+    } else {
+        target.alt = '';
+    }
 }

@@ -1,7 +1,7 @@
 import { PaletteEntry } from '../entry';
 import { UiAction } from '../page/handle-message';
 import { processEntry, HistoryEntry } from './db';
-import { deleteItemFromDB, loadItemFromDB } from './display';
+import { deleteItemFromDB, loadItemFromDB, openFirstItem } from './display';
 import { loadHistoryFromDB, saveItemsToDB, hideExamples } from './history';
 
 interface SaveAction {
@@ -21,7 +21,10 @@ interface OpenAction {
 
 interface DeleteAction {
     type: 'DELETE';
-    payload: number;
+    payload: {
+        timestamp: number;
+        current: boolean;
+    };
 }
 
 export type WorkerAction = SaveAction | LoadAction | OpenAction | DeleteAction;
@@ -66,9 +69,16 @@ export async function handleMessage(
                 }
                 return;
             case 'DELETE':
-                if (!Number.isNaN(action.payload)) {
-                    await deleteItemFromDB(action.payload);
-                    postMessage({ type: 'REMOVE', payload: [action.payload] });
+                if (!Number.isNaN(action.payload.timestamp)) {
+                    await deleteItemFromDB(action.payload.timestamp);
+                    postMessage({
+                        type: 'REMOVE',
+                        payload: [action.payload.timestamp],
+                    });
+                    if (action.payload.current) {
+                        const otherEntry = await openFirstItem();
+                        postMessage({ type: 'DISPLAY', payload: otherEntry });
+                    }
                 }
                 return;
         }

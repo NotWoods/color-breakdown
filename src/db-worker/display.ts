@@ -1,5 +1,10 @@
 import { PaletteEntry } from '../entry';
-import { openHistory, processEntry, openExample } from './db';
+import {
+    openHistory,
+    processEntry,
+    openExample,
+    openHistoryAndExample,
+} from './db';
 import { examples } from './examples';
 
 /**
@@ -18,6 +23,26 @@ export async function loadItemFromDB(
         const item = await store.get(timestamp);
         return processEntry(item);
     }
+}
+
+export async function openFirstItem(): Promise<PaletteEntry | null> {
+    const { history, example } = await openHistoryAndExample(
+        'readonly',
+    );
+    const historyItems = await history.getAll(undefined, 1);
+    if (historyItems.length > 0) {
+        return processEntry(historyItems[0]);
+    }
+
+    const hiddenExamples = new Set(
+        (await example.getAll())
+            .filter(item => item.hidden)
+            .map(item => item.id),
+    );
+    const visibleExample = Object.values(examples).find(
+        example => !hiddenExamples.has(example.timestamp),
+    );
+    return visibleExample || null;
 }
 
 /**

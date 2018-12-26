@@ -14,7 +14,7 @@ interface RemoveAction {
 
 interface DisplayAction {
     type: 'DISPLAY';
-    payload: PaletteEntry;
+    payload: PaletteEntry | null;
 }
 
 interface ErrorAction {
@@ -34,7 +34,7 @@ export function handleMessage(action: UiAction) {
             deletePalettesFromList({ timestamps: action.payload });
             return;
         case 'DISPLAY':
-            displayMainPalette(action.payload);
+            displayMainPalette({ data: action.payload });
             return;
         case 'ERROR':
             console.error(action.payload);

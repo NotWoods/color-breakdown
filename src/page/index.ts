@@ -41,7 +41,7 @@ document.getElementById('back')!.addEventListener('click', handleBackClick);
 document.getElementById('delete')!.addEventListener('click', evt => {
     evt.preventDefault();
     const timestamp = parseInt(location.hash.slice(1), 10);
-    postMessage({ type: 'DELETE', payload: timestamp });
+    postMessage({ type: 'DELETE', payload: { timestamp, current: true } });
 });
 
 // Copy the text of a swatch on click

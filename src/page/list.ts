@@ -40,25 +40,11 @@ interface RemovePalettesProps {
 }
 
 export function deletePalettesFromList(props: RemovePalettesProps) {
-    const openPaletteId = parseInt(location.hash.slice(1), 10);
-    let wasPaletteClosed = false;
-    for (const timestamp of props.timestamps) {
-        if (timestamp === openPaletteId) {
-            wasPaletteClosed = true;
-        }
+    props.timestamps.forEach(timestamp => {
         const link = document.getElementById(timestamp.toString());
         const li = link != null ? link.parentElement : null;
         if (li != null) {
             LIST_ELEMENT.removeChild(li);
         }
-    }
-
-    // Open a different palette if the current one was deleted.
-    // If no other palettes exist, just do nothing.
-    if (wasPaletteClosed) {
-        const otherLink = LIST_ELEMENT.querySelector('a');
-        if (otherLink != null) {
-            otherLink.click();
-        }
-    }
+    });
 }

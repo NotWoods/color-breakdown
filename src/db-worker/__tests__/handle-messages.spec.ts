@@ -65,11 +65,17 @@ describe('handleMessage', () => {
 
     test.skip('should call deleteItemFromDB', () => {
         const postMessage = jest.fn();
-        handleMessage({ type: 'DELETE', payload: NaN }, postMessage);
+        handleMessage(
+            { type: 'DELETE', payload: { timestamp: NaN, current: false } },
+            postMessage,
+        );
         expect(deleteItemFromDB).not.toBeCalled();
         expect(postMessage).not.toBeCalled();
 
-        handleMessage({ type: 'DELETE', payload: 0 }, postMessage);
+        handleMessage(
+            { type: 'DELETE', payload: { timestamp: 0, current: false } },
+            postMessage,
+        );
         expect(deleteItemFromDB).toBeCalledWith(0);
         expect(postMessage).toBeCalledWith({
             type: 'REMOVE',
