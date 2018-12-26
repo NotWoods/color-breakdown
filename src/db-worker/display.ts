@@ -1,5 +1,6 @@
 import { PaletteEntry } from '../entry';
 import { openHistory, processEntry, openExample } from './db';
+import { examples } from './examples';
 
 /**
  * Loads a single history item for the main palette viewer
@@ -7,19 +8,29 @@ import { openHistory, processEntry, openExample } from './db';
 export async function loadItemFromDB(
     timestamp: number,
 ): Promise<PaletteEntry | null> {
-    const { store } = await openHistory('readonly');
-    const item = await store.get(timestamp);
-
-    return processEntry(item);
+    if (timestamp < 10) {
+        const { store } = await openExample('readonly');
+        const info = await store.get(timestamp);
+        const hidden = info != null ? info.hidden : false;
+        return hidden ? null : examples[timestamp] || null;
+    } else {
+        const { store } = await openHistory('readonly');
+        const item = await store.get(timestamp);
+        return processEntry(item);
+    }
 }
 
 /**
  * Delete a history item with the given timestamp
  */
 export async function deleteItemFromDB(timestamp: number) {
-    const { store, complete } = await (timestamp < 10
-        ? openExample('readwrite')
-        : openHistory('readwrite'));
-    store.delete(timestamp);
-    await complete;
+    if (timestamp < 10) {
+        const { store, complete } = await openExample('readwrite');
+        store.put({ id: timestamp, hidden: true });
+        await complete;
+    } else {
+        const { store, complete } = await openHistory('readwrite');
+        store.delete(timestamp);
+        await complete;
+    }
 }

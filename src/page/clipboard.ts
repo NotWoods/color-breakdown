@@ -20,7 +20,7 @@ export async function copySwatchText(event: Event) {
     const textContent = span != null ? span.textContent : null;
 
     if (textContent) {
-        const { writeText } = await ClipboardModule;
-        await writeText(textContent);
+        const clipboard = await ClipboardModule;
+        await clipboard.writeText(textContent);
     }
 }

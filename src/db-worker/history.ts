@@ -1,7 +1,7 @@
 import { PaletteEntry } from '../entry';
 import { revokeIfObjectUrl } from '../revoke-object-url';
 import { blobToDataUri } from './data-uri';
-import { openHistory, processEntry, HistoryEntry } from './db';
+import { openHistory, openExample, processEntry, HistoryEntry } from './db';
 
 /**
  * Load the history list.
@@ -15,6 +15,19 @@ export async function loadHistoryFromDB(
     store.iterateCursor(cursor => {
         if (!cursor) return;
         callback(processEntry(cursor.value));
+        cursor.continue();
+    });
+    await complete;
+}
+
+export async function hideExamples(callback: (id: number) => void) {
+    const { store, complete } = await openExample('readonly');
+
+    store.iterateCursor(cursor => {
+        if (!cursor) return;
+        if (cursor.value.hidden) {
+            callback(cursor.key as number);
+        }
         cursor.continue();
     });
     await complete;
