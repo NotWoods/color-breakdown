@@ -1,7 +1,7 @@
 export function writeText(str: string) {
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
         let success = false;
-        function listener(evt: ClipboardEvent) {
+        const listener = (evt: ClipboardEvent) => {
             evt.clipboardData.setData('text/plain', str);
             evt.preventDefault();
             success = true;
