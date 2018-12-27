@@ -12,7 +12,7 @@ const resources = [
     'img/demo/andrew-hughes-261571-unsplash.jpg',
     'img/demo/ever-wild-634729-unsplash.jpg',
     'img/demo/will-turner-1244879-unsplash.jpg',
-    'js/chunk-39ed6d25.js',
+    'js/chunk-0e059a95.js',
     'js/db-worker.js',
     'js/index.js',
     'lib/node-vibrant/vibrant.js',
@@ -21,7 +21,7 @@ const resources = [
     'lib/shimport.js',
 ];
 
-const CACHE = 'color-breakdown';
+const CACHE = 'color-breakdown-HASH';
 
 export declare var self: ServiceWorkerGlobalScope;
 
@@ -32,12 +32,15 @@ self.addEventListener('install', event => {
     event.waitUntil(precache());
 });
 
+// On activate, clean up old caches
+self.addEventListener('activate', event => {
+    event.waitUntil(clearOldCaches());
+});
+
 // On fetch, use cache but update the entry with the latest contents from the
 // server.
 self.addEventListener('fetch', event => {
     event.respondWith(fromCache(event.request));
-
-    event.waitUntil(update(event.request));
 });
 
 /**
@@ -54,18 +57,26 @@ async function precache() {
  * resource. Notice that in case of no matching, the promise still resolves
  * but it does with undefined as value.
  */
-async function fromCache(request: Request | string) {
-    const cache = await caches.open(CACHE);
-    const matching = await cache.match(request);
-    return matching || Promise.reject('no-match');
+async function fromCache(request: Request) {
+    const matching = await caches.match(request);
+    if (matching) {
+        return matching;
+    }
+    try {
+        return await fetch(request);
+    } catch (err) {
+        if (new URL(request.url).hostname !== 'www.googletagmanager.com') {
+            throw new TypeError('Failed to fetch Google Analytics');
+        }
+        throw new TypeError(`Failed to fetch: ${request.url}`);
+    }
 }
 
-/**
- * Update consists in opening the cache, performing a network request and
- * storing the new response data.
- */
-async function update(request: Request | string) {
-    const cache = await caches.open(CACHE);
-    const response = await fetch(request);
-    await cache.put(request, response);
+async function clearOldCaches() {
+    const cacheNames = await caches.keys();
+    return Promise.all(
+        cacheNames
+            .filter(name => name !== CACHE)
+            .map(name => caches.delete(name)),
+    );
 }

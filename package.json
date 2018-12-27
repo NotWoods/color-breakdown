@@ -7,7 +7,7 @@
     "scripts": {
         "test": "jest",
         "copy-scripts": "cp node_modules/pwacompat/pwacompat.min.js public/lib/pwacompat.js && cp node_modules/shimport/index.js public/lib/shimport.js",
-        "build": "rollup -c",
+        "build": "git rev-parse HEAD > .commithash && rollup -c",
         "lint:js": "prettier \"src/**/*.ts\" --parser typescript",
         "lint:css": "prettier \"public/css/**/*.css\" --parser css",
         "lint": "tsc --noEmit && npm run lint:js -- --write && npm run lint:css -- --write",

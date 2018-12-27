@@ -1,6 +1,7 @@
 # Ignore built files
 public/js
 public/sw.*
+.commithash
 
 # Logs
 logs

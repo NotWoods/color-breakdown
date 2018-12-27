@@ -6,6 +6,7 @@ cache: npm
 script:
     - npm test
     - npm run lint:check
+    - npm run build
 deploy:
     provider: pages
     skip-cleanup: true
