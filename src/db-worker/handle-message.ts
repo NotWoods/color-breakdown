@@ -2,7 +2,7 @@ import { PaletteEntry } from '../entry';
 import { UiAction } from '../page/handle-message';
 import { processEntry, HistoryEntry } from './db';
 import { deleteItemFromDB, loadItemFromDB, openFirstItem } from './display';
-import { loadHistoryFromDB, saveItemsToDB, hideExamples } from './history';
+import { loadHistoryFromDB, saveItemsToDB } from './history';
 
 interface SaveAction {
     type: 'SAVE';
@@ -38,7 +38,6 @@ export async function handleMessage(
     try {
         switch (action.type) {
             case 'SAVE':
-                postMessage({ type: 'ERROR', payload: 'Hello World!' });
                 if (action.payload.length > 0) {
                     const entries = await saveItemsToDB(action.payload);
                     postMessage({
@@ -52,13 +51,10 @@ export async function handleMessage(
                 }
                 return;
             case 'LOAD':
-                const hideExamplesPromise = hideExamples(id =>
-                    postMessage({ type: 'REMOVE', payload: [id] }),
+                await loadHistoryFromDB(
+                    id => postMessage({ type: 'REMOVE', payload: [id] }),
+                    entry => postMessage({ type: 'ADD', payload: [entry] }),
                 );
-                const loadHistoryPromise = loadHistoryFromDB(entry =>
-                    postMessage({ type: 'ADD', payload: [entry] }),
-                );
-                await Promise.all([hideExamplesPromise, loadHistoryPromise]);
                 return;
             case 'OPEN':
                 if (!Number.isNaN(action.payload)) {

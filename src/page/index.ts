@@ -47,15 +47,19 @@ document.getElementById('delete')!.addEventListener('click', evt => {
 // Copy the text of a swatch on click
 document
     .querySelector('.palette-colors')!
-    .addEventListener('click', copySwatchText);
+    .addEventListener('click', copySwatchText, { passive: true });
 
 // Save images when the add button is used.
 form.addEventListener('submit', evt => {
     evt.preventDefault();
     saveImages();
 });
-fileInput.addEventListener('change', saveImages);
+fileInput.addEventListener('change', saveImages, { passive: true });
 
 // File input focus polyfill for Firefox
-fileInput.addEventListener('focus', () => fileInput.classList.add('focus'));
-fileInput.addEventListener('blur', () => fileInput.classList.remove('focus'));
+fileInput.addEventListener('focus', () => fileInput.classList.add('focus'), {
+    passive: true,
+});
+fileInput.addEventListener('blur', () => fileInput.classList.remove('focus'), {
+    passive: true,
+});

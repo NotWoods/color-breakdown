@@ -1,8 +1,73 @@
-import { processEntry } from '../db';
+const mockHistoryStore = Symbol('history');
+const mockExampleStore = Symbol('example');
+
+const mockDb: import('idb').DB = {
+    name: 'history-store',
+    version: 1,
+    objectStoreNames: null as any,
+    transaction: jest.fn().mockReturnValue(
+        Promise.resolve({
+            objectStore(name: string) {
+                switch (name) {
+                    case 'history':
+                        return mockHistoryStore;
+                    case 'example':
+                        return mockExampleStore;
+                    default:
+                        throw new Error('Passed bad object store name');
+                }
+            },
+            complete: Promise.resolve(),
+        }),
+    ),
+    close: jest.fn(),
+};
+jest.mock('idb', () => ({
+    open: jest.fn().mockReturnValue(Promise.resolve(mockDb)),
+}));
 
 URL.createObjectURL = jest.fn().mockReturnValue('');
 
+import {
+    processEntry,
+    openHistory,
+    openExample,
+    openHistoryAndExample,
+} from '../db';
+
+test('openHistory', async () => {
+    expect(await openHistory('readonly')).toEqual({
+        store: mockHistoryStore,
+        complete: expect.any(Promise),
+    });
+    expect(mockDb.transaction).toBeCalledWith('history', 'readonly');
+});
+
+test('openExample', async () => {
+    expect(await openExample('readwrite')).toEqual({
+        store: mockExampleStore,
+        complete: expect.any(Promise),
+    });
+    expect(mockDb.transaction).toBeCalledWith('example', 'readwrite');
+});
+
+test('openHistoryAndExample', async () => {
+    expect(await openHistoryAndExample('readwrite')).toEqual({
+        history: mockHistoryStore,
+        example: mockExampleStore,
+        complete: expect.any(Promise),
+    });
+    expect(mockDb.transaction).toBeCalledWith(
+        ['history', 'example'],
+        'readwrite',
+    );
+});
+
 describe('processEntry', () => {
+    test('should return null', () => {
+        expect(processEntry(null)).toBeNull();
+    });
+
     test('should return object with object url', () => {
         expect(
             processEntry({

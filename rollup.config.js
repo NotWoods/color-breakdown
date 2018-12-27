@@ -41,7 +41,7 @@ const workerConfig = {
 const serviceWorkerConfig = {
     input: 'src/service-worker/index.ts',
     output: { file: 'public/sw.js', format: 'iife', sourcemap: true },
-    plugins: [typescript(), replace({ HASH: commitHash })],
+    plugins: [typescript(), replace({ HASH: commitHash }), terser()],
 };
 
 export default [pageConfig, workerConfig, serviceWorkerConfig];
