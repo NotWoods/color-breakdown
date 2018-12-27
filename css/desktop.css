@@ -1,0 +1,22 @@
+@media (min-width: 700px) {
+    #palette {
+        transform: none;
+        position: static;
+        grid-area: palette;
+    }
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 66%;
+        grid-template-areas: 'history palette';
+    }
+    .fab {
+        right: calc(66% + 1rem);
+    }
+    .back {
+        display: none;
+    }
+    #history {
+        height: 100vh;
+        grid-area: history;
+    }
+}
