@@ -66,7 +66,8 @@ describe('handleMessage', () => {
             },
         });
         expect(displayMainPalette).toBeCalledWith({
-            timestamp: 0,
+            data: {
+                timestamp: 0,
             imgSrc: 'https://example.com',
             colors: {
                 vibrant: {
@@ -74,6 +75,7 @@ describe('handleMessage', () => {
                     textColor: '#FFFFFF',
                 },
             },
+            }
         });
     });
 });
