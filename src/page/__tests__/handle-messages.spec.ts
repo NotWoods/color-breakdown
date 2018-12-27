@@ -68,14 +68,14 @@ describe('handleMessage', () => {
         expect(displayMainPalette).toBeCalledWith({
             data: {
                 timestamp: 0,
-            imgSrc: 'https://example.com',
-            colors: {
-                vibrant: {
-                    color: '#000000',
-                    textColor: '#FFFFFF',
+                imgSrc: 'https://example.com',
+                colors: {
+                    vibrant: {
+                        color: '#000000',
+                        textColor: '#FFFFFF',
+                    },
                 },
             },
-            }
         });
     });
 });

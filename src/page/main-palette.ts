@@ -58,10 +58,13 @@ export function displayMainPalette(props: MainPaletteProps) {
             historyStack.push(timestamp);
         }
     } else {
-        renderPalette({
-            colors: null,
-            colorTextType: COLOR_DISPLAY_SELECT.value as ColorTextType,
-        }, MAIN_PALETTE_ELEMENT);
+        renderPalette(
+            {
+                colors: null,
+                colorTextType: COLOR_DISPLAY_SELECT.value as ColorTextType,
+            },
+            MAIN_PALETTE_ELEMENT,
+        );
         renderImage(
             { imgSrc: 'img/placeholder.svg', alt: 'No image' },
             MAIN_PALETTE_IMAGE,

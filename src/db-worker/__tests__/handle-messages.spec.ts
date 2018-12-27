@@ -4,7 +4,11 @@ const loadHistoryFromDB = jest.fn().mockReturnValue(Promise.resolve());
 const hideExamples = jest.fn().mockReturnValue(Promise.resolve());
 const saveItemsToDB = jest.fn().mockReturnValue(Promise.resolve([]));
 jest.mock('../display', () => ({ deleteItemFromDB, loadItemFromDB }));
-jest.mock('../history', () => ({ hideExamples, loadHistoryFromDB, saveItemsToDB }));
+jest.mock('../history', () => ({
+    hideExamples,
+    loadHistoryFromDB,
+    saveItemsToDB,
+}));
 
 import { handleMessage } from '../handle-message';
 

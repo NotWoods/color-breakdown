@@ -5,7 +5,7 @@ export function writeText(str: string) {
             evt.clipboardData.setData('text/plain', str);
             evt.preventDefault();
             success = true;
-        }
+        };
         document.addEventListener('copy', listener);
         document.execCommand('copy');
         document.removeEventListener('copy', listener);

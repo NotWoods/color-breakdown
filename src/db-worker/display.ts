@@ -26,9 +26,7 @@ export async function loadItemFromDB(
 }
 
 export async function openFirstItem(): Promise<PaletteEntry | null> {
-    const { history, example } = await openHistoryAndExample(
-        'readonly',
-    );
+    const { history, example } = await openHistoryAndExample('readonly');
     const historyItems = await history.getAll(undefined, 1);
     if (historyItems.length > 0) {
         return processEntry(historyItems[0]);
