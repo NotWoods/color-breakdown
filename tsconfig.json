@@ -1,9 +1,0 @@
-{
-  "compilerOptions": {
-    "checkJs": true,
-    "allowJs": true,
-    "lib": ["dom", "es2015", "webworker"],
-    "target": "es2018"
-  },
-  "include": ["js/**/*.js", "sw.js"]
-}
