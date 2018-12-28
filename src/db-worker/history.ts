@@ -124,13 +124,7 @@ export async function saveItemsToDB(
     // Need to process entries first due to IDB restrictions
     const entries = await Promise.all(
         items.map(async item => {
-            let blob: Blob;
-            try {
-                blob = await fetchBlob(item.imgSrc);
-            } catch (err) {
-                console.error(err);
-                throw err;
-            }
+            const blob = await fetchBlob(item.imgSrc);
             const dataUri = await blobToDataUri(blob);
             revokeIfObjectUrl(item.imgSrc);
             return {
