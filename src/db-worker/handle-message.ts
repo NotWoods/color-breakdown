@@ -1,8 +1,13 @@
 import { PaletteEntry } from '../entry';
 import { UiAction } from '../page/handle-message';
-import { processEntry, HistoryEntry } from './db';
-import { deleteItemFromDB, loadItemFromDB, openFirstItem } from './display';
-import { loadHistoryFromDB, saveItemsToDB } from './history';
+import { HistoryEntry, processEntry } from './db';
+import {
+    deleteItemFromDB,
+    loadHistoryFromDB,
+    loadItemFromDB,
+    openFirstItem,
+    saveItemsToDB,
+} from './history';
 
 interface SaveAction {
     type: 'SAVE';

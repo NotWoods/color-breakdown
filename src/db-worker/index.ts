@@ -1,6 +1,6 @@
 import { handleMessage } from './handle-message';
 
-const postMessage = ((self as any) as DedicatedWorkerGlobalScope).postMessage;
+export declare var self: DedicatedWorkerGlobalScope;
 
 self.addEventListener('message', evt => handleMessage(evt.data, postMessage));
 handleMessage({ type: 'LOAD', payload: null }, postMessage);
