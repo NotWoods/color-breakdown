@@ -1,4 +1,4 @@
-<img src="img/logo/logo.png" height="160" width="160">
+<img src="public/img/logo/logo.png" height="160" width="160">
 
 # Color Breakdown
 
@@ -8,14 +8,13 @@ Inspired by [SVGOMG](https://jakearchibald.github.io/svgomg/)!
 
 ## Feature requests
 
-It's early days for this project, so it's missing important features such as code output view & detailed options for each plugin. [Check out the issues](https://github.com/NotWoods/color-breakdown/issues) to see what's planned, or suggest ideas of your own!
+[Check out the issues](https://github.com/NotWoods/color-breakdown/issues) to see what's planned, or suggest ideas of your own!
 
 ## Developing
 
 ### Built with
 - [node-vibrant 3.0.0](https://github.com/akfish/node-vibrant)
-- [idb 2.1.1](https://github.com/jakearchibald/idb)
-- Canvas API
+- [idb 2.1.3](https://github.com/jakearchibald/idb)
 - Web Workers
 - Service Workers
 
@@ -29,8 +28,9 @@ npm install
 Run dev server:
 
 ```shell
-npm run serve
+npm run build
+npm start
 ```
 
 ## Licensing
-This project is avaliable under the MIT License.
+This project is available under the MIT License.

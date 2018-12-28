@@ -12,7 +12,7 @@
         "lint:css": "prettier \"public/css/**/*.css\" --parser css",
         "lint": "tsc --noEmit && npm run lint:js -- --write && npm run lint:css -- --write",
         "lint:check": "tsc --noEmit && npm run lint:js -- --list-different && npm run lint:css -- --list-different",
-        "serve": "cd public && http-server"
+        "start": "cd public && http-server"
     },
     "author": "Tiger Oakes",
     "license": "MIT",
