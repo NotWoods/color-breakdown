@@ -2,8 +2,9 @@ const deleteItemFromDB = jest.fn().mockReturnValue(Promise.resolve());
 const loadItemFromDB = jest.fn().mockReturnValue(Promise.resolve({}));
 const loadHistoryFromDB = jest.fn().mockReturnValue(Promise.resolve());
 const saveItemsToDB = jest.fn().mockReturnValue(Promise.resolve([]));
-jest.mock('../display', () => ({ deleteItemFromDB, loadItemFromDB }));
 jest.mock('../history', () => ({
+    deleteItemFromDB,
+    loadItemFromDB,
     loadHistoryFromDB,
     saveItemsToDB,
 }));

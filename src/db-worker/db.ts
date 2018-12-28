@@ -15,7 +15,7 @@ interface ExampleEntry {
     hidden: true;
 }
 
-const dbPromise = idb.open('history-store', 1, upgradeDB => {
+const dbPromise = idb.open('history-store', 2, upgradeDB => {
     switch (upgradeDB.oldVersion) {
         case 0:
             upgradeDB.createObjectStore<HistoryEntry, number>('history', {

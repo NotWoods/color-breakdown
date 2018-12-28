@@ -12,7 +12,7 @@ const resources = [
     'img/demo/andrew-hughes-261571-unsplash.jpg',
     'img/demo/ever-wild-634729-unsplash.jpg',
     'img/demo/will-turner-1244879-unsplash.jpg',
-    'js/chunk-0e059a95.js',
+    'js/chunk-76c6e771.js',
     'js/db-worker.js',
     'js/index.js',
     'lib/node-vibrant/vibrant.js',
