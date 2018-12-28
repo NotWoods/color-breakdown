@@ -4,4 +4,5 @@ export interface PaletteEntry {
     readonly timestamp: number;
     readonly imgSrc: string;
     readonly colors: ColorPalette;
+    readonly name: string;
 }

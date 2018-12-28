@@ -6,6 +6,7 @@ const black = '#FFFFFF';
 const example1: PaletteEntry = {
     timestamp: 1,
     imgSrc: 'img/demo/andrew-hughes-261571-unsplash.jpg',
+    name: 'Photo by Andrew Hughes on Unsplash',
     colors: {
         vibrant: { color: '#AE340E', textColor: white },
         darkVibrant: { color: '#6C140C', textColor: white },
@@ -19,6 +20,7 @@ const example1: PaletteEntry = {
 const example2: PaletteEntry = {
     timestamp: 2,
     imgSrc: 'img/demo/ever-wild-634729-unsplash.jpg',
+    name: 'Photo by ever wild on Unsplash',
     colors: {
         vibrant: { color: '#FBA409', textColor: black },
         darkVibrant: { color: '#7C0404', textColor: white },
@@ -32,6 +34,7 @@ const example2: PaletteEntry = {
 const example3: PaletteEntry = {
     timestamp: 3,
     imgSrc: 'img/demo/will-turner-1244879-unsplash.jpg',
+    name: 'Photo by Will Turner on Unsplash',
     colors: {
         vibrant: { color: '#1E8EE0', textColor: white },
         darkVibrant: { color: '#061C2C', textColor: white },

@@ -2,8 +2,8 @@ import { WorkerAction } from '../db-worker/handle-message';
 import { revokeObjectUrlOnLoad } from '../revoke-object-url';
 import { copySwatchText } from './clipboard';
 import { handleMessage } from './handle-message';
-import { handleBackClick } from './main-palette';
 import { paletteFromImages } from './process-images';
+import { handleBackButton } from './main-palette';
 
 const dbWorker = new Worker('js/db-worker.js');
 function postMessage(action: WorkerAction) {
@@ -19,11 +19,11 @@ async function saveImages() {
 
 // Handle change of hash (which opens a new image).
 // Deals with manually setting URL and clicking on history links.
-loadFromHash();
-window.addEventListener('hashchange', loadFromHash);
-function loadFromHash() {
+loadFromHash(true);
+window.addEventListener('hashchange', () => loadFromHash(false));
+function loadFromHash(firstLoad: boolean) {
     const timestamp = parseInt(location.hash.slice(1), 10);
-    postMessage({ type: 'OPEN', payload: timestamp });
+    postMessage({ type: 'OPEN', payload: { timestamp, firstLoad } });
 }
 
 // Handle messages from DB worker
@@ -35,14 +35,19 @@ document
     .addEventListener('load', revokeObjectUrlOnLoad);
 
 // Close palette when back is clicked
-document.getElementById('back')!.addEventListener('click', handleBackClick);
+document
+    .getElementById('back')!
+    .addEventListener('click', handleBackButton, { passive: true });
 
 // Delete current palette when delete is clicked
-document.getElementById('delete')!.addEventListener('click', evt => {
-    evt.preventDefault();
-    const timestamp = parseInt(location.hash.slice(1), 10);
-    postMessage({ type: 'DELETE', payload: { timestamp, current: true } });
-});
+document.getElementById('delete')!.addEventListener(
+    'click',
+    () => {
+        const timestamp = parseInt(location.hash.slice(1), 10);
+        postMessage({ type: 'DELETE', payload: { timestamp, current: true } });
+    },
+    { passive: true },
+);
 
 // Copy the text of a swatch on click
 document

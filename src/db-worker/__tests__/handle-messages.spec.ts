@@ -23,6 +23,7 @@ describe('handleMessage', () => {
                 payload: [
                     {
                         timestamp: 0,
+                        name: '',
                         imgSrc: 'https://example.com',
                         colors: {
                             vibrant: { color: '#000000', textColor: '#FFFFFF' },
@@ -36,6 +37,7 @@ describe('handleMessage', () => {
             {
                 timestamp: 0,
                 imgSrc: 'https://example.com',
+                name: '',
                 colors: {
                     vibrant: {
                         color: '#000000',
@@ -64,7 +66,10 @@ describe('handleMessage', () => {
 
     test.skip('should call loadItemFromDB', () => {
         const postMessage = jest.fn();
-        handleMessage({ type: 'OPEN', payload: 0 }, postMessage);
+        handleMessage(
+            { type: 'OPEN', payload: { timestamp: 0, firstLoad: false } },
+            postMessage,
+        );
         expect(loadItemFromDB).toBeCalledWith(0);
         expect(postMessage).toBeCalledWith({ type: 'DISPLAY', payload: {} });
     });

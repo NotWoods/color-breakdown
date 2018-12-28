@@ -6,7 +6,13 @@ const VibrantModule = import('node-vibrant');
 /**
  * Generate a palette from the given image source.
  */
-export async function dataFromImageUrl(url: string): Promise<PaletteEntry> {
+export async function dataFromImageUrl({
+    name,
+    url,
+}: {
+    name: string;
+    url: string;
+}): Promise<PaletteEntry> {
     const { default: Vibrant } = await VibrantModule;
     const palette = await Vibrant.from(url).getPalette();
 
@@ -30,7 +36,7 @@ export async function dataFromImageUrl(url: string): Promise<PaletteEntry> {
         lightMuted: toSwatch(palette.LightMuted),
     };
 
-    return { timestamp, colors, imgSrc: url };
+    return { timestamp, colors, imgSrc: url, name };
 }
 
 /**
@@ -41,7 +47,7 @@ export async function dataFromImageUrl(url: string): Promise<PaletteEntry> {
 export function paletteFromImages(files: FileList | null) {
     const imageUrls = Array.from(files || [])
         .filter(file => file.type.match(/^image\//) != null)
-        .map(file => URL.createObjectURL(file));
+        .map(file => ({ name: file.name, url: URL.createObjectURL(file) }));
 
     return Promise.all(imageUrls.map(dataFromImageUrl));
 }

@@ -16,7 +16,10 @@ interface LoadAction {
 
 interface OpenAction {
     type: 'OPEN';
-    payload: number;
+    payload: {
+        timestamp: number;
+        firstLoad: boolean;
+    };
 }
 
 interface DeleteAction {
@@ -42,7 +45,10 @@ export async function handleMessage(
                     const entries = await saveItemsToDB(action.payload);
                     postMessage({
                         type: 'DISPLAY',
-                        payload: processEntry(entries[0]),
+                        payload: {
+                            entry: processEntry(entries[0]),
+                            firstLoad: false,
+                        },
                     });
                     postMessage({
                         type: 'ADD',
@@ -57,10 +63,18 @@ export async function handleMessage(
                 );
                 return;
             case 'OPEN':
-                if (!Number.isNaN(action.payload)) {
-                    const entry = await loadItemFromDB(action.payload);
+                if (!Number.isNaN(action.payload.timestamp)) {
+                    const entry = await loadItemFromDB(
+                        action.payload.timestamp,
+                    );
                     if (entry != null) {
-                        postMessage({ type: 'DISPLAY', payload: entry });
+                        postMessage({
+                            type: 'DISPLAY',
+                            payload: {
+                                entry,
+                                firstLoad: action.payload.firstLoad,
+                            },
+                        });
                     }
                 }
                 return;
@@ -73,7 +87,13 @@ export async function handleMessage(
                     });
                     if (action.payload.current) {
                         const otherEntry = await openFirstItem();
-                        postMessage({ type: 'DISPLAY', payload: otherEntry });
+                        postMessage({
+                            type: 'DISPLAY',
+                            payload: {
+                                entry: otherEntry,
+                                firstLoad: false,
+                            },
+                        });
                     }
                 }
                 return;

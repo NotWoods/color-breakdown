@@ -36,6 +36,11 @@ export async function loadHistoryFromDB(
     await complete;
 }
 
+/**
+ * Equivalent to `fetch(url).then(r => r.blob())`.
+ * Firefox 64 crashes when fetching an object URL as a blob.
+ * TODO: Replace once Firefox 65 is out.
+ */
 function fetchBlob(url: string) {
     return new Promise<Blob>((resolve, reject) => {
         const xhr = new XMLHttpRequest();
@@ -79,6 +84,7 @@ export async function saveItemsToDB(
                 id: item.timestamp,
                 imgSrc: dataUri,
                 colors: item.colors,
+                name: item.name,
             };
         }),
     );

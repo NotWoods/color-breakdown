@@ -17,6 +17,7 @@ describe('handleMessage', () => {
                 {
                     timestamp: 0,
                     imgSrc: 'https://example.com',
+                    name: '',
                     colors: {
                         vibrant: { color: '#000000', textColor: '#FFFFFF' },
                     },
@@ -28,8 +29,12 @@ describe('handleMessage', () => {
                 {
                     timestamp: 0,
                     imgSrc: 'https://example.com',
+                    name: '',
                     colors: {
-                        vibrant: { color: '#000000', textColor: '#FFFFFF' },
+                        vibrant: {
+                            color: '#000000',
+                            textColor: '#FFFFFF',
+                        },
                     },
                 },
             ],
@@ -55,20 +60,25 @@ describe('handleMessage', () => {
         handleMessage({
             type: 'DISPLAY',
             payload: {
-                timestamp: 0,
-                imgSrc: 'https://example.com',
-                colors: {
-                    vibrant: {
-                        color: '#000000',
-                        textColor: '#FFFFFF',
+                entry: {
+                    timestamp: 0,
+                    name: '',
+                    imgSrc: 'https://example.com',
+                    colors: {
+                        vibrant: {
+                            color: '#000000',
+                            textColor: '#FFFFFF',
+                        },
                     },
                 },
+                firstLoad: false,
             },
         });
         expect(displayMainPalette).toBeCalledWith({
             data: {
                 timestamp: 0,
                 imgSrc: 'https://example.com',
+                name: '',
                 colors: {
                     vibrant: {
                         color: '#000000',
@@ -76,6 +86,7 @@ describe('handleMessage', () => {
                     },
                 },
             },
+            firstLoad: false,
         });
     });
 });

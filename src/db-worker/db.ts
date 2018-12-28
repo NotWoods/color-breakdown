@@ -7,6 +7,7 @@ export interface HistoryEntry {
     readonly id: number;
     readonly imgSrc: string;
     readonly colors: ColorPalette;
+    readonly name?: string;
 }
 
 interface ExampleEntry {
@@ -72,10 +73,12 @@ export function processEntry(
     if (entry == null) {
         return null;
     }
+    const timestamp = entry.id as number;
     const imgBlob = dataUriToBlob(entry.imgSrc);
     return {
-        timestamp: entry.id as number,
+        timestamp,
         imgSrc: URL.createObjectURL(imgBlob),
         colors: entry.colors,
+        name: entry.name || new Date(timestamp).toLocaleString(),
     };
 }
