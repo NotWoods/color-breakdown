@@ -4,8 +4,19 @@ import { renderImage } from './render-image';
 import { renderPalette } from './render-palette';
 
 interface DisplayMainPaletteProps {
+    /** Data to display on the main palette */
     data: PaletteEntry | null;
+    /**
+     * True if this image was loaded when the document loaded.
+     * Changes back button behavior so that it doesn't navigate away
+     * from the page accidentally.
+     */
     firstLoad: boolean;
+    /**
+     * True if the page URL should be updated with this image's ID.
+     * Unnecessary if a link was clicked to open this image.
+     */
+    updateHash: boolean;
 }
 
 const MAIN_PALETTE_ELEMENT = document.getElementById('palette')!;
@@ -56,7 +67,12 @@ export function displayMainPalette(props: DisplayMainPaletteProps) {
         listener = render;
 
         MAIN_PALETTE_ELEMENT.classList.add('is-open'); // Open on mobile
-        document.title = `${props.data.name} | ${TITLE}`;
+        const title = `${props.data.name} | ${TITLE}`;
+        document.title = title;
+
+        if (props.updateHash) {
+            history.replaceState(true, title, `#${props.data.timestamp}`);
+        }
     } else {
         renderPalette(
             {

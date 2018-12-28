@@ -8,5 +8,9 @@
     "typescript.tsdk": "node_modules/typescript/lib",
     "typescript.referencesCodeLens.enabled": true,
     // "editor.formatOnSave": true,
-    "cSpell.words": ["Quantizer", "readwrite"]
+    "cSpell.words": [
+        "Quantizer",
+        "firstload",
+        "readwrite"
+    ]
 }

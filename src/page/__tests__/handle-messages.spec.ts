@@ -72,6 +72,7 @@ describe('handleMessage', () => {
                     },
                 },
                 firstLoad: false,
+                updateHash: false,
             },
         });
         expect(displayMainPalette).toBeCalledWith({
@@ -87,6 +88,7 @@ describe('handleMessage', () => {
                 },
             },
             firstLoad: false,
+            updateHash: false,
         });
     });
 });

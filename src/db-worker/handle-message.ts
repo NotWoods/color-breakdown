@@ -53,6 +53,7 @@ export async function handleMessage(
                         payload: {
                             entry: processEntry(entries[0]),
                             firstLoad: false,
+                            updateHash: true,
                         },
                     });
                     postMessage({
@@ -68,20 +69,18 @@ export async function handleMessage(
                 );
                 return;
             case 'OPEN':
+                let entry: PaletteEntry | null = null;
                 if (!Number.isNaN(action.payload.timestamp)) {
-                    const entry = await loadItemFromDB(
-                        action.payload.timestamp,
-                    );
-                    if (entry != null) {
-                        postMessage({
-                            type: 'DISPLAY',
-                            payload: {
-                                entry,
-                                firstLoad: action.payload.firstLoad,
-                            },
-                        });
-                    }
+                    entry = await loadItemFromDB(action.payload.timestamp);
                 }
+                postMessage({
+                    type: 'DISPLAY',
+                    payload: {
+                        entry,
+                        firstLoad: action.payload.firstLoad,
+                        updateHash: false,
+                    },
+                });
                 return;
             case 'DELETE':
                 if (!Number.isNaN(action.payload.timestamp)) {
@@ -97,6 +96,7 @@ export async function handleMessage(
                             payload: {
                                 entry: otherEntry,
                                 firstLoad: false,
+                                updateHash: true,
                             },
                         });
                     }

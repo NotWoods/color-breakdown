@@ -17,6 +17,7 @@ interface DisplayAction {
     payload: {
         entry: PaletteEntry | null;
         firstLoad: boolean;
+        updateHash: boolean;
     };
 }
 
@@ -40,6 +41,7 @@ export function handleMessage(action: UiAction) {
             displayMainPalette({
                 data: action.payload.entry,
                 firstLoad: action.payload.firstLoad,
+                updateHash: action.payload.updateHash,
             });
             return;
         case 'ERROR':
