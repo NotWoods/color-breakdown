@@ -13,7 +13,7 @@ deploy:
     github-token: $GITHUB_TOKEN # Set in the settings page of your repository
     keep-history: true
     on:
-        branch: develop
+        branch: master
     local-dir: public
 
 # Set up Slack notifications:
