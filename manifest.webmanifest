@@ -5,7 +5,7 @@
   "display": "standalone",
   "background_color": "#212121",
   "theme_color": "#37474f",
-  "description": "Extract prominent colors from images",
+  "description": "Extract prominent colors from an image to create more visually engaging designs and apps.",
   "scope": "./",
   "icons": [
     {
