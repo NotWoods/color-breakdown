@@ -1,17 +1,17 @@
-import { readFileSync } from "fs";
+import { readFileSync } from 'fs';
 import typescript from 'rollup-plugin-typescript';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import replace from 'rollup-plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 
-const commitHash = (() => {
+const commitHash = () => {
     try {
-        return readFileSync('.commithash', 'utf-8').trim()
+        return readFileSync('.commithash', 'utf-8').trim();
     } catch (_) {
-        return 'unknown'
+        return 'unknown';
     }
-})
+};
 
 const paths = {
     'node-vibrant': '../lib/node-vibrant/vibrant.js',
@@ -27,7 +27,6 @@ const pageConfig = {
         sourcemap: true,
     },
     plugins: [typescript(), replace(paths), terser()],
-    experimentalCodeSplitting: true,
 };
 
 /** @type {import('rollup').RollupFileOptions} */

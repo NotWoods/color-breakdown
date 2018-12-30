@@ -7,7 +7,7 @@
     },
     "typescript.tsdk": "node_modules/typescript/lib",
     "typescript.referencesCodeLens.enabled": true,
-    // "editor.formatOnSave": true,
+    "editor.formatOnSave": true,
     "cSpell.words": [
         "Quantizer",
         "firstload",

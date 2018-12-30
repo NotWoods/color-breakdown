@@ -1,8 +1,10 @@
-import { copySwatchText } from '../clipboard';
-
 navigator.clipboard = { writeText: jest.fn() };
 
-describe.skip('copySwatchText', () => {
+import { copySwatchText } from '../clipboard';
+
+const nextTick = () => new Promise(resolve => process.nextTick(resolve));
+
+describe('copySwatchText', () => {
     beforeEach(() => (navigator.clipboard.writeText as jest.Mock).mockClear());
 
     function mockButton(textContent: string) {
@@ -19,15 +21,10 @@ describe.skip('copySwatchText', () => {
         return swatch;
     }
 
-    test('should copy text from swatch', () => {
+    test('should copy text from swatch', async () => {
         const swatch = mockButton('#ABCDEF');
         swatch.dispatchEvent(new Event('click'));
-        expect(navigator.clipboard.writeText).toBeCalledWith('#ABCDEF');
-    });
-
-    test('should copy text from swatch if text clicked', () => {
-        const swatch = mockButton('#ABCDEF');
-        swatch.querySelector('.swatch-text')!.dispatchEvent(new Event('click'));
+        await nextTick();
         expect(navigator.clipboard.writeText).toBeCalledWith('#ABCDEF');
     });
 });

@@ -23,7 +23,24 @@ const mockDb: import('idb').DB = {
     close: jest.fn(),
 };
 jest.mock('idb', () => ({
-    open: jest.fn().mockReturnValue(Promise.resolve(mockDb)),
+    open: jest.fn(async (name, version, upgradeCallback) => {
+        expect(name).toBe('history-store');
+        expect(version).toBe(2);
+
+        const createObjectStore = jest.fn();
+        upgradeCallback({ createObjectStore, oldVersion: 0 });
+        expect(createObjectStore).toBeCalledWith('history', { keyPath: 'id' });
+        expect(createObjectStore).toBeCalledWith('example', { keyPath: 'id' });
+
+        createObjectStore.mockClear();
+        upgradeCallback({ createObjectStore, oldVersion: 1 });
+        expect(createObjectStore).not.toBeCalledWith('history', {
+            keyPath: 'id',
+        });
+        expect(createObjectStore).toBeCalledWith('example', { keyPath: 'id' });
+
+        return mockDb;
+    }),
 }));
 
 URL.createObjectURL = jest.fn().mockReturnValue('');

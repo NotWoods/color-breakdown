@@ -1,6 +1,9 @@
 import { renderSwatch } from '../render-swatch';
 
-describe.skip('renderSwatch with text', () => {
+const ABCDEF = /(rgb\(171, 205, 239\)|#ABCDEF|#abcdef)/;
+const black = /(rgb\(0, 0, 0\)|#000000)/;
+
+describe('renderSwatch with text', () => {
     test('should hide if no color is given', () => {
         const element = document.createElement('div');
         renderSwatch({ colorTextType: 'HEX', color: null }, element);
@@ -25,8 +28,7 @@ describe.skip('renderSwatch with text', () => {
         );
 
         expect(element.hidden).toBe(false);
-        expect(element.style.backgroundColor).toBe('#ABCDEF');
-        expect(element.style.color).toBe('#000000');
+        expect(element.style.backgroundColor).toMatch(ABCDEF);
         expect(element.textContent).toBe('');
     });
 
@@ -47,8 +49,8 @@ describe.skip('renderSwatch with text', () => {
         );
 
         expect(element.hidden).toBe(false);
-        expect(element.style.backgroundColor).toBe('#ABCDEF');
-        expect(element.style.color).toBe('#000000');
+        expect(element.style.backgroundColor).toMatch(ABCDEF);
+        expect(element.style.color).toMatch(black);
         expect(element.querySelector('.swatch-text')!.textContent).toBe(
             '#ABCDEF',
         );
@@ -64,15 +66,15 @@ describe.skip('renderSwatch with text', () => {
 
         renderSwatch(
             {
-                colorTextType: 'HEX',
+                colorTextType: 'RGB',
                 color: { color: '#ABCDEF', textColor: '#000000' },
             },
             element,
         );
 
         expect(element.hidden).toBe(false);
-        expect(element.style.backgroundColor).toBe('#ABCDEF');
-        expect(element.style.color).toBe('#000000');
+        expect(element.style.backgroundColor).toMatch(ABCDEF);
+        expect(element.style.color).toMatch(black);
         expect(element.querySelector('.swatch-text')!.textContent).toBe(
             'R171 G205 B239',
         );
@@ -88,15 +90,15 @@ describe.skip('renderSwatch with text', () => {
 
         renderSwatch(
             {
-                colorTextType: 'HEX',
+                colorTextType: 'HSL',
                 color: { color: '#ABCDEF', textColor: '#000000' },
             },
             element,
         );
 
         expect(element.hidden).toBe(false);
-        expect(element.style.backgroundColor).toBe('#ABCDEF');
-        expect(element.style.color).toBe('#000000');
+        expect(element.style.backgroundColor).toMatch(ABCDEF);
+        expect(element.style.color).toMatch(black);
         expect(element.querySelector('.swatch-text')!.textContent).toBe(
             'H58 S68 L80',
         );
