@@ -26,21 +26,25 @@ const pageConfig = {
         paths,
         sourcemap: true,
     },
-    plugins: [typescript(), replace(paths), terser()],
+    plugins: [typescript(), replace(paths), terser({ module: true })],
 };
 
 /** @type {import('rollup').RollupFileOptions} */
 const workerConfig = {
     input: 'src/db-worker/index.ts',
-    output: { file: 'public/js/db-worker.js', format: 'iife', sourcemap: true },
-    plugins: [typescript(), resolve(), commonjs(), terser()],
+    output: { file: 'public/js/db-worker.js', format: 'esm', sourcemap: true },
+    plugins: [typescript(), resolve(), commonjs(), terser({ module: true })],
 };
 
 /** @type {import('rollup').RollupFileOptions} */
 const serviceWorkerConfig = {
     input: 'src/service-worker/index.ts',
-    output: { file: 'public/sw.js', format: 'iife', sourcemap: true },
-    plugins: [typescript(), replace({ HASH: commitHash }), terser()],
+    output: { file: 'public/sw.js', format: 'esm', sourcemap: true },
+    plugins: [
+        typescript(),
+        replace({ HASH: commitHash }),
+        terser({ module: true }),
+    ],
 };
 
 export default [pageConfig, workerConfig, serviceWorkerConfig];
