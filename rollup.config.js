@@ -17,7 +17,7 @@ const paths = {
     'node-vibrant': '../lib/node-vibrant/vibrant.js',
 };
 
-/** @type {import('rollup').RollupFileOptions} */
+/** @type {import('rollup').RollupOptions} */
 const pageConfig = {
     input: 'src/page/index.ts',
     output: {
@@ -26,25 +26,21 @@ const pageConfig = {
         paths,
         sourcemap: true,
     },
-    plugins: [typescript(), replace(paths), terser({ module: true })],
+    plugins: [typescript(), replace(paths), terser()],
 };
 
-/** @type {import('rollup').RollupFileOptions} */
+/** @type {import('rollup').RollupOptions} */
 const workerConfig = {
     input: 'src/db-worker/index.ts',
     output: { file: 'public/js/db-worker.js', format: 'esm', sourcemap: true },
-    plugins: [typescript(), resolve(), commonjs(), terser({ module: true })],
+    plugins: [typescript(), resolve(), commonjs(), terser()],
 };
 
-/** @type {import('rollup').RollupFileOptions} */
+/** @type {import('rollup').RollupOptions} */
 const serviceWorkerConfig = {
     input: 'src/service-worker/index.ts',
     output: { file: 'public/sw.js', format: 'esm', sourcemap: true },
-    plugins: [
-        typescript(),
-        replace({ HASH: commitHash }),
-        terser({ module: true }),
-    ],
+    plugins: [typescript(), replace({ HASH: commitHash }), terser()],
 };
 
 export default [pageConfig, workerConfig, serviceWorkerConfig];
