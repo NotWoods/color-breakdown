@@ -1,4 +1,4 @@
-import idb from 'idb';
+import { openDb } from 'idb';
 import { ColorPalette } from '../color-interfaces';
 import { PaletteEntry } from '../entry';
 import { dataUriToBlob } from './data-uri';
@@ -15,7 +15,7 @@ interface ExampleEntry {
     hidden: true;
 }
 
-const dbPromise = idb.open('history-store', 2, upgradeDB => {
+const dbPromise = openDb('history-store', 2, upgradeDB => {
     switch (upgradeDB.oldVersion) {
         case 0:
             upgradeDB.createObjectStore<HistoryEntry, number>('history', {

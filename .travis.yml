@@ -15,6 +15,3 @@ deploy:
     on:
         branch: master
     local-dir: public
-
-# Set up Slack notifications:
-# travis encrypt "<apikey>" --add notifications.slack
