@@ -1,7 +1,7 @@
 const mockHistoryStore = Symbol('history');
 const mockExampleStore = Symbol('example');
 
-const mockDb: import('idb').DB = {
+const mockDb = {
     name: 'history-store',
     version: 1,
     objectStoreNames: null as any,
@@ -45,40 +45,7 @@ jest.mock('idb', () => ({
 
 URL.createObjectURL = jest.fn().mockReturnValue('');
 
-import {
-    processEntry,
-    openHistory,
-    openExample,
-    openHistoryAndExample,
-} from '../db';
-
-test('openHistory', async () => {
-    expect(await openHistory('readonly')).toEqual({
-        store: mockHistoryStore,
-        complete: expect.any(Promise),
-    });
-    expect(mockDb.transaction).toBeCalledWith('history', 'readonly');
-});
-
-test('openExample', async () => {
-    expect(await openExample('readwrite')).toEqual({
-        store: mockExampleStore,
-        complete: expect.any(Promise),
-    });
-    expect(mockDb.transaction).toBeCalledWith('example', 'readwrite');
-});
-
-test('openHistoryAndExample', async () => {
-    expect(await openHistoryAndExample('readwrite')).toEqual({
-        history: mockHistoryStore,
-        example: mockExampleStore,
-        complete: expect.any(Promise),
-    });
-    expect(mockDb.transaction).toBeCalledWith(
-        ['history', 'example'],
-        'readwrite',
-    );
-});
+import { processEntry } from '../db';
 
 describe('processEntry', () => {
     test('should return null', () => {

@@ -7,7 +7,7 @@ import {
     loadItemFromDB,
     openFirstItem,
     saveItemsToDB,
-} from './history';
+} from './db';
 
 interface SaveAction {
     type: 'SAVE';

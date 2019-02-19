@@ -1,6 +1,8 @@
 {
-    "include": ["./src/**/*"],
+    "include": ["./src/**/*", "types/idb.d.ts"],
     "compilerOptions": {
+        "baseUrl": ".",
+        "paths": { "*": ["types/*"] },
         /* Basic Options */
         "target": "es2018",
         "module": "esnext",
