@@ -6,3 +6,10 @@ export interface PaletteEntry {
     readonly colors: ColorPalette;
     readonly name: string;
 }
+
+export interface HistoryEntry {
+    readonly id: number;
+    readonly imgSrc: string;
+    readonly colors: ColorPalette;
+    readonly name?: string;
+}

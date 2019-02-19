@@ -1,6 +1,6 @@
-import { PaletteEntry } from '../entry';
+import { PaletteEntry, HistoryEntry } from '../entry';
 import { UiAction } from '../page/handle-message';
-import { HistoryEntry, processEntry } from './db';
+import { processEntry } from './db';
 import {
     deleteItemFromDB,
     loadHistoryFromDB,

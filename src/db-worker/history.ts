@@ -1,8 +1,7 @@
-import { PaletteEntry } from '../entry';
+import { PaletteEntry, HistoryEntry } from '../entry';
 import { revokeIfObjectUrl } from '../revoke-object-url';
 import { blobToDataUri } from './data-uri';
 import {
-    HistoryEntry,
     openExample,
     openHistory,
     openHistoryAndExample,

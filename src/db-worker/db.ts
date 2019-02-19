@@ -1,14 +1,6 @@
 import { openDb } from 'idb';
-import { ColorPalette } from '../color-interfaces';
-import { PaletteEntry } from '../entry';
+import { PaletteEntry, HistoryEntry } from '../entry';
 import { dataUriToBlob } from './data-uri';
-
-export interface HistoryEntry {
-    readonly id: number;
-    readonly imgSrc: string;
-    readonly colors: ColorPalette;
-    readonly name?: string;
-}
 
 interface ExampleEntry {
     id: number;
