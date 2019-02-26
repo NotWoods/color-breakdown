@@ -23,7 +23,7 @@ const mockDb: import('idb').DB = {
     close: jest.fn(),
 };
 jest.mock('idb', () => ({
-    open: jest.fn(async (name, version, upgradeCallback) => {
+    openDb: jest.fn(async (name, version, upgradeCallback) => {
         expect(name).toBe('history-store');
         expect(version).toBe(2);
 
