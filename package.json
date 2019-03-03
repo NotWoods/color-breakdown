@@ -33,7 +33,7 @@
         "shimport": "0.0.14",
         "ts-jest": "^24.0.0",
         "tslib": "^1.9.3",
-        "typescript": "^3.3.3"
+        "typescript": "^3.3.3333"
     },
     "jest": {
         "preset": "ts-jest/presets/js-with-ts"
