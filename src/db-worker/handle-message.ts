@@ -1,13 +1,13 @@
-import { PaletteEntry, HistoryEntry } from '../entry';
+import { HistoryEntry, PaletteEntry } from '../entry';
 import { UiAction } from '../page/handle-message';
-import { processEntry } from './db';
 import {
     deleteItemFromDB,
     loadHistoryFromDB,
     loadItemFromDB,
     openFirstItem,
     saveItemsToDB,
-} from './history';
+} from './db';
+import { processEntry } from './process-entry';
 
 interface SaveAction {
     type: 'SAVE';
@@ -36,7 +36,7 @@ interface DeleteAction {
 }
 
 export type WorkerAction = SaveAction | LoadAction | OpenAction | DeleteAction;
-type ProcessEntry = (entry: HistoryEntry) => PaletteEntry;
+type ProcessEntryFunc = (entry: HistoryEntry) => PaletteEntry;
 
 export async function handleMessage(
     action: WorkerAction,
@@ -58,7 +58,7 @@ export async function handleMessage(
                     });
                     postMessage({
                         type: 'ADD',
-                        payload: entries.map(processEntry as ProcessEntry),
+                        payload: entries.map(processEntry as ProcessEntryFunc),
                     });
                 }
                 return;

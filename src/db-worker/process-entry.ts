@@ -1,3 +1,5 @@
+import { HistoryEntry, PaletteEntry } from '../entry';
+
 /**
  * Convert Data URI representing an image into a blob with the same data.
  * @see https://stackoverflow.com/questions/12168909/blob-from-dataurl
@@ -31,4 +33,25 @@ export function blobToDataUri(blob: Blob) {
         reader.onerror = () => reject(reader.error);
         reader.readAsDataURL(blob);
     });
+}
+
+export function processEntry(entry: HistoryEntry): PaletteEntry;
+export function processEntry(entry: null | undefined): null;
+export function processEntry(
+    entry: HistoryEntry | null | undefined,
+): PaletteEntry | null;
+export function processEntry(
+    entry: HistoryEntry | null | undefined,
+): PaletteEntry | null {
+    if (entry == null) {
+        return null;
+    }
+    const timestamp = entry.id as number;
+    const imgBlob = dataUriToBlob(entry.imgSrc);
+    return {
+        timestamp,
+        imgSrc: URL.createObjectURL(imgBlob),
+        colors: entry.colors,
+        name: entry.name || new Date(timestamp).toLocaleString(),
+    };
 }
