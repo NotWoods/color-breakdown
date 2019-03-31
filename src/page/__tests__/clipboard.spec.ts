@@ -1,3 +1,4 @@
+// @ts-ignore
 navigator.clipboard = { writeText: jest.fn() };
 
 import { copySwatchText } from '../clipboard';

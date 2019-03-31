@@ -4,7 +4,7 @@ export function writeText(str: string) {
         document.addEventListener(
             'copy',
             (evt: ClipboardEvent) => {
-                evt.clipboardData.setData('text/plain', str);
+                evt.clipboardData!.setData('text/plain', str);
                 evt.preventDefault();
                 success = true;
             },

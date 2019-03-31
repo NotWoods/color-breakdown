@@ -1,13 +1,3 @@
-declare global {
-    interface Navigator {
-        clipboard: Clipboard;
-    }
-
-    interface Clipboard {
-        writeText(newClipText: string): Promise<void>;
-    }
-}
-
 const ClipboardModule = navigator.clipboard || import('./clipboard-polyfill');
 
 /**
