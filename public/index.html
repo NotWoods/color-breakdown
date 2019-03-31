@@ -5,12 +5,6 @@
         <title>Color Breakdown</title>
         <link href="css/base.css" rel="stylesheet" />
 
-        <script>
-            navigator.serviceWorker
-                .register('sw.js')
-                .then(() => console.log('Service Worker Registered'));
-        </script>
-
         <link href="manifest.webmanifest" rel="manifest" />
         <script async src="lib/pwacompat.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -43,7 +37,10 @@
         <link rel="preload" href="js/db-worker.js" as="worker" />
         <link rel="modulepreload" href="lib/node-vibrant/vibrant.js" as="script" />
         <link rel="preload" href="lib/node-vibrant/worker.js" as="worker" />
-        <meta name="description" content="Extract prominent colors from an image to create more visually engaging designs and apps.">
+        <meta
+            name="description"
+            content="Extract prominent colors from an image to create more visually engaging designs and apps."
+        />
     </head>
 
     <body class="container">

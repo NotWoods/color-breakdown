@@ -44,7 +44,7 @@ export async function dataFromImageUrl({
  * Filters the files to only include images, then creates an object URL for
  * each and uses node-vibrant to process them.
  */
-export function paletteFromImages(files: FileList | null) {
+export function paletteFromImages(files: FileList | Iterable<File> | null) {
     const imageUrls = Array.from(files || [])
         .filter(file => file.type.match(/^image\//) != null)
         .map(file => ({ name: file.name, url: URL.createObjectURL(file) }));

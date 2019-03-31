@@ -68,3 +68,17 @@ fileInput.addEventListener('focus', () => fileInput.classList.add('focus'), {
 fileInput.addEventListener('blur', () => fileInput.classList.remove('focus'), {
     passive: true,
 });
+
+// Start service worker and support Share Target API
+import('./sw-bridge').then(async ({ offliner, getSharedImage }) => {
+    offliner();
+
+    const awaitingShareTarget = new URLSearchParams(location.search).has(
+        'share-target',
+    );
+    if (awaitingShareTarget) {
+        const file = await getSharedImage();
+        const entries = await paletteFromImages([file]);
+        postMessage({ type: 'SAVE', payload: entries });
+    }
+});

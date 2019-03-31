@@ -1,3 +1,5 @@
+import { serveShareTarget } from './share-target';
+
 const resources = [
     './',
     'index.html',
@@ -13,6 +15,7 @@ const resources = [
     'img/demo/ever-wild-634729-unsplash.jpg',
     'img/demo/will-turner-1244879-unsplash.jpg',
     'js/chunk-b051499f.js',
+    'js/chunk-64d89511.js',
     'js/db-worker.js',
     'js/index.js',
     'lib/node-vibrant/vibrant.js',
@@ -40,6 +43,15 @@ self.addEventListener('activate', event => {
 // On fetch, use cache but update the entry with the latest contents from the
 // server.
 self.addEventListener('fetch', event => {
+    const url = new URL(event.request.url);
+
+    if (
+        url.searchParams.has('share-target') &&
+        event.request.method === 'POST'
+    ) {
+        return serveShareTarget(event);
+    }
+
     event.respondWith(fromCache(event.request));
 });
 
