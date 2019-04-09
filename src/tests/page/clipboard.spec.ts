@@ -1,7 +1,4 @@
-// @ts-ignore
-navigator.clipboard = { writeText: jest.fn() };
-
-import { copySwatchText } from '../clipboard';
+import { copySwatchText } from '../../page/clipboard';
 
 const nextTick = () => new Promise(resolve => process.nextTick(resolve));
 

@@ -1,5 +1,9 @@
 URL.createObjectURL = jest.fn().mockReturnValue('');
-import { blobToDataUri, dataUriToBlob, processEntry } from '../process-entry';
+import {
+    blobToDataUri,
+    dataUriToBlob,
+    processEntry,
+} from '../../db-worker/process-entry';
 
 describe('dataUriToBlob', () => {
     test('should convert data uri', () => {

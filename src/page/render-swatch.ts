@@ -2,8 +2,8 @@ import { ColorSwatch } from '../color-interfaces';
 import { ColorTextType, renderColorText } from './render-color-text';
 
 interface SwatchProps {
-    color: ColorSwatch | null | undefined;
-    colorTextType: ColorTextType | null;
+    readonly color: ColorSwatch | null | undefined;
+    readonly colorTextType: ColorTextType | null;
 }
 
 /**

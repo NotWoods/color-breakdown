@@ -1,10 +1,13 @@
 const addPalettesToList = jest.fn();
 const deletePalettesFromList = jest.fn();
 const displayMainPalette = jest.fn();
-jest.mock('../list', () => ({ addPalettesToList, deletePalettesFromList }));
-jest.mock('../main-palette', () => ({ displayMainPalette }));
+jest.mock('../../page/list', () => ({
+    addPalettesToList,
+    deletePalettesFromList,
+}));
+jest.mock('../../page/main-palette', () => ({ displayMainPalette }));
 
-import { handleMessage } from '../handle-message';
+import { handleMessage } from '../../page/handle-message';
 
 describe('handleMessage', () => {
     test('should call addPalettesToList', () => {

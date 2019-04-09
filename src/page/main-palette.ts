@@ -1,32 +1,32 @@
 import { PaletteEntry } from '../entry';
+import { displayBackButton, goBack } from './back-button';
 import { ColorTextType } from './render-color-text';
 import { renderImage } from './render-image';
 import { renderPalette } from './render-palette';
 
 interface DisplayMainPaletteProps {
     /** Data to display on the main palette */
-    data: PaletteEntry | null;
+    readonly data: PaletteEntry | null;
     /**
      * True if this image was loaded when the document loaded.
      * Changes back button behavior so that it doesn't navigate away
      * from the page accidentally.
      */
-    firstLoad: boolean;
+    readonly firstLoad: boolean;
     /**
      * True if the page URL should be updated with this image's ID.
      * Unnecessary if a link was clicked to open this image.
      */
-    updateHash: boolean;
+    readonly updateHash: boolean;
 }
 
-const MAIN_PALETTE_ELEMENT = document.getElementById('palette')!;
+const MAIN_PALETTE_ELEMENT = document.querySelector('#palette')!;
 const MAIN_PALETTE_IMAGE = MAIN_PALETTE_ELEMENT.querySelector<HTMLImageElement>(
     'img.preview',
 )!;
-const COLOR_DISPLAY_SELECT = document.getElementById(
-    'color-display',
-) as HTMLSelectElement;
-const BACK_BUTTON = document.getElementById('back')!;
+const COLOR_DISPLAY_SELECT = document.querySelector<HTMLSelectElement>(
+    '#color-display',
+)!;
 const TITLE = 'Color Breakdown';
 
 function closeMainPalette() {
@@ -45,19 +45,14 @@ export function displayMainPalette(props: DisplayMainPaletteProps) {
         COLOR_DISPLAY_SELECT.removeEventListener('change', listener);
     }
 
-    if (props.firstLoad) {
-        BACK_BUTTON.dataset.firstload = 'firstload';
-    } else {
-        delete BACK_BUTTON.dataset.firstload;
-    }
+    const colorTextType = COLOR_DISPLAY_SELECT.value as ColorTextType;
+    displayBackButton(props);
 
+    // Show the selected image or a placeholder
     if (props.data != null) {
         function render() {
             renderPalette(
-                {
-                    ...props.data!,
-                    colorTextType: COLOR_DISPLAY_SELECT.value as ColorTextType,
-                },
+                { ...props.data!, colorTextType },
                 MAIN_PALETTE_ELEMENT,
             );
         }
@@ -74,13 +69,7 @@ export function displayMainPalette(props: DisplayMainPaletteProps) {
             history.replaceState(true, title, `#${props.data.timestamp}`);
         }
     } else {
-        renderPalette(
-            {
-                colors: null,
-                colorTextType: COLOR_DISPLAY_SELECT.value as ColorTextType,
-            },
-            MAIN_PALETTE_ELEMENT,
-        );
+        renderPalette({ colors: null, colorTextType }, MAIN_PALETTE_ELEMENT);
         renderImage(
             { imgSrc: 'img/placeholder.svg', name: 'No image' },
             MAIN_PALETTE_IMAGE,
@@ -91,8 +80,6 @@ export function displayMainPalette(props: DisplayMainPaletteProps) {
 }
 
 export function handleBackButton() {
-    if (!BACK_BUTTON.dataset.firstload) {
-        history.back();
-    }
+    goBack();
     closeMainPalette();
 }

@@ -3,16 +3,14 @@ import { revokeObjectUrlOnLoad } from '../revoke-object-url';
 import { renderPalette } from './render-palette';
 import { renderImage } from './render-image';
 
-interface AddPalettesProps {
-    readonly items: PaletteEntry[];
-}
+const LIST_ELEMENT = document.querySelector('#grid-items')!;
+const LIST_ITEM_TEMPLATE = document.querySelector<HTMLTemplateElement>(
+    '#grid-item-template',
+)!;
 
-const LIST_ELEMENT = document.getElementById('grid-items')!;
-const LIST_ITEM_TEMPLATE = document.getElementById(
-    'grid-item-template',
-) as HTMLTemplateElement;
-
-export function addPalettesToList(props: AddPalettesProps) {
+export function addPalettesToList(props: {
+    items: ReadonlyArray<PaletteEntry>;
+}) {
     const fragment = document.createDocumentFragment();
     for (const child of props.items) {
         const template = document.importNode(LIST_ITEM_TEMPLATE.content, true);
@@ -35,13 +33,11 @@ export function addPalettesToList(props: AddPalettesProps) {
     LIST_ELEMENT.appendChild(fragment);
 }
 
-interface RemovePalettesProps {
-    readonly timestamps: number[];
-}
-
-export function deletePalettesFromList(props: RemovePalettesProps) {
+export function deletePalettesFromList(props: {
+    timestamps: ReadonlyArray<number>;
+}) {
     props.timestamps.forEach(timestamp => {
-        const link = document.getElementById(timestamp.toString());
+        const link = document.querySelector(`#${timestamp}`);
         const li = link != null ? link.parentElement : null;
         if (li != null) {
             LIST_ELEMENT.removeChild(li);

@@ -3,27 +3,27 @@ import { addPalettesToList, deletePalettesFromList } from './list';
 import { displayMainPalette } from './main-palette';
 
 interface AddAction {
-    type: 'ADD';
-    payload: PaletteEntry[];
+    readonly type: 'ADD';
+    readonly payload: ReadonlyArray<PaletteEntry>;
 }
 
 interface RemoveAction {
-    type: 'REMOVE';
-    payload: number[];
+    readonly type: 'REMOVE';
+    readonly payload: ReadonlyArray<number>;
 }
 
 interface DisplayAction {
-    type: 'DISPLAY';
-    payload: {
-        entry: PaletteEntry | null;
-        firstLoad: boolean;
-        updateHash: boolean;
+    readonly type: 'DISPLAY';
+    readonly payload: {
+        readonly entry: PaletteEntry | null;
+        readonly firstLoad: boolean;
+        readonly updateHash: boolean;
     };
 }
 
 interface ErrorAction {
-    type: 'ERROR';
-    payload: string;
+    readonly type: 'ERROR';
+    readonly payload: string;
 }
 
 export type UiAction = AddAction | RemoveAction | DisplayAction | ErrorAction;

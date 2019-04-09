@@ -10,28 +10,28 @@ import {
 import { processEntry } from './process-entry';
 
 interface SaveAction {
-    type: 'SAVE';
-    payload: PaletteEntry[];
+    readonly type: 'SAVE';
+    readonly payload: ReadonlyArray<PaletteEntry>;
 }
 
 interface LoadAction {
-    type: 'LOAD';
-    payload: null;
+    readonly type: 'LOAD';
+    readonly payload: null;
 }
 
 interface OpenAction {
-    type: 'OPEN';
-    payload: {
-        timestamp: number;
-        firstLoad: boolean;
+    readonly type: 'OPEN';
+    readonly payload: {
+        readonly timestamp: number;
+        readonly firstLoad: boolean;
     };
 }
 
 interface DeleteAction {
-    type: 'DELETE';
-    payload: {
-        timestamp: number;
-        current: boolean;
+    readonly type: 'DELETE';
+    readonly payload: {
+        readonly timestamp: number;
+        readonly current: boolean;
     };
 }
 

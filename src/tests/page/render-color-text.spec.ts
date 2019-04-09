@@ -1,4 +1,4 @@
-import { renderColorText } from '../render-color-text';
+import { renderColorText } from '../../page/render-color-text';
 
 describe('renderColorText', () => {
     test('should return hex colors as-is', () => {

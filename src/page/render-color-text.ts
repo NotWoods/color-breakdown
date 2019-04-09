@@ -2,17 +2,17 @@ type Vec3 = [number, number, number];
 export type ColorTextType = 'HEX' | 'RGB' | 'HSL';
 
 interface ColorTextProps {
-    colorTextType: ColorTextType;
-    hexColor: string;
+    readonly colorTextType: ColorTextType;
+    readonly hexColor: string;
 }
 
 // Helpers from Vibrant.Util
 function hexToRgb(hex: string): Vec3 | null {
-    let m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    let match = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    if (match == null) return null;
 
-    return m === null
-        ? null
-        : ([m[1], m[2], m[3]].map(s => parseInt(s, 16)) as Vec3);
+    const vector = [match[1], match[2], match[3]].map(s => parseInt(s, 16));
+    return vector as Vec3;
 }
 function rgbToHsl(r: number, g: number, b: number): Vec3 {
     r /= 255;

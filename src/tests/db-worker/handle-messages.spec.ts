@@ -2,14 +2,14 @@ const deleteItemFromDB = jest.fn().mockReturnValue(Promise.resolve());
 const loadItemFromDB = jest.fn().mockReturnValue(Promise.resolve({}));
 const loadHistoryFromDB = jest.fn().mockReturnValue(Promise.resolve());
 const saveItemsToDB = jest.fn().mockReturnValue(Promise.resolve([null]));
-jest.mock('../db', () => ({
+jest.mock('../../db-worker/db', () => ({
     deleteItemFromDB,
     loadItemFromDB,
     loadHistoryFromDB,
     saveItemsToDB,
 }));
 
-import { handleMessage } from '../handle-message';
+import { handleMessage } from '../../db-worker/handle-message';
 
 describe('handleMessage', () => {
     test('should call saveItemsToDB', async () => {

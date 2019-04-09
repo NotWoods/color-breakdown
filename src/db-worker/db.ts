@@ -12,8 +12,8 @@ interface ColorBreakdownDBSchema extends DBSchema {
     example: {
         key: number;
         value: {
-            id: number;
-            hidden: true;
+            readonly id: number;
+            readonly hidden: true;
         };
     };
 }
@@ -120,7 +120,7 @@ export async function loadHistoryFromDB(
  * into data URIs.
  */
 export async function saveItemsToDB(
-    items: PaletteEntry[],
+    items: ReadonlyArray<PaletteEntry>,
 ): Promise<HistoryEntry[]> {
     // Need to process entries first due to IDB restrictions
     const entries = await Promise.all(

@@ -10,7 +10,7 @@ function postMessage(action: WorkerAction) {
     dbWorker.postMessage(action);
 }
 
-const form = document.getElementById('new-palette-entry') as HTMLFormElement;
+const form = document.querySelector<HTMLFormElement>('#new-palette-entry')!;
 const fileInput = form.elements.namedItem('imagefile') as HTMLInputElement;
 async function saveImages() {
     const entries = await paletteFromImages(fileInput.files);
@@ -36,11 +36,11 @@ document
 
 // Close palette when back is clicked
 document
-    .getElementById('back')!
+    .querySelector('#back')!
     .addEventListener('click', handleBackButton, { passive: true });
 
 // Delete current palette when delete is clicked
-document.getElementById('delete')!.addEventListener(
+document.querySelector('#delete')!.addEventListener(
     'click',
     () => {
         const timestamp = parseInt(location.hash.slice(1), 10);

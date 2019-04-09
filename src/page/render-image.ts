@@ -1,6 +1,6 @@
 interface ImageProps {
-    imgSrc: string;
-    name: string;
+    readonly imgSrc: string;
+    readonly name: string;
 }
 
 /**

@@ -1,9 +1,9 @@
-import { renderSwatch } from '../render-swatch';
+import { renderSwatch } from '../../page/render-swatch';
 
 const ABCDEF = /(rgb\(171, 205, 239\)|#ABCDEF|#abcdef)/;
 const black = /(rgb\(0, 0, 0\)|#000000)/;
 
-describe('renderSwatch with text', () => {
+describe('renderSwatch', () => {
     test('should hide if no color is given', () => {
         const element = document.createElement('div');
         renderSwatch({ colorTextType: 'HEX', color: null }, element);

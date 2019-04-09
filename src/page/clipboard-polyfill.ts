@@ -1,5 +1,5 @@
 export function writeText(str: string) {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
         let success = false;
         document.addEventListener(
             'copy',

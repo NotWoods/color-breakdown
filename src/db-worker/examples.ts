@@ -1,7 +1,7 @@
 import { PaletteEntry } from '../entry';
 
 const white = '#FFFFFF';
-const black = '#FFFFFF';
+const black = '#000000';
 
 const example1: PaletteEntry = {
     timestamp: 1,
