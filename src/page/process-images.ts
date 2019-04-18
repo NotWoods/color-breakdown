@@ -18,8 +18,8 @@ export async function dataFromImageUrl({
 
     // This isn't exported directly by node-vibrant, so pull it out here.
     type Swatch = (typeof palette)['Muted'];
-    function toSwatch(vibrantSwatch: Swatch): ColorSwatch | null {
-        if (!vibrantSwatch) return null;
+    function toSwatch(vibrantSwatch: Swatch): ColorSwatch | undefined {
+        if (!vibrantSwatch) return undefined;
         return {
             color: vibrantSwatch.getHex(),
             textColor: vibrantSwatch.getBodyTextColor(),
@@ -44,9 +44,9 @@ export async function dataFromImageUrl({
  * Filters the files to only include images, then creates an object URL for
  * each and uses node-vibrant to process them.
  */
-export function paletteFromImages(files: FileList | null) {
+export function paletteFromImages(files: FileList | null | undefined) {
     const imageUrls = Array.from(files || [])
-        .filter(file => file.type.match(/^image\//) != null)
+        .filter(file => file.type.match(/^image\//) != undefined)
         .map(file => ({ name: file.name, url: URL.createObjectURL(file) }));
 
     return Promise.all(imageUrls.map(dataFromImageUrl));

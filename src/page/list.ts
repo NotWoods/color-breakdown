@@ -18,7 +18,7 @@ export function addPalettesToList(props: {
             child,
             template.querySelector<HTMLImageElement>('img.preview')!,
         );
-        renderPalette({ ...child, colorTextType: null }, template);
+        renderPalette({ ...child, colorTextType: undefined }, template);
 
         const link = template.querySelector('a')!;
         link.id = child.timestamp.toString();
@@ -38,8 +38,8 @@ export function deletePalettesFromList(props: {
 }) {
     props.timestamps.forEach(timestamp => {
         const link = document.querySelector(`#${timestamp}`);
-        const li = link != null ? link.parentElement : null;
-        if (li != null) {
+        const li = link && link.parentElement;
+        if (li) {
             LIST_ELEMENT.removeChild(li);
         }
     });

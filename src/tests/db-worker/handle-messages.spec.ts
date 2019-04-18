@@ -1,7 +1,7 @@
 const deleteItemFromDB = jest.fn().mockReturnValue(Promise.resolve());
 const loadItemFromDB = jest.fn().mockReturnValue(Promise.resolve({}));
 const loadHistoryFromDB = jest.fn().mockReturnValue(Promise.resolve());
-const saveItemsToDB = jest.fn().mockReturnValue(Promise.resolve([null]));
+const saveItemsToDB = jest.fn().mockReturnValue(Promise.resolve([undefined]));
 jest.mock('../../db-worker/db', () => ({
     deleteItemFromDB,
     loadItemFromDB,
@@ -58,7 +58,7 @@ describe('handleMessage', () => {
     });
 
     test('should call loadHistoryFromDB', async () => {
-        await handleMessage({ type: 'LOAD', payload: null }, jest.fn());
+        await handleMessage({ type: 'LOAD', payload: undefined }, jest.fn());
         expect(loadHistoryFromDB).toBeCalledWith(
             expect.any(Function),
             expect.any(Function),

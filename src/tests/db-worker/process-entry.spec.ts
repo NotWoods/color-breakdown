@@ -39,8 +39,8 @@ describe('blobToDataUri', () => {
 });
 
 describe('processEntry', () => {
-    test('should return null', () => {
-        expect(processEntry(null)).toBeNull();
+    test('should return undefined', () => {
+        expect(processEntry(undefined)).toBeUndefined();
     });
 
     test('should return object with object url', () => {

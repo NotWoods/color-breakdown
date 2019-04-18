@@ -6,7 +6,7 @@ import { renderPalette } from './render-palette';
 
 interface DisplayMainPaletteProps {
     /** Data to display on the main palette */
-    readonly data: PaletteEntry | null;
+    readonly data?: PaletteEntry;
     /**
      * True if this image was loaded when the document loaded.
      * Changes back button behavior so that it doesn't navigate away
@@ -38,7 +38,7 @@ function closeMainPalette() {
 }
 
 /** Stores current select change listener so it can be replaced later */
-let listener: (() => void) | null = null;
+let listener: (() => void) | undefined = undefined;
 
 export function displayMainPalette(props: DisplayMainPaletteProps) {
     if (listener) {
@@ -49,7 +49,7 @@ export function displayMainPalette(props: DisplayMainPaletteProps) {
     displayBackButton(props);
 
     // Show the selected image or a placeholder
-    if (props.data != null) {
+    if (props.data) {
         function render() {
             renderPalette(
                 { ...props.data!, colorTextType },
@@ -69,12 +69,15 @@ export function displayMainPalette(props: DisplayMainPaletteProps) {
             history.replaceState(true, title, `#${props.data.timestamp}`);
         }
     } else {
-        renderPalette({ colors: null, colorTextType }, MAIN_PALETTE_ELEMENT);
+        renderPalette(
+            { colors: undefined, colorTextType },
+            MAIN_PALETTE_ELEMENT,
+        );
         renderImage(
             { imgSrc: 'img/placeholder.svg', name: 'No image' },
             MAIN_PALETTE_IMAGE,
         );
-        listener = null;
+        listener = undefined;
         closeMainPalette();
     }
 }

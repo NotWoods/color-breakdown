@@ -36,15 +36,15 @@ export function blobToDataUri(blob: Blob) {
 }
 
 export function processEntry(entry: HistoryEntry): PaletteEntry;
-export function processEntry(entry: null | undefined): null;
+export function processEntry(entry: undefined): undefined;
 export function processEntry(
-    entry: HistoryEntry | null | undefined,
-): PaletteEntry | null;
+    entry: HistoryEntry | undefined,
+): PaletteEntry | undefined;
 export function processEntry(
-    entry: HistoryEntry | null | undefined,
-): PaletteEntry | null {
-    if (entry == null) {
-        return null;
+    entry: HistoryEntry | undefined,
+): PaletteEntry | undefined {
+    if (entry == undefined) {
+        return undefined;
     }
     const timestamp = entry.id as number;
     const imgBlob = dataUriToBlob(entry.imgSrc);

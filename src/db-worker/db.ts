@@ -36,19 +36,19 @@ export const dbPromise = openDB<ColorBreakdownDBSchema>('history-store', 2, {
  */
 export async function loadItemFromDB(
     timestamp: number,
-): Promise<PaletteEntry | null> {
+): Promise<PaletteEntry | undefined> {
     const db = await dbPromise;
     if (timestamp < 10) {
         const info = await db.get('example', timestamp);
-        const hidden = info != null ? info.hidden : false;
-        return hidden ? null : examples[timestamp] || null;
+        const hidden = info != undefined ? info.hidden : false;
+        return hidden ? undefined : examples[timestamp] || undefined;
     } else {
         const item = await db.get('history', timestamp);
         return processEntry(item);
     }
 }
 
-export async function openFirstItem(): Promise<PaletteEntry | null> {
+export async function openFirstItem(): Promise<PaletteEntry | undefined> {
     const db = await dbPromise;
     const tx = await db.transaction(['history', 'example']);
 
@@ -64,7 +64,7 @@ export async function openFirstItem(): Promise<PaletteEntry | null> {
     const visibleExample = Object.values(examples).find(
         example => !hiddenExamples.has(example.timestamp),
     );
-    return visibleExample || null;
+    return visibleExample || undefined;
 }
 
 /**

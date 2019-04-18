@@ -6,13 +6,13 @@ const black = /(rgb\(0, 0, 0\)|#000000)/;
 describe('renderSwatch', () => {
     test('should hide if no color is given', () => {
         const element = document.createElement('div');
-        renderSwatch({ colorTextType: 'HEX', color: null }, element);
+        renderSwatch({ colorTextType: 'HEX', color: undefined }, element);
         expect(element.hidden).toBe(true);
     });
 
     test('should hide swatch with no text if no color is given', () => {
         const element = document.createElement('div');
-        renderSwatch({ colorTextType: null, color: null }, element);
+        renderSwatch({ colorTextType: undefined, color: undefined }, element);
         expect(element.hidden).toBe(true);
     });
 
@@ -21,7 +21,7 @@ describe('renderSwatch', () => {
 
         renderSwatch(
             {
-                colorTextType: null,
+                colorTextType: undefined,
                 color: { color: '#ABCDEF', textColor: '#000000' },
             },
             element,

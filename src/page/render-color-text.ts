@@ -7,9 +7,9 @@ interface ColorTextProps {
 }
 
 // Helpers from Vibrant.Util
-function hexToRgb(hex: string): Vec3 | null {
+function hexToRgb(hex: string): Vec3 | undefined {
     let match = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    if (match == null) return null;
+    if (match == undefined) return undefined;
 
     const vector = [match[1], match[2], match[3]].map(s => parseInt(s, 16));
     return vector as Vec3;
@@ -56,7 +56,7 @@ export function renderColorText(props: ColorTextProps) {
         case 'RGB':
         case 'HSL':
             const rgb = hexToRgb(props.hexColor);
-            if (rgb == null) {
+            if (rgb == undefined) {
                 return props.hexColor;
             }
             const [r, g, b] = rgb;

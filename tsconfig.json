@@ -6,7 +6,7 @@
         "module": "esnext",
         "allowJs": true,
         "sourceMap": true,
-        "outDir": "lib",
+        "noEmit": true,
         "importHelpers": true,
         "pretty": true,
         "lib": ["webworker", "dom", "es2015", "es2017.object"],

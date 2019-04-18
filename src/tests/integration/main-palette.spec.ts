@@ -22,7 +22,7 @@ BACK_BUTTON.addEventListener('click', handleBackButton);
 describe('Main Palette Integration Test', () => {
     test('render placeholder', () => {
         displayMainPalette({
-            data: null,
+            data: undefined,
             firstLoad: true,
             updateHash: false,
         });

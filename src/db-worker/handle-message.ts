@@ -16,7 +16,7 @@ interface SaveAction {
 
 interface LoadAction {
     readonly type: 'LOAD';
-    readonly payload: null;
+    readonly payload: undefined;
 }
 
 interface OpenAction {
@@ -69,7 +69,7 @@ export async function handleMessage(
                 );
                 return;
             case 'OPEN':
-                let entry: PaletteEntry | null = null;
+                let entry: PaletteEntry | undefined = undefined;
                 if (!Number.isNaN(action.payload.timestamp)) {
                     entry = await loadItemFromDB(action.payload.timestamp);
                 }

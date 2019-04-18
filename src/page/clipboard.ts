@@ -6,8 +6,8 @@ const ClipboardModule = navigator.clipboard || import('./clipboard-polyfill');
  */
 export async function copySwatchText(event: Event) {
     const btn = (event.target as Element).closest('button.swatch');
-    const span = btn != null ? btn.querySelector('.swatch-text') : null;
-    const textContent = span != null ? span.textContent : null;
+    const span = btn && btn.querySelector('.swatch-text');
+    const textContent = span && span.textContent;
 
     if (textContent) {
         const clipboard = await ClipboardModule;

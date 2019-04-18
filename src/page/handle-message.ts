@@ -15,7 +15,7 @@ interface RemoveAction {
 interface DisplayAction {
     readonly type: 'DISPLAY';
     readonly payload: {
-        readonly entry: PaletteEntry | null;
+        readonly entry?: PaletteEntry;
         readonly firstLoad: boolean;
         readonly updateHash: boolean;
     };

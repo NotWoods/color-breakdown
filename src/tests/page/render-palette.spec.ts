@@ -10,7 +10,7 @@ describe('renderPalette', () => {
         palette.render({ colorTextType: 'HEX', colors: {} });
         palette.forEach(element => expect(element.hidden).toBe(true));
 
-        palette.render({ colorTextType: null, colors: null });
+        palette.render({ colorTextType: undefined, colors: undefined });
         palette.forEach(element => expect(element.hidden).toBe(true));
     });
 
@@ -18,7 +18,7 @@ describe('renderPalette', () => {
         const palette = createPalette();
 
         palette.render({
-            colorTextType: null,
+            colorTextType: undefined,
             colors: {
                 vibrant: { color: '#ABCDEF', textColor: '#000000' },
             },

@@ -5,6 +5,8 @@ import { handleMessage } from './handle-message';
 import { paletteFromImages } from './process-images';
 import { handleBackButton } from './main-palette';
 
+const PASSIVE: AddEventListenerOptions = { passive: true };
+
 const dbWorker = new Worker('js/db-worker.js');
 function postMessage(action: WorkerAction) {
     dbWorker.postMessage(action);
@@ -37,7 +39,7 @@ document
 // Close palette when back is clicked
 document
     .querySelector('#back')!
-    .addEventListener('click', handleBackButton, { passive: true });
+    .addEventListener('click', handleBackButton, PASSIVE);
 
 // Delete current palette when delete is clicked
 document.querySelector('#delete')!.addEventListener(
@@ -46,25 +48,29 @@ document.querySelector('#delete')!.addEventListener(
         const timestamp = parseInt(location.hash.slice(1), 10);
         postMessage({ type: 'DELETE', payload: { timestamp, current: true } });
     },
-    { passive: true },
+    PASSIVE,
 );
 
 // Copy the text of a swatch on click
 document
     .querySelector('.palette-colors')!
-    .addEventListener('click', copySwatchText, { passive: true });
+    .addEventListener('click', copySwatchText, PASSIVE);
 
 // Save images when the add button is used.
 form.addEventListener('submit', evt => {
     evt.preventDefault();
     saveImages();
 });
-fileInput.addEventListener('change', saveImages, { passive: true });
+fileInput.addEventListener('change', saveImages, PASSIVE);
 
 // File input focus polyfill for Firefox
-fileInput.addEventListener('focus', () => fileInput.classList.add('focus'), {
-    passive: true,
-});
-fileInput.addEventListener('blur', () => fileInput.classList.remove('focus'), {
-    passive: true,
-});
+fileInput.addEventListener(
+    'focus',
+    () => fileInput.classList.add('focus'),
+    PASSIVE,
+);
+fileInput.addEventListener(
+    'blur',
+    () => fileInput.classList.remove('focus'),
+    PASSIVE,
+);

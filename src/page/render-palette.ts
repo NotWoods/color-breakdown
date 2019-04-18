@@ -3,8 +3,8 @@ import { ColorPalette } from '../color-interfaces';
 import { renderSwatch } from './render-swatch';
 
 export interface PaletteProps {
-    readonly colors: ColorPalette | null;
-    readonly colorTextType: ColorTextType | null;
+    readonly colors?: ColorPalette;
+    readonly colorTextType?: ColorTextType;
 }
 
 export const COLOR_CLASSES: ReadonlyMap<keyof ColorPalette, string> = new Map(
@@ -30,7 +30,7 @@ export function renderPalette(props: PaletteProps, target: ParentNode) {
         renderSwatch(
             {
                 colorTextType,
-                color: colors != null ? colors[propName] : null,
+                color: colors != undefined ? colors[propName] : undefined,
             },
             swatchTarget,
         );

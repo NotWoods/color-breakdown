@@ -1,3 +1,4 @@
+// @ts-check
 import { readFileSync } from 'fs';
 import typescript from 'rollup-plugin-typescript';
 import resolve from 'rollup-plugin-node-resolve';
@@ -13,6 +14,7 @@ const commitHash = () => {
     }
 };
 
+/** @type {import('rollup').OptionsPaths} */
 const paths = {
     'node-vibrant': '../lib/node-vibrant/vibrant.js',
 };

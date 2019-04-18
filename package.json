@@ -7,10 +7,9 @@
         "test": "jest",
         "copy-scripts": "cp node_modules/pwacompat/pwacompat.min.js public/lib/pwacompat.js && cp node_modules/shimport/index.js public/lib/shimport.js",
         "build": "git rev-parse HEAD > .commithash && rollup -c",
-        "lint:js": "prettier \"src/**/*.ts\" --parser typescript",
-        "lint:css": "prettier \"public/css/**/*.css\" --parser css",
-        "lint": "tsc --noEmit && npm run lint:js -- --write && npm run lint:css -- --write",
-        "lint:check": "tsc --noEmit && npm run lint:js -- --list-different && npm run lint:css -- --list-different",
+        "lint:files": "prettier \"src/**/*.ts\" \"public/css/**/*.css\" \"public/*.html\"",
+        "lint": "tsc && npm run lint:files -- --write",
+        "lint:check": "tsc && npm run lint:files -- --check",
         "start": "cd public && http-server"
     },
     "author": "Tiger Oakes <contact@tigeroakes.com> (https://tigeroakes.com)",

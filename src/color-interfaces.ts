@@ -7,10 +7,10 @@ export interface ColorSwatch {
 }
 
 export interface ColorPalette {
-    readonly vibrant?: ColorSwatch | null;
-    readonly darkVibrant?: ColorSwatch | null;
-    readonly lightVibrant?: ColorSwatch | null;
-    readonly muted?: ColorSwatch | null;
-    readonly darkMuted?: ColorSwatch | null;
-    readonly lightMuted?: ColorSwatch | null;
+    readonly vibrant?: ColorSwatch;
+    readonly darkVibrant?: ColorSwatch;
+    readonly lightVibrant?: ColorSwatch;
+    readonly muted?: ColorSwatch;
+    readonly darkMuted?: ColorSwatch;
+    readonly lightMuted?: ColorSwatch;
 }
