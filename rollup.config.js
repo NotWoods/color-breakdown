@@ -28,6 +28,7 @@ const pageConfig = {
         paths,
         sourcemap: true,
     },
+    external: ['../lib/node-vibrant/vibrant.js'],
     plugins: [typescript(), replace(paths), terser()],
 };
 
