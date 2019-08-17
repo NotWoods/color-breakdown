@@ -1,3 +1,5 @@
+import hash from 'consts:hash';
+
 const resources = [
     './',
     'index.html',
@@ -21,7 +23,7 @@ const resources = [
     'lib/shimport.js',
 ];
 
-const CACHE = 'color-breakdown-HASH';
+const CACHE = `color-breakdown-${hash}`;
 
 export declare var self: ServiceWorkerGlobalScope;
 
