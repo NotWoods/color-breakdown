@@ -23,7 +23,7 @@
         "prettier": "^1.18.2",
         "pwacompat": "^2.0.9",
         "rollup": "^1.19.4",
-        "rollup-plugin-commonjs": "^9.3.4",
+        "rollup-plugin-commonjs": "^10.1.0",
         "rollup-plugin-consts": "^1.0.1",
         "rollup-plugin-node-resolve": "^5.2.0",
         "rollup-plugin-replace": "^2.2.0",
