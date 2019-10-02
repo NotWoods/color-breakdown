@@ -16,7 +16,7 @@
     "license": "MIT",
     "devDependencies": {
         "@types/jest": "^24.0.17",
-        "husky": "^3.0.3",
+        "husky": "^3.0.7",
         "idb": "^4.0.4",
         "jest": "^24.9.0",
         "node-vibrant": "^3.0.0",
