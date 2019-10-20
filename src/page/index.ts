@@ -74,3 +74,8 @@ fileInput.addEventListener(
     () => fileInput.classList.remove('focus'),
     PASSIVE,
 );
+
+import('insights-js').then(insights => {
+    insights.init('BRUajm5Rl0FGGGhk');
+    insights.trackPages();
+});
