@@ -32,7 +32,13 @@ const pageConfig = {
         sourcemap: true,
     },
     external: ['../lib/node-vibrant/vibrant.js'],
-    plugins: [typescript(), consts({ worker_url }), replace(paths), terser()],
+    plugins: [
+        typescript(),
+        resolve(),
+        consts({ worker_url }),
+        replace(paths),
+        terser(),
+    ],
 };
 
 /** @type {import('rollup').RollupOptions} */
