@@ -23,7 +23,7 @@
         "node-vibrant": "^3.0.0",
         "prettier": "^1.18.2",
         "pwacompat": "^2.0.9",
-        "rollup": "^1.25.0",
+        "rollup": "^1.26.2",
         "rollup-plugin-commonjs": "^10.1.0",
         "rollup-plugin-consts": "^1.0.1",
         "rollup-plugin-node-resolve": "^5.2.0",
