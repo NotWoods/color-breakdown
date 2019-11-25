@@ -52,6 +52,7 @@
         "proseWrap": "always"
     },
     "dependencies": {
+        "rollup-plugin-node-resolve": "^5.2.0",
         "rollup-plugin-resolve": "0.0.1-predev.1"
     }
 }
