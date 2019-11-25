@@ -21,7 +21,7 @@
         "idb": "^4.0.5",
         "insights-js": "^1.2.9",
         "jest": "^24.9.0",
-        "node-vibrant": "^3.0.0",
+        "node-vibrant": "^3.1.4",
         "prettier": "^1.19.1",
         "pwacompat": "^2.0.10",
         "rollup": "^1.27.5",
