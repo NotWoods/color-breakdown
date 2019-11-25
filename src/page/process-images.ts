@@ -17,7 +17,7 @@ export async function dataFromImageUrl({
     const palette = await Vibrant.from(url).getPalette();
 
     // This isn't exported directly by node-vibrant, so pull it out here.
-    type Swatch = (typeof palette)['Muted'];
+    type Swatch = typeof palette['Muted'];
     function toSwatch(vibrantSwatch: Swatch): ColorSwatch | undefined {
         if (!vibrantSwatch) return undefined;
         return {
