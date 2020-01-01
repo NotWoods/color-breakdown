@@ -33,7 +33,7 @@
         "travis-size-report": "^1.1.0",
         "ts-jest": "^24.2.0",
         "tslib": "^1.10.0",
-        "typescript": "^3.7.2"
+        "typescript": "^3.7.4"
     },
     "jest": {
         "preset": "ts-jest/presets/js-with-ts",
