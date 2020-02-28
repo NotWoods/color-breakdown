@@ -2,7 +2,7 @@ import { DBSchema, openDB } from 'idb';
 import { HistoryEntry, PaletteEntry } from '../entry';
 import { revokeIfObjectUrl } from '../revoke-object-url';
 import { blobToDataUri, processEntry } from './process-entry';
-import { examples } from './examples';
+import { EXAMPLES } from './examples';
 
 interface ColorBreakdownDBSchema extends DBSchema {
     history: {
@@ -40,8 +40,8 @@ export async function loadItemFromDB(
     const db = await dbPromise;
     if (timestamp < 10) {
         const info = await db.get('example', timestamp);
-        const hidden = info != undefined ? info.hidden : false;
-        return hidden ? undefined : examples[timestamp] || undefined;
+        const hidden = info?.hidden || false;
+        return hidden ? undefined : EXAMPLES.get(timestamp) || undefined;
     } else {
         const item = await db.get('history', timestamp);
         return processEntry(item);
@@ -61,7 +61,7 @@ export async function openFirstItem(): Promise<PaletteEntry | undefined> {
     const hiddenExamples = new Set(
         exampleEntries.filter(item => item.hidden).map(item => item.id),
     );
-    const visibleExample = Object.values(examples).find(
+    const visibleExample = Array.from(EXAMPLES.values()).find(
         example => !hiddenExamples.has(example.timestamp),
     );
     return visibleExample || undefined;
@@ -84,8 +84,7 @@ export async function deleteItemFromDB(timestamp: number) {
  * @param callback Called on each iteration.
  */
 export async function loadHistoryFromDB(
-    exampleCb: (id: number) => void,
-    historyCb: (entry: PaletteEntry) => void,
+    callback: (entry: PaletteEntry[]) => void,
 ) {
     const db = await dbPromise;
     const tx = await db.transaction(['history', 'example']);
@@ -93,21 +92,20 @@ export async function loadHistoryFromDB(
     await Promise.all([
         tx
             .objectStore('example')
-            .openCursor()
-            .then(async cursor => {
-                while (cursor) {
-                    if (cursor.value.hidden) {
-                        exampleCb(cursor.key);
-                    }
-                    cursor = await cursor.continue();
+            .getAll()
+            .then(async deletedExamples => {
+                const examples = new Map(EXAMPLES);
+                for (const { id } of deletedExamples) {
+                    examples.delete(id);
                 }
+                callback(Array.from(examples.values()));
             }),
         tx
             .objectStore('history')
             .openCursor()
             .then(async cursor => {
                 while (cursor) {
-                    historyCb(processEntry(cursor.value)!);
+                    callback([processEntry(cursor.value)!]);
                     cursor = await cursor.continue();
                 }
             }),

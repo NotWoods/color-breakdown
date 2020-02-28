@@ -1,22 +1,14 @@
 import { ColorTextType } from './render-color-text';
 import { ColorPalette } from '../color-interfaces';
 import { renderSwatch } from './render-swatch';
+import { COLOR_CLASSES } from './props/palette';
 
 export interface PaletteProps {
     readonly colors?: ColorPalette;
     readonly colorTextType?: ColorTextType;
 }
 
-export const COLOR_CLASSES: ReadonlyMap<keyof ColorPalette, string> = new Map(
-    Object.entries({
-        vibrant: 'vibrant',
-        darkVibrant: 'dark-vibrant',
-        lightVibrant: 'light-vibrant',
-        muted: 'muted',
-        darkMuted: 'dark-muted',
-        lightMuted: 'light-muted',
-    }) as [keyof ColorPalette, string][],
-);
+export { COLOR_CLASSES };
 
 /**
  * Renders a palette - the associated colors of an image.

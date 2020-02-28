@@ -1,5 +1,5 @@
 import { ColorSwatch } from '../color-interfaces';
-import { ColorTextType, renderColorText } from './render-color-text';
+import { ColorTextType, getColorText } from './props/color-text';
 
 interface SwatchProps {
     readonly color?: ColorSwatch;
@@ -19,12 +19,10 @@ export function renderSwatch(props: SwatchProps, target: HTMLElement) {
         target.style.backgroundColor = backgroundColor;
         if (isTextSwatch) {
             target.style.color = textColor;
-            target.querySelector('.swatch-text')!.textContent = renderColorText(
-                {
-                    colorTextType: props.colorTextType!,
-                    hexColor: backgroundColor,
-                },
-            );
+            target.querySelector('.swatch-text')!.textContent = getColorText({
+                colorTextType: props.colorTextType!,
+                hexColor: backgroundColor,
+            });
         }
     }
 }

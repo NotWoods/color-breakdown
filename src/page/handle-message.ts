@@ -1,5 +1,5 @@
 import { PaletteEntry } from '../entry';
-import { addPalettesToList, deletePalettesFromList } from './list';
+import { List } from './list';
 import { displayMainPalette } from './main-palette';
 
 interface AddAction {
@@ -28,14 +28,16 @@ interface ErrorAction {
 
 export type UiAction = AddAction | RemoveAction | DisplayAction | ErrorAction;
 
+const list = new List();
+
 export function handleMessage(action: UiAction) {
     console.log(action.type, action.payload);
     switch (action.type) {
         case 'ADD':
-            addPalettesToList({ items: action.payload });
+            list.addPalettes(action.payload);
             return;
         case 'REMOVE':
-            deletePalettesFromList({ timestamps: action.payload });
+            list.deletePalettes(action.payload);
             return;
         case 'DISPLAY':
             displayMainPalette({

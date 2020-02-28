@@ -19,6 +19,7 @@ const commitHash = () => {
 const paths = {
     'node-vibrant': '../lib/node-vibrant/vibrant.js',
     'insights-js': '../lib/insights.js',
+    preact: 'https://cdn.pika.dev/preact@^10.3.0',
 };
 
 const worker_url = 'js/db-worker.js';

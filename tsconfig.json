@@ -19,6 +19,9 @@
 
         /* Module Resolution Options */
         "moduleResolution": "node",
-        "esModuleInterop": true
+        "esModuleInterop": true,
+
+        "jsx": "react",
+        "jsxFactory": "h"
     }
 }
