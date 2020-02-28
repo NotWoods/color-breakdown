@@ -19,10 +19,10 @@ export function renderSwatch(props: SwatchProps, target: HTMLElement) {
         target.style.backgroundColor = backgroundColor;
         if (isTextSwatch) {
             target.style.color = textColor;
-            target.querySelector('.swatch-text')!.textContent = getColorText({
-                colorTextType: props.colorTextType!,
-                hexColor: backgroundColor,
-            });
+            target.querySelector('.swatch-text')!.textContent = getColorText(
+                props.colorTextType!,
+                backgroundColor,
+            );
         }
     }
 }

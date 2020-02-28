@@ -1,11 +1,6 @@
 type Vec3 = [number, number, number];
 export type ColorTextType = 'HEX' | 'RGB' | 'HSL';
 
-interface ColorTextProps {
-    readonly colorTextType: ColorTextType;
-    readonly hexColor: string;
-}
-
 // Helpers from Vibrant.Util
 function hexToRgb(hex: string): Vec3 | undefined {
     let match = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -51,22 +46,22 @@ function rgbToHsl(r: number, g: number, b: number): Vec3 {
  * Renders the text representing a color. Formats based on the given color
  * text type.
  */
-export function getColorText(props: ColorTextProps) {
-    switch (props.colorTextType) {
+export function getColorText(colorTextType: ColorTextType, hexColor: string) {
+    switch (colorTextType) {
         case 'RGB':
         case 'HSL':
-            const rgb = hexToRgb(props.hexColor);
+            const rgb = hexToRgb(hexColor);
             if (rgb == undefined) {
-                return props.hexColor;
+                return hexColor;
             }
             const [r, g, b] = rgb;
-            if (props.colorTextType === 'RGB') {
+            if (colorTextType === 'RGB') {
                 return `R${r} G${g} B${b}`;
             }
             const [h, s, l] = rgbToHsl(r, g, b).map(n => Math.round(n * 100));
             return `H${h} S${s} L${l}`;
         case 'HEX':
         default:
-            return props.hexColor;
+            return hexColor;
     }
 }
