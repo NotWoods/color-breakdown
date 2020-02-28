@@ -19,7 +19,7 @@
         "@rollup/plugin-replace": "^2.2.1",
         "@types/jest": "^25.1.1",
         "husky": "^3.1.0",
-        "idb": "^4.0.5",
+        "idb": "^5.0.1",
         "insights-js": "^1.2.9",
         "jest": "^24.9.0",
         "node-vibrant": "^3.0.0",
