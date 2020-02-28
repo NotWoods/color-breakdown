@@ -6,10 +6,19 @@ import { paletteFromImages } from './process-images';
 import { handleBackButton } from './main-palette';
 
 const PASSIVE: AddEventListenerOptions = { passive: true };
+const HASH_PREFIX = '#i';
 
 const dbWorker = new Worker('js/db-worker.js');
 function postMessage(action: WorkerAction) {
     dbWorker.postMessage(action);
+}
+
+function getOpenItem() {
+    if (location.hash.startsWith(HASH_PREFIX)) {
+        return parseInt(location.hash.slice(HASH_PREFIX.length), 10);
+    } else {
+        return undefined;
+    }
 }
 
 const form = document.querySelector<HTMLFormElement>('#new-palette-entry')!;
@@ -24,8 +33,10 @@ async function saveImages() {
 loadFromHash(true);
 window.addEventListener('hashchange', () => loadFromHash(false));
 function loadFromHash(firstLoad: boolean) {
-    const timestamp = parseInt(location.hash.slice(1), 10);
-    postMessage({ type: 'OPEN', payload: { timestamp, firstLoad } });
+    const timestamp = getOpenItem();
+    if (timestamp != undefined) {
+        postMessage({ type: 'OPEN', payload: { timestamp, firstLoad } });
+    }
 }
 
 // Handle messages from DB worker
@@ -45,8 +56,13 @@ document
 document.querySelector('#delete')!.addEventListener(
     'click',
     () => {
-        const timestamp = parseInt(location.hash.slice(1), 10);
-        postMessage({ type: 'DELETE', payload: { timestamp, current: true } });
+        const timestamp = getOpenItem();
+        if (timestamp != undefined) {
+            postMessage({
+                type: 'DELETE',
+                payload: { timestamp, current: true },
+            });
+        }
     },
     PASSIVE,
 );
