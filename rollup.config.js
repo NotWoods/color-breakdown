@@ -3,7 +3,6 @@ import { readFileSync } from 'fs';
 import commonjs from '@rollup/plugin-commonjs';
 import consts from 'rollup-plugin-consts';
 import resolve from 'rollup-plugin-node-resolve';
-import replace from '@rollup/plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript';
 
@@ -29,11 +28,11 @@ const pageConfig = {
     output: {
         dir: 'public/js/',
         format: 'esm',
-        paths,
         sourcemap: true,
+        paths,
     },
-    external: Object.values(paths),
-    plugins: [typescript(), consts({ worker_url }), replace(paths), terser()],
+    external: Object.keys(paths),
+    plugins: [typescript(), consts({ worker_url }), terser()],
 };
 
 /** @type {import('rollup').RollupOptions} */

@@ -153,6 +153,7 @@ function durationInterval(durationMs, prefix) {
 }
 
 var parameters = /*#__PURE__*/Object.freeze({
+  __proto__: null,
   locale: locale,
   screenType: screenType,
   referrer: referrer,
