@@ -40,7 +40,7 @@ function loadFromHash(firstLoad: boolean) {
 }
 
 // Handle messages from DB worker
-dbWorker.addEventListener('message', evt => handleMessage(evt.data));
+dbWorker.addEventListener('message', (evt) => handleMessage(evt.data));
 
 // Revoke object URLs on the main palette image on load
 document
@@ -73,7 +73,7 @@ document
     .addEventListener('click', copySwatchText, PASSIVE);
 
 // Save images when the add button is used.
-form.addEventListener('submit', evt => {
+form.addEventListener('submit', (evt) => {
     evt.preventDefault();
     saveImages();
 });
@@ -91,7 +91,7 @@ fileInput.addEventListener(
     PASSIVE,
 );
 
-import('insights-js').then(insights => {
+import('insights-js').then((insights) => {
     insights.init('BRUajm5Rl0FGGGhk');
     insights.trackPages();
 });

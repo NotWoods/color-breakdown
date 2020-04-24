@@ -46,8 +46,8 @@ export async function dataFromImageUrl({
  */
 export function paletteFromImages(files: FileList | null | undefined) {
     const imageUrls = Array.from(files || [])
-        .filter(file => file.type.match(/^image\//) != undefined)
-        .map(file => ({ name: file.name, url: URL.createObjectURL(file) }));
+        .filter((file) => file.type.match(/^image\//) != undefined)
+        .map((file) => ({ name: file.name, url: URL.createObjectURL(file) }));
 
     return Promise.all(imageUrls.map(dataFromImageUrl));
 }

@@ -8,10 +8,10 @@ describe('renderPalette', () => {
         const palette = createPalette();
 
         palette.render({ colorTextType: 'HEX', colors: {} });
-        palette.forEach(element => expect(element.hidden).toBe(true));
+        palette.forEach((element) => expect(element.hidden).toBe(true));
 
         palette.render({ colorTextType: undefined, colors: undefined });
-        palette.forEach(element => expect(element.hidden).toBe(true));
+        palette.forEach((element) => expect(element.hidden).toBe(true));
     });
 
     test('should not render text if no text type is given', () => {

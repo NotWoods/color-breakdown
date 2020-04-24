@@ -64,8 +64,8 @@ export async function handleMessage(
                 return;
             case 'LOAD':
                 await loadHistoryFromDB(
-                    id => postMessage({ type: 'REMOVE', payload: [id] }),
-                    entry => postMessage({ type: 'ADD', payload: [entry] }),
+                    (id) => postMessage({ type: 'REMOVE', payload: [id] }),
+                    (entry) => postMessage({ type: 'ADD', payload: [entry] }),
                 );
                 return;
             case 'OPEN':

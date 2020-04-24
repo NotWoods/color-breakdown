@@ -15,7 +15,7 @@ document.body.appendChild(MAIN_PALETTE.element);
 document.body.appendChild(BACK_BUTTON);
 
 import { displayMainPalette, handleBackButton } from '../../page/main-palette';
-import { examples } from '../../db-worker/examples';
+import { EXAMPLES } from '../../db-worker/examples';
 
 BACK_BUTTON.addEventListener('click', handleBackButton);
 
@@ -36,12 +36,12 @@ describe('Main Palette Integration Test', () => {
         expect(BACK_BUTTON.dataset.firstload).toBeDefined();
 
         expect(MAIN_PALETTE.element.classList.contains('is-open')).toBe(false);
-        MAIN_PALETTE.forEach(swatch => expect(swatch.hidden).toBe(true));
+        MAIN_PALETTE.forEach((swatch) => expect(swatch.hidden).toBe(true));
     });
 
     test('render example', () => {
         displayMainPalette({
-            data: examples[1],
+            data: EXAMPLES.get(1),
             firstLoad: false,
             updateHash: true,
         });
@@ -56,7 +56,7 @@ describe('Main Palette Integration Test', () => {
         expect(BACK_BUTTON.dataset.firstload).not.toBeDefined();
 
         expect(MAIN_PALETTE.element.classList.contains('is-open')).toBe(true);
-        MAIN_PALETTE.forEach(swatch => expect(swatch.hidden).toBe(false));
+        MAIN_PALETTE.forEach((swatch) => expect(swatch.hidden).toBe(false));
     });
 
     test.skip('change displayed text', async () => {

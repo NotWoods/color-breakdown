@@ -36,7 +36,7 @@ export function addPalettesToList(props: {
 export function deletePalettesFromList(props: {
     timestamps: ReadonlyArray<number>;
 }) {
-    props.timestamps.forEach(timestamp => {
+    props.timestamps.forEach((timestamp) => {
         const link = document.querySelector(`#i${timestamp}`);
         const li = link?.parentElement;
         if (li) {

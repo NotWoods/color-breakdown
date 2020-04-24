@@ -11,7 +11,7 @@ function hexToRgb(hex: string): Vec3 | undefined {
     let match = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     if (match == undefined) return undefined;
 
-    const vector = [match[1], match[2], match[3]].map(s => parseInt(s, 16));
+    const vector = [match[1], match[2], match[3]].map((s) => parseInt(s, 16));
     return vector as Vec3;
 }
 function rgbToHsl(r: number, g: number, b: number): Vec3 {
@@ -63,7 +63,7 @@ export function renderColorText(props: ColorTextProps) {
             if (props.colorTextType === 'RGB') {
                 return `R${r} G${g} B${b}`;
             }
-            const [h, s, l] = rgbToHsl(r, g, b).map(n => Math.round(n * 100));
+            const [h, s, l] = rgbToHsl(r, g, b).map((n) => Math.round(n * 100));
             return `H${h} S${s} L${l}`;
         case 'HEX':
         default:

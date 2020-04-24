@@ -2,7 +2,7 @@ import { DBSchema, openDB } from 'idb';
 import { HistoryEntry, PaletteEntry } from '../entry';
 import { revokeIfObjectUrl } from '../revoke-object-url';
 import { blobToDataUri, processEntry } from './process-entry';
-import { examples } from './examples';
+import { EXAMPLES } from './examples';
 
 interface ColorBreakdownDBSchema extends DBSchema {
     history: {
@@ -40,8 +40,8 @@ export async function loadItemFromDB(
     const db = await dbPromise;
     if (timestamp < 10) {
         const info = await db.get('example', timestamp);
-        const hidden = info != undefined ? info.hidden : false;
-        return hidden ? undefined : examples[timestamp] || undefined;
+        const hidden = info?.hidden || false;
+        return hidden ? undefined : EXAMPLES.get(timestamp) || undefined;
     } else {
         const item = await db.get('history', timestamp);
         return processEntry(item);
@@ -59,10 +59,10 @@ export async function openFirstItem(): Promise<PaletteEntry | undefined> {
 
     const exampleEntries = await tx.objectStore('example').getAll();
     const hiddenExamples = new Set(
-        exampleEntries.filter(item => item.hidden).map(item => item.id),
+        exampleEntries.filter((item) => item.hidden).map((item) => item.id),
     );
-    const visibleExample = Object.values(examples).find(
-        example => !hiddenExamples.has(example.timestamp),
+    const visibleExample = Array.from(EXAMPLES.values()).find(
+        (example) => !hiddenExamples.has(example.timestamp),
     );
     return visibleExample || undefined;
 }
@@ -94,7 +94,7 @@ export async function loadHistoryFromDB(
         tx
             .objectStore('example')
             .openCursor()
-            .then(async cursor => {
+            .then(async (cursor) => {
                 while (cursor) {
                     if (cursor.value.hidden) {
                         exampleCb(cursor.key);
@@ -105,7 +105,7 @@ export async function loadHistoryFromDB(
         tx
             .objectStore('history')
             .openCursor()
-            .then(async cursor => {
+            .then(async (cursor) => {
                 while (cursor) {
                     historyCb(processEntry(cursor.value)!);
                     cursor = await cursor.continue();
@@ -124,8 +124,8 @@ export async function saveItemsToDB(
 ): Promise<HistoryEntry[]> {
     // Need to process entries first due to IDB restrictions
     const entries = await Promise.all(
-        items.map(async item => {
-            const blob = await fetch(item.imgSrc).then(r => r.blob());
+        items.map(async (item) => {
+            const blob = await fetch(item.imgSrc).then((r) => r.blob());
             const dataUri = await blobToDataUri(blob);
             revokeIfObjectUrl(item.imgSrc);
             return {
@@ -139,7 +139,7 @@ export async function saveItemsToDB(
 
     const db = await dbPromise;
     const { store, done } = await db.transaction('history', 'readwrite');
-    entries.forEach(entry => store.put(entry));
+    entries.forEach((entry) => store.put(entry));
     await done;
 
     return entries;

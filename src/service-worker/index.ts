@@ -28,20 +28,20 @@ const CACHE = `color-breakdown-${hash}`;
 export declare var self: ServiceWorkerGlobalScope;
 
 // On install, cache some resources.
-self.addEventListener('install', event => {
+self.addEventListener('install', (event) => {
     // Ask the service worker to keep installing until the returning promise
     // resolves.
     event.waitUntil(precache());
 });
 
 // On activate, clean up old caches
-self.addEventListener('activate', event => {
+self.addEventListener('activate', (event) => {
     event.waitUntil(clearOldCaches());
 });
 
 // On fetch, use cache but update the entry with the latest contents from the
 // server.
-self.addEventListener('fetch', event => {
+self.addEventListener('fetch', (event) => {
     event.respondWith(fromCache(event.request));
 });
 
@@ -78,7 +78,7 @@ async function clearOldCaches() {
     const cacheNames = await caches.keys();
     return Promise.all(
         cacheNames
-            .filter(name => name !== CACHE)
-            .map(name => caches.delete(name)),
+            .filter((name) => name !== CACHE)
+            .map((name) => caches.delete(name)),
     );
 }

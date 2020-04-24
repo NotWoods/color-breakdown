@@ -1,6 +1,6 @@
 import { copySwatchText } from '../../page/clipboard';
 
-const nextTick = () => new Promise(resolve => process.nextTick(resolve));
+const nextTick = () => new Promise((resolve) => process.nextTick(resolve));
 
 describe('copySwatchText', () => {
     beforeEach(() => (navigator.clipboard.writeText as jest.Mock).mockClear());

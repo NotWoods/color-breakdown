@@ -45,8 +45,8 @@ const example3: PaletteEntry = {
     },
 };
 
-export const examples: { [id: number]: PaletteEntry } = {
-    1: example1,
-    2: example2,
-    3: example3,
-};
+export const EXAMPLES = new Map([
+    [1, example1],
+    [2, example2],
+    [3, example3],
+]);
