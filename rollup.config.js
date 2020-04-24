@@ -2,7 +2,7 @@
 import { readFileSync } from 'fs';
 import commonjs from '@rollup/plugin-commonjs';
 import consts from 'rollup-plugin-consts';
-import resolve from 'rollup-plugin-node-resolve';
+import resolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript';
 
@@ -32,7 +32,7 @@ const pageConfig = {
         paths,
     },
     external: Object.keys(paths),
-    plugins: [typescript(), consts({ worker_url }), terser()],
+    plugins: [typescript(), resolve(), consts({ worker_url }), terser()],
 };
 
 /** @type {import('rollup').RollupOptions} */

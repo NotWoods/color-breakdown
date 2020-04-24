@@ -61,10 +61,10 @@ export function renderColorText(props: ColorTextProps) {
             }
             const [r, g, b] = rgb;
             if (props.colorTextType === 'RGB') {
-                return `R${r} G${g} B${b}`;
+                return `rgb(${r}, ${g}, ${b})`;
             }
             const [h, s, l] = rgbToHsl(r, g, b).map((n) => Math.round(n * 100));
-            return `H${h} S${s} L${l}`;
+            return `hsl(${h}, ${s}, ${l})`;
         case 'HEX':
         default:
             return props.hexColor;

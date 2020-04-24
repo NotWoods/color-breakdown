@@ -57,6 +57,25 @@
     color: #333;
 }
 
+.dark-vibrant {
+    grid-area: dark-vibrant;
+}
+.dark-muted {
+    grid-area: dark-muted;
+}
+.vibrant {
+    grid-area: vibrant;
+}
+.muted {
+    grid-area: muted;
+}
+.light-vibrant {
+    grid-area: light-vibrant;
+}
+.light-muted {
+    grid-area: light-muted;
+}
+
 .swatch-description {
     display: block;
     padding-top: 2em;

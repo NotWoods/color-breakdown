@@ -1,8 +1,8 @@
+import { render, h } from 'preact';
 import { PaletteEntry } from '../entry';
 import { displayBackButton, goBack } from './back-button';
-import { ColorTextType } from './render-color-text';
 import { renderImage } from './render-image';
-import { renderPalette } from './render-palette';
+import { PaletteColors } from '../components/palette-colors';
 
 interface DisplayMainPaletteProps {
     /** Data to display on the main palette */
@@ -24,8 +24,8 @@ const MAIN_PALETTE_ELEMENT = document.querySelector('#palette')!;
 const MAIN_PALETTE_IMAGE = MAIN_PALETTE_ELEMENT.querySelector<HTMLImageElement>(
     'img.preview',
 )!;
-const COLOR_DISPLAY_SELECT = document.querySelector<HTMLSelectElement>(
-    '#color-display',
+const MAIN_PALETTE_COLOR_WRAPPER = document.querySelector(
+    '.palette-colors-wrapper',
 )!;
 const TITLE = 'Color Breakdown';
 
@@ -37,29 +37,16 @@ function closeMainPalette() {
     document.title = TITLE;
 }
 
-/** Stores current select change listener so it can be replaced later */
-let listener: (() => void) | undefined = undefined;
-
 export function displayMainPalette(props: DisplayMainPaletteProps) {
-    if (listener) {
-        COLOR_DISPLAY_SELECT.removeEventListener('change', listener);
-    }
-
-    const colorTextType = COLOR_DISPLAY_SELECT.value as ColorTextType;
     displayBackButton(props);
 
     // Show the selected image or a placeholder
     if (props.data) {
-        function render() {
-            renderPalette(
-                { ...props.data!, colorTextType },
-                MAIN_PALETTE_ELEMENT,
-            );
-        }
-        render();
+        render(
+            <PaletteColors colors={props.data.colors} />,
+            MAIN_PALETTE_COLOR_WRAPPER,
+        );
         renderImage(props.data, MAIN_PALETTE_IMAGE); // Only render image first time
-        COLOR_DISPLAY_SELECT.addEventListener('change', render);
-        listener = render;
 
         MAIN_PALETTE_ELEMENT.classList.add('is-open'); // Open on mobile
         const title = `${props.data.name} | ${TITLE}`;
@@ -69,15 +56,14 @@ export function displayMainPalette(props: DisplayMainPaletteProps) {
             history.replaceState(true, title, `#${props.data.timestamp}`);
         }
     } else {
-        renderPalette(
-            { colors: undefined, colorTextType },
-            MAIN_PALETTE_ELEMENT,
+        render(
+            <PaletteColors colors={undefined} />,
+            MAIN_PALETTE_COLOR_WRAPPER,
         );
         renderImage(
             { imgSrc: 'img/placeholder.svg', name: 'No image' },
             MAIN_PALETTE_IMAGE,
         );
-        listener = undefined;
         closeMainPalette();
     }
 }

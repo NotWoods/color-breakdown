@@ -25,7 +25,7 @@ describe('renderColorText', () => {
         ).toBe('R255 G255 B255');
         expect(
             renderColorText({ colorTextType: 'RGB', hexColor: '#123456' }),
-        ).toBe('R18 G52 B86');
+        ).toBe('rgb(18, 52, 86)');
         expect(
             renderColorText({
                 colorTextType: 'RGB',
