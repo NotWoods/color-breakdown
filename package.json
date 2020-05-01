@@ -20,7 +20,7 @@
         "husky": "^3.1.0",
         "idb": "^4.0.5",
         "insights-js": "^1.2.10",
-        "jest": "^25.4.0",
+        "jest": "^25.5.3",
         "node-vibrant": "^3.0.0",
         "prettier": "^2.0.5",
         "pwacompat": "^2.0.10",
