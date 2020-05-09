@@ -52,21 +52,6 @@ document
     .querySelector('#back')!
     .addEventListener('click', handleBackButton, PASSIVE);
 
-// Delete current palette when delete is clicked
-document.querySelector('#delete')!.addEventListener(
-    'click',
-    () => {
-        const timestamp = getOpenItem();
-        if (timestamp != undefined) {
-            postMessage({
-                type: 'DELETE',
-                payload: { timestamp, current: true },
-            });
-        }
-    },
-    PASSIVE,
-);
-
 // Copy the text of a swatch on click
 document
     .querySelector('.palette-colors')!

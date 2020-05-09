@@ -1,21 +1,17 @@
-import { h, JSX } from 'preact';
+import { h } from 'preact';
 import { useState } from 'preact/hooks';
 import { ColorPalette } from '../color-interfaces';
 import { Swatch } from './swatch';
 import { renderColorText } from '../page/render-color-text';
 
-interface PaletteColorsProps {
+interface ViewerColorsProps {
     colors?: ColorPalette;
 }
 
 type DisplayType = 'HEX' | 'RGB' | 'HSL';
 
-export function PaletteColors(props: PaletteColorsProps) {
+export function ViewerColors(props: ViewerColorsProps) {
     const [displayType, setDisplayType] = useState<DisplayType>('HEX');
-
-    function handleChange(event: JSX.TargetedEvent<HTMLSelectElement>) {
-        setDisplayType(event.currentTarget.value as DisplayType);
-    }
 
     function convert(hexColor?: string) {
         if (hexColor == undefined) return undefined;
@@ -32,7 +28,9 @@ export function PaletteColors(props: PaletteColorsProps) {
                     class="color-display"
                     id="color-display"
                     value={displayType}
-                    onChange={handleChange}
+                    onChange={(event) =>
+                        setDisplayType(event.currentTarget.value as DisplayType)
+                    }
                 >
                     <option value="HEX">HEX</option>
                     <option value="RGB">RGB</option>

@@ -2,7 +2,7 @@ import { render, h } from 'preact';
 import { PaletteEntry } from '../entry';
 import { displayBackButton, goBack } from './back-button';
 import { renderImage } from './render-image';
-import { PaletteColors } from '../components/palette-colors';
+import { ViewerColors } from '../components/viewer-colors';
 
 interface DisplayMainPaletteProps {
     /** Data to display on the main palette */
@@ -43,10 +43,10 @@ export function displayMainPalette(props: DisplayMainPaletteProps) {
     // Show the selected image or a placeholder
     if (props.data) {
         render(
-            <PaletteColors colors={props.data.colors} />,
+            <ViewerColors colors={props.data.colors} />,
             MAIN_PALETTE_COLOR_WRAPPER,
         );
-        renderImage(props.data, MAIN_PALETTE_IMAGE); // Only render image first time
+        renderImage(props.data, MAIN_PALETTE_IMAGE);
 
         MAIN_PALETTE_ELEMENT.classList.add('is-open'); // Open on mobile
         const title = `${props.data.name} | ${TITLE}`;
@@ -56,10 +56,7 @@ export function displayMainPalette(props: DisplayMainPaletteProps) {
             history.replaceState(true, title, `#${props.data.timestamp}`);
         }
     } else {
-        render(
-            <PaletteColors colors={undefined} />,
-            MAIN_PALETTE_COLOR_WRAPPER,
-        );
+        render(<ViewerColors colors={undefined} />, MAIN_PALETTE_COLOR_WRAPPER);
         renderImage(
             { imgSrc: 'img/placeholder.svg', name: 'No image' },
             MAIN_PALETTE_IMAGE,

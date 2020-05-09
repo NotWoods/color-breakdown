@@ -1,5 +1,5 @@
 /**
- * Revoke a url if it is an object url.
+ * Revoke a url only if it is an object url.
  */
 export function revokeIfObjectUrl(url: string) {
     if (new URL(url).protocol === 'blob:') {
