@@ -37,7 +37,7 @@ describe('revokeObjectUrlOnLoad', () => {
     function mockImg(src: string) {
         const img = document.createElement('img');
         img.src = src;
-        img.onload = revokeObjectUrlOnLoad;
+        img.onload = revokeObjectUrlOnLoad as (ev: Event) => void;
         img.dispatchEvent(new UIEvent('load'));
         return img;
     }

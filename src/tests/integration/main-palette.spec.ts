@@ -14,17 +14,17 @@ MAIN_PALETTE.element.appendChild(COLOR_DISPLAY_SELECT);
 document.body.appendChild(MAIN_PALETTE.element);
 document.body.appendChild(BACK_BUTTON);
 
-import { displayMainPalette, handleBackButton } from '../../page/main-palette';
+import { displayMainPalette } from '../../page/main-palette';
 import { EXAMPLES } from '../../db-worker/examples';
 
-BACK_BUTTON.addEventListener('click', handleBackButton);
-
 describe('Main Palette Integration Test', () => {
+    function postMessage() {}
+
     test('render placeholder', () => {
         displayMainPalette({
             data: undefined,
             firstLoad: true,
-            updateHash: false,
+            postMessage,
         });
 
         // Preview should show placeholder image
@@ -43,7 +43,7 @@ describe('Main Palette Integration Test', () => {
         displayMainPalette({
             data: EXAMPLES.get(1),
             firstLoad: false,
-            updateHash: true,
+            postMessage,
         });
 
         expect(new URL(MAIN_PALETTE_IMAGE.src).pathname).toBe(

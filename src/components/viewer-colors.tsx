@@ -1,11 +1,12 @@
 import { h } from 'preact';
 import { useState } from 'preact/hooks';
 import { ColorPalette } from '../color-interfaces';
-import { Swatch } from './swatch';
+import { ViewerSwatch } from './swatch';
 import { renderColorText } from '../page/render-color-text';
+import { copySwatchText } from '../page/clipboard';
 
 interface ViewerColorsProps {
-    colors?: ColorPalette;
+    readonly colors?: ColorPalette;
 }
 
 type DisplayType = 'HEX' | 'RGB' | 'HSL';
@@ -22,7 +23,7 @@ export function ViewerColors(props: ViewerColorsProps) {
     }
 
     return (
-        <div class="colors palette-colors">
+        <div class="colors palette-colors" onClick={copySwatchText}>
             <header class="toolbar palette-color-controls">
                 <select
                     class="color-display"
@@ -37,48 +38,48 @@ export function ViewerColors(props: ViewerColorsProps) {
                     <option value="HSL">HSL</option>
                 </select>
             </header>
-            <Swatch
+            <ViewerSwatch
                 id="dark-vibrant"
                 textColor={props.colors?.darkVibrant?.textColor}
                 displayColor={convert(props.colors?.darkVibrant?.color)}
             >
                 Dark Vibrant
-            </Swatch>
-            <Swatch
+            </ViewerSwatch>
+            <ViewerSwatch
                 id="dark-muted"
                 textColor={props.colors?.darkMuted?.textColor}
                 displayColor={convert(props.colors?.darkMuted?.color)}
             >
                 Dark Muted
-            </Swatch>
-            <Swatch
+            </ViewerSwatch>
+            <ViewerSwatch
                 id="vibrant"
                 textColor={props.colors?.vibrant?.textColor}
                 displayColor={convert(props.colors?.vibrant?.color)}
             >
                 Vibrant
-            </Swatch>
-            <Swatch
+            </ViewerSwatch>
+            <ViewerSwatch
                 id="muted"
                 textColor={props.colors?.muted?.textColor}
                 displayColor={convert(props.colors?.muted?.color)}
             >
                 Muted
-            </Swatch>
-            <Swatch
+            </ViewerSwatch>
+            <ViewerSwatch
                 id="light-vibrant"
                 textColor={props.colors?.lightVibrant?.textColor}
                 displayColor={convert(props.colors?.lightVibrant?.color)}
             >
                 Light Vibrant
-            </Swatch>
-            <Swatch
+            </ViewerSwatch>
+            <ViewerSwatch
                 id="light-muted"
                 textColor={props.colors?.lightMuted?.textColor}
                 displayColor={convert(props.colors?.lightMuted?.color)}
             >
                 Light Muted
-            </Swatch>
+            </ViewerSwatch>
         </div>
     );
 }

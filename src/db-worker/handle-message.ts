@@ -53,7 +53,6 @@ export async function handleMessage(
                         payload: {
                             entry: processEntry(entries[0]),
                             firstLoad: false,
-                            updateHash: true,
                         },
                     });
                     postMessage({
@@ -78,7 +77,6 @@ export async function handleMessage(
                     payload: {
                         entry,
                         firstLoad: action.payload.firstLoad,
-                        updateHash: false,
                     },
                 });
                 return;
@@ -96,7 +94,6 @@ export async function handleMessage(
                             payload: {
                                 entry: otherEntry,
                                 firstLoad: false,
-                                updateHash: true,
                             },
                         });
                     }

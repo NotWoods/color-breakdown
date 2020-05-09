@@ -51,7 +51,7 @@
     </head>
 
     <body class="container">
-        <main class="app-screen" id="history">
+        <aside class="app-screen" id="history">
             <header class="toolbar">
                 <img
                     src="img/favicon/logo48.png"
@@ -97,232 +97,250 @@
                 </a>
             </header>
 
-            <ul id="grid-items" class="grid-list">
-                <template id="grid-item-template">
+            <div id="grid-items-container">
+                <ul id="grid-items" class="grid-list">
+                    <template id="grid-item-template">
+                        <li class="grid-item">
+                            <a href="#palette">
+                                <div class="grid-item-img-box">
+                                    <img
+                                        class="grid-item-img preview"
+                                        alt=""
+                                        height="144"
+                                        width="144"
+                                    />
+                                </div>
+                                <div class="colors grid-colors vibrant">
+                                    <span class="swatch vibrant"></span>
+                                    <span class="swatch dark-vibrant"></span>
+                                    <span class="swatch light-vibrant"></span>
+                                    <span class="swatch muted"></span>
+                                    <span class="swatch dark-muted"></span>
+                                    <span class="swatch light-muted"></span>
+                                </div>
+                            </a>
+                        </li>
+                    </template>
+
                     <li class="grid-item">
-                        <a href="#palette">
+                        <a href="#i1" id="i1">
                             <div class="grid-item-img-box">
                                 <img
                                     class="grid-item-img preview"
-                                    alt=""
+                                    alt="andrew-hughes-261571-unsplash.jpg"
                                     height="144"
                                     width="144"
+                                    src="img/demo/andrew-hughes-261571-unsplash.jpg"
                                 />
                             </div>
                             <div class="colors grid-colors vibrant">
-                                <span class="swatch vibrant"></span>
-                                <span class="swatch dark-vibrant"></span>
-                                <span class="swatch light-vibrant"></span>
-                                <span class="swatch muted"></span>
-                                <span class="swatch dark-muted"></span>
-                                <span class="swatch light-muted"></span>
+                                <span
+                                    class="swatch vibrant"
+                                    style="background-color: rgb(174, 52, 14);"
+                                ></span>
+                                <span
+                                    class="swatch dark-vibrant"
+                                    style="background-color: rgb(108, 20, 12);"
+                                ></span>
+                                <span
+                                    class="swatch light-vibrant"
+                                    style="
+                                        background-color: rgb(218, 204, 155);
+                                    "
+                                ></span>
+                                <span
+                                    class="swatch muted"
+                                    style="background-color: rgb(159, 128, 95);"
+                                ></span>
+                                <span
+                                    class="swatch dark-muted"
+                                    style="background-color: rgb(59, 57, 69);"
+                                ></span>
+                                <span
+                                    class="swatch light-muted"
+                                    style="
+                                        background-color: rgb(218, 211, 176);
+                                    "
+                                ></span>
                             </div>
                         </a>
                     </li>
-                </template>
 
-                <li class="grid-item">
-                    <a href="#i1" id="i1">
-                        <div class="grid-item-img-box">
-                            <img
-                                class="grid-item-img preview"
-                                alt="andrew-hughes-261571-unsplash.jpg"
-                                height="144"
-                                width="144"
-                                src="img/demo/andrew-hughes-261571-unsplash.jpg"
-                            />
-                        </div>
-                        <div class="colors grid-colors vibrant">
-                            <span
-                                class="swatch vibrant"
-                                style="background-color: rgb(174, 52, 14);"
-                            ></span>
-                            <span
-                                class="swatch dark-vibrant"
-                                style="background-color: rgb(108, 20, 12);"
-                            ></span>
-                            <span
-                                class="swatch light-vibrant"
-                                style="background-color: rgb(218, 204, 155);"
-                            ></span>
-                            <span
-                                class="swatch muted"
-                                style="background-color: rgb(159, 128, 95);"
-                            ></span>
-                            <span
-                                class="swatch dark-muted"
-                                style="background-color: rgb(59, 57, 69);"
-                            ></span>
-                            <span
-                                class="swatch light-muted"
-                                style="background-color: rgb(218, 211, 176);"
-                            ></span>
-                        </div>
-                    </a>
-                </li>
+                    <li class="grid-item">
+                        <a href="#i2" id="i2">
+                            <div class="grid-item-img-box">
+                                <img
+                                    class="grid-item-img preview"
+                                    alt="ever-wild-634729-unsplash.jpg"
+                                    height="144"
+                                    width="144"
+                                    src="img/demo/ever-wild-634729-unsplash.jpg"
+                                />
+                            </div>
+                            <div class="colors grid-colors vibrant">
+                                <span
+                                    class="swatch vibrant"
+                                    style="background-color: rgb(251, 164, 9);"
+                                ></span>
+                                <span
+                                    class="swatch dark-vibrant"
+                                    style="background-color: rgb(124, 4, 4);"
+                                ></span>
+                                <span
+                                    class="swatch light-vibrant"
+                                    style="background-color: rgb(249, 162, 80);"
+                                ></span>
+                                <span
+                                    class="swatch muted"
+                                    style="background-color: rgb(172, 120, 76);"
+                                ></span>
+                                <span
+                                    class="swatch dark-muted"
+                                    style="background-color: rgb(140, 108, 68);"
+                                ></span>
+                                <span
+                                    class="swatch light-muted"
+                                    style="
+                                        background-color: rgb(188, 152, 122);
+                                    "
+                                ></span>
+                            </div>
+                        </a>
+                    </li>
 
-                <li class="grid-item">
-                    <a href="#i2" id="i2">
-                        <div class="grid-item-img-box">
-                            <img
-                                class="grid-item-img preview"
-                                alt="ever-wild-634729-unsplash.jpg"
-                                height="144"
-                                width="144"
-                                src="img/demo/ever-wild-634729-unsplash.jpg"
-                            />
-                        </div>
-                        <div class="colors grid-colors vibrant">
-                            <span
-                                class="swatch vibrant"
-                                style="background-color: rgb(251, 164, 9);"
-                            ></span>
-                            <span
-                                class="swatch dark-vibrant"
-                                style="background-color: rgb(124, 4, 4);"
-                            ></span>
-                            <span
-                                class="swatch light-vibrant"
-                                style="background-color: rgb(249, 162, 80);"
-                            ></span>
-                            <span
-                                class="swatch muted"
-                                style="background-color: rgb(172, 120, 76);"
-                            ></span>
-                            <span
-                                class="swatch dark-muted"
-                                style="background-color: rgb(140, 108, 68);"
-                            ></span>
-                            <span
-                                class="swatch light-muted"
-                                style="background-color: rgb(188, 152, 122);"
-                            ></span>
-                        </div>
-                    </a>
-                </li>
-
-                <li class="grid-item">
-                    <a href="#i3" id="i3">
-                        <div class="grid-item-img-box">
-                            <img
-                                class="grid-item-img preview"
-                                alt="will-turner-1244879-unsplash.jpg"
-                                height="144"
-                                width="144"
-                                src="img/demo/will-turner-1244879-unsplash.jpg"
-                            />
-                        </div>
-                        <div class="colors grid-colors vibrant">
-                            <span
-                                class="swatch vibrant"
-                                style="background-color: rgb(30, 142, 224);"
-                            ></span>
-                            <span
-                                class="swatch dark-vibrant"
-                                style="background-color: rgb(6, 28, 44);"
-                            ></span>
-                            <span
-                                class="swatch light-vibrant"
-                                style="background-color: rgb(138, 196, 239);"
-                            ></span>
-                            <span
-                                class="swatch muted"
-                                style="background-color: rgb(119, 124, 128);"
-                            ></span>
-                            <span
-                                class="swatch dark-muted"
-                                style="background-color: rgb(37, 61, 76);"
-                            ></span>
-                            <span
-                                class="swatch light-muted"
-                                style="background-color: rgb(187, 188, 196);"
-                            ></span>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </main>
+                    <li class="grid-item">
+                        <a href="#i3" id="i3">
+                            <div class="grid-item-img-box">
+                                <img
+                                    class="grid-item-img preview"
+                                    alt="will-turner-1244879-unsplash.jpg"
+                                    height="144"
+                                    width="144"
+                                    src="img/demo/will-turner-1244879-unsplash.jpg"
+                                />
+                            </div>
+                            <div class="colors grid-colors vibrant">
+                                <span
+                                    class="swatch vibrant"
+                                    style="background-color: rgb(30, 142, 224);"
+                                ></span>
+                                <span
+                                    class="swatch dark-vibrant"
+                                    style="background-color: rgb(6, 28, 44);"
+                                ></span>
+                                <span
+                                    class="swatch light-vibrant"
+                                    style="
+                                        background-color: rgb(138, 196, 239);
+                                    "
+                                ></span>
+                                <span
+                                    class="swatch muted"
+                                    style="
+                                        background-color: rgb(119, 124, 128);
+                                    "
+                                ></span>
+                                <span
+                                    class="swatch dark-muted"
+                                    style="background-color: rgb(37, 61, 76);"
+                                ></span>
+                                <span
+                                    class="swatch light-muted"
+                                    style="
+                                        background-color: rgb(187, 188, 196);
+                                    "
+                                ></span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
 
         <link href="css/palette.css" rel="stylesheet" />
-        <article class="app-screen" id="palette">
-            <header class="toolbar transparent-toolbar">
-                <button
-                    id="back"
-                    type="button"
-                    class="toolbar-button white-button back"
-                >
-                    <span class="btn-label left">Back</span>
-                    <svg
-                        height="24"
-                        width="24"
-                        xmlns="http://www.w3.org/2000/svg"
+        <div id="palette-container">
+            <article class="app-screen" id="palette">
+                <header class="toolbar transparent-toolbar">
+                    <button
+                        id="back"
+                        type="button"
+                        class="toolbar-button white-button back"
                     >
-                        <path
-                            d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
-                        />
-                    </svg>
-                </button>
-                <h2 class="toolbar-title"></h2>
-                <button
-                    id="delete"
-                    type="button"
-                    class="toolbar-button white-button"
-                >
-                    <span class="btn-label">Delete</span>
-                    <svg
-                        height="24"
-                        width="24"
-                        xmlns="http://www.w3.org/2000/svg"
+                        <span class="btn-label left">Back</span>
+                        <svg
+                            height="24"
+                            width="24"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+                            />
+                        </svg>
+                    </button>
+                    <h2 class="toolbar-title"></h2>
+                    <button
+                        id="delete"
+                        type="button"
+                        class="toolbar-button white-button"
                     >
-                        <path
-                            d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
-                        />
-                    </svg>
-                </button>
-            </header>
+                        <span class="btn-label">Delete</span>
+                        <svg
+                            height="24"
+                            width="24"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+                            />
+                        </svg>
+                    </button>
+                </header>
 
-            <img
-                class="palette-image preview"
-                alt="No image"
-                src="img/placeholder.svg"
-            />
+                <img
+                    class="palette-image preview"
+                    alt="No image"
+                    src="img/placeholder.svg"
+                />
 
-            <div class="palette-colors-wrapper">
-                <div class="colors palette-colors">
-                    <header class="toolbar palette-color-controls">
-                        <select class="color-display" id="color-display">
-                            <option value="HEX">HEX</option>
-                            <option value="RGB">RGB</option>
-                            <option value="HSL">HSL</option>
-                        </select>
-                    </header>
-                    <button class="swatch dark-vibrant" hidden>
-                        <span class="swatch-description">Dark Vibrant</span>
-                        <span class="swatch-text">&#8203;</span>
-                    </button>
-                    <button class="swatch dark-muted" hidden>
-                        <span class="swatch-description">Dark Muted</span>
-                        <span class="swatch-text">&#8203;</span>
-                    </button>
-                    <button class="swatch vibrant" hidden>
-                        <span class="swatch-description">Vibrant</span>
-                        <span class="swatch-text">&#8203;</span>
-                    </button>
-                    <button class="swatch muted" hidden>
-                        <span class="swatch-description">Muted</span>
-                        <span class="swatch-text">&#8203;</span>
-                    </button>
-                    <button class="swatch light-vibrant" hidden>
-                        <span class="swatch-description">Light Vibrant</span>
-                        <span class="swatch-text">&#8203;</span>
-                    </button>
-                    <button class="swatch light-muted" hidden>
-                        <span class="swatch-description">Light Muted</span>
-                        <span class="swatch-text">&#8203;</span>
-                    </button>
+                <div class="palette-colors-wrapper">
+                    <div class="colors palette-colors">
+                        <header class="toolbar palette-color-controls">
+                            <select class="color-display" id="color-display">
+                                <option value="HEX">HEX</option>
+                                <option value="RGB">RGB</option>
+                                <option value="HSL">HSL</option>
+                            </select>
+                        </header>
+                        <button class="swatch dark-vibrant" hidden>
+                            <span class="swatch-description">Dark Vibrant</span>
+                            <span class="swatch-text">&#8203;</span>
+                        </button>
+                        <button class="swatch dark-muted" hidden>
+                            <span class="swatch-description">Dark Muted</span>
+                            <span class="swatch-text">&#8203;</span>
+                        </button>
+                        <button class="swatch vibrant" hidden>
+                            <span class="swatch-description">Vibrant</span>
+                            <span class="swatch-text">&#8203;</span>
+                        </button>
+                        <button class="swatch muted" hidden>
+                            <span class="swatch-description">Muted</span>
+                            <span class="swatch-text">&#8203;</span>
+                        </button>
+                        <button class="swatch light-vibrant" hidden>
+                            <span class="swatch-description"
+                                >Light Vibrant</span
+                            >
+                            <span class="swatch-text">&#8203;</span>
+                        </button>
+                        <button class="swatch light-muted" hidden>
+                            <span class="swatch-description">Light Muted</span>
+                            <span class="swatch-text">&#8203;</span>
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </article>
+            </article>
+        </div>
 
         <link href="css/new.css" rel="stylesheet" />
         <link

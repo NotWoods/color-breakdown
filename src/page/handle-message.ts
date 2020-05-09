@@ -1,15 +1,16 @@
 import { PaletteEntry } from '../entry';
 import { addPalettesToList, deletePalettesFromList } from './list';
 import { displayMainPalette } from './main-palette';
+import { WorkerAction } from '../db-worker/handle-message';
 
 interface AddAction {
     readonly type: 'ADD';
-    readonly payload: ReadonlyArray<PaletteEntry>;
+    readonly payload: readonly PaletteEntry[];
 }
 
 interface RemoveAction {
     readonly type: 'REMOVE';
-    readonly payload: ReadonlyArray<number>;
+    readonly payload: readonly number[];
 }
 
 interface DisplayAction {
@@ -17,7 +18,6 @@ interface DisplayAction {
     readonly payload: {
         readonly entry?: PaletteEntry;
         readonly firstLoad: boolean;
-        readonly updateHash: boolean;
     };
 }
 
@@ -28,7 +28,10 @@ interface ErrorAction {
 
 export type UiAction = AddAction | RemoveAction | DisplayAction | ErrorAction;
 
-export function handleMessage(action: UiAction) {
+export function handleMessage(
+    action: UiAction,
+    postMessage: (action: WorkerAction) => void,
+) {
     console.log(action.type, action.payload);
     switch (action.type) {
         case 'ADD':
@@ -41,7 +44,7 @@ export function handleMessage(action: UiAction) {
             displayMainPalette({
                 data: action.payload.entry,
                 firstLoad: action.payload.firstLoad,
-                updateHash: action.payload.updateHash,
+                postMessage,
             });
             return;
         case 'ERROR':

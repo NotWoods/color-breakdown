@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import { revokeIfObjectUrl } from '../revoke-object-url';
+import { revokeObjectUrlOnLoad } from '../revoke-object-url';
 
 interface ViewerImageProps {
     readonly name?: string;
@@ -12,7 +12,7 @@ export function ViewerImage(props: ViewerImageProps) {
             class="palette-image"
             alt={props.imgSrc != undefined ? props.name : 'No image'}
             src={props.imgSrc ?? 'img/placeholder.svg'}
-            onLoad={(event) => revokeIfObjectUrl(event.currentTarget.src)}
+            onLoad={revokeObjectUrlOnLoad}
         />
     );
 }

@@ -1,14 +1,14 @@
 import { h } from 'preact';
-import { ViewerToolbar } from './viewer-toolbar';
-import { ViewerImage } from './viewer-image';
-import { ViewerColors } from './viewer-colors';
+import { useEffect } from 'preact/hooks';
 import { WorkerAction } from '../db-worker/handle-message';
 import { PaletteEntry } from '../entry';
-import { useEffect } from 'preact/hooks/src';
+import { ViewerColors } from './viewer-colors';
+import { ViewerImage } from './viewer-image';
+import { ViewerToolbar } from './viewer-toolbar';
 
 const TITLE = 'Color Breakdown';
 
-interface ViewerProps {
+export interface ViewerProps {
     /** Data to display on the main palette */
     readonly data?: PaletteEntry;
     /**
@@ -26,7 +26,7 @@ export function Viewer(props: ViewerProps) {
     useEffect(() => {
         const title =
             props.data != undefined ? `${props.data.name} | ${TITLE}` : TITLE;
-        const hash = props.data != undefined ? `#${props.data.timestamp}` : '';
+        const hash = props.data != undefined ? `#i${props.data.timestamp}` : '';
 
         document.title = title;
         if (hash !== location.hash) {
