@@ -1,3 +1,5 @@
+declare var navigator: Navigator;
+
 const ClipboardModule = navigator.clipboard || import('./clipboard-polyfill');
 
 /**

@@ -1,5 +1,7 @@
 import { copySwatchText } from '../../page/clipboard';
 
+declare var navigator: Navigator;
+
 const nextTick = () => new Promise((resolve) => process.nextTick(resolve));
 
 describe('copySwatchText', () => {
