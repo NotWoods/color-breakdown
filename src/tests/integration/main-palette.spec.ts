@@ -17,7 +17,7 @@ document.body.appendChild(BACK_BUTTON);
 import { displayMainPalette } from '../../page/main-palette';
 import { EXAMPLES } from '../../db-worker/examples';
 
-describe('Main Palette Integration Test', () => {
+describe.skip('Main Palette Integration Test', () => {
     function postMessage() {}
 
     test('render placeholder', () => {

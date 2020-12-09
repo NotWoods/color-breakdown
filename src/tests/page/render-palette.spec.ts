@@ -60,7 +60,7 @@ describe('renderPalette', () => {
         expect(palette.lightVibrant.style.color).toMatch(black);
         expect(
             palette.lightVibrant.querySelector('.swatch-text')!.textContent,
-        ).toBe('R171 G205 B239');
+        ).toBe('rgb(171, 205, 239)');
     });
 
     test('should return hsl colors', () => {
@@ -78,6 +78,6 @@ describe('renderPalette', () => {
         expect(palette.darkMuted.style.color).toMatch(black);
         expect(
             palette.darkMuted.querySelector('.swatch-text')!.textContent,
-        ).toBe('H58 S68 L80');
+        ).toBe('hsl(58, 68, 80)');
     });
 });

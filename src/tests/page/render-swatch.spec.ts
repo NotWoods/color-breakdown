@@ -76,7 +76,7 @@ describe('renderSwatch', () => {
         expect(element.style.backgroundColor).toMatch(ABCDEF);
         expect(element.style.color).toMatch(black);
         expect(element.querySelector('.swatch-text')!.textContent).toBe(
-            'R171 G205 B239',
+            'rgb(171, 205, 239)',
         );
     });
 
@@ -100,7 +100,7 @@ describe('renderSwatch', () => {
         expect(element.style.backgroundColor).toMatch(ABCDEF);
         expect(element.style.color).toMatch(black);
         expect(element.querySelector('.swatch-text')!.textContent).toBe(
-            'H58 S68 L80',
+            'hsl(58, 68, 80)',
         );
     });
 });

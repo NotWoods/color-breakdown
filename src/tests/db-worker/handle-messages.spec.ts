@@ -74,7 +74,7 @@ describe('handleMessage', () => {
         expect(loadItemFromDB).toBeCalledWith(0);
         expect(postMessage).toBeCalledWith({
             type: 'DISPLAY',
-            payload: { entry: {}, firstLoad: false, updateHash: false },
+            payload: { entry: {}, firstLoad: false },
         });
     });
 

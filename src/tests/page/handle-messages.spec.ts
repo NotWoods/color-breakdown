@@ -101,7 +101,7 @@ describe('handleMessage', () => {
                 },
             },
             firstLoad: false,
-            updateHash: false,
+            postMessage,
         });
     });
 });

@@ -19,10 +19,10 @@ describe('renderColorText', () => {
     test('should return rgb colors', () => {
         expect(
             renderColorText({ colorTextType: 'RGB', hexColor: '#000000' }),
-        ).toBe('R0 G0 B0');
+        ).toBe('rgb(0, 0, 0)');
         expect(
             renderColorText({ colorTextType: 'RGB', hexColor: '#FFFFFF' }),
-        ).toBe('R255 G255 B255');
+        ).toBe('rgb(255, 255, 255)');
         expect(
             renderColorText({ colorTextType: 'RGB', hexColor: '#123456' }),
         ).toBe('rgb(18, 52, 86)');
@@ -31,30 +31,30 @@ describe('renderColorText', () => {
                 colorTextType: 'RGB',
                 hexColor: '#ABCDEF',
             }),
-        ).toBe('R171 G205 B239');
+        ).toBe('rgb(171, 205, 239)');
     });
 
     test('should return hsl colors', () => {
         expect(
             renderColorText({ colorTextType: 'HSL', hexColor: '#000000' }),
-        ).toBe('H0 S0 L0');
+        ).toBe('hsl(0, 0, 0)');
         expect(
             renderColorText({
                 colorTextType: 'HSL',
                 hexColor: '#FFFFFF',
             }),
-        ).toBe('H0 S0 L100');
+        ).toBe('hsl(0, 0, 100)');
         expect(
             renderColorText({
                 colorTextType: 'HSL',
                 hexColor: '#123456',
             }),
-        ).toBe('H58 S65 L20');
+        ).toBe('hsl(58, 65, 20)');
         expect(
             renderColorText({
                 colorTextType: 'HSL',
                 hexColor: '#ABCDEF',
             }),
-        ).toBe('H58 S68 L80');
+        ).toBe('hsl(58, 68, 80)');
     });
 });
